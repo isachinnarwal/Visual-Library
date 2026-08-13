@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-5P-010 — Tapering hex-bar funnel with staggered copy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F3F5F4;   /* vignette mid                            */
+    --bg-edge:     #EDF0EF;   /* vignette outer                          */
+    --well:        #FFFFFF;   /* icon disc on each bar                   */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+    --text-muted:  #7C7E81;   /* stage body copy                         */
+
+    --color-1:     #45A7AB;   /* stage 1 — teal,   widest                */
+    --color-2:     #4386BA;   /* stage 2 — blue                          */
+    --color-3:     #743E6A;   /* stage 3 — plum                          */
+    --color-4:     #DD5C52;   /* stage 4 — coral                         */
+    --color-5:     #D99438;   /* stage 5 — amber,  narrowest             */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Five elongated hexagons stacked on one axis at x 420, each 55px
+       narrower than the one above — a FUNNEL. All five keep the same
+       37px point depth, so the taper reads as narrowing rather than as
+       five differently-shaped bars.
+       The copy is staggered: each block starts 81px past its OWN bar's
+       right point, so the text edge follows the funnel inward.
+       Margins: top 70 · left 126 · right 184 · bottom 80.              */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 30%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — five-segment rule, one per stage =================== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 250px; height: 10px; width: 103px; border-radius: 2px; }
+  .rule-1 { left: 703px;  background: var(--color-1); }
+  .rule-2 { left: 806px;  background: var(--color-2); }
+  .rule-3 { left: 909px;  background: var(--color-3); }
+  .rule-4 { left: 1012px; background: var(--color-4); }
+  .rule-5 { left: 1115px; background: var(--color-5); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === WELL GLYPHS — tinted with their own bar ====================== */
+  .well-icon {
+    position: absolute;
+    left: 374px; width: 92px; height: 46px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 3;
+  }
+  .well-icon-1 { top: 349px; color: var(--color-1); }
+  .well-icon-2 { top: 493px; color: var(--color-2); }
+  .well-icon-3 { top: 637px; color: var(--color-3); }
+  .well-icon-4 { top: 781px; color: var(--color-4); }
+  .well-icon-5 { top: 925px; color: var(--color-5); }
+  .well-icon .material-symbols-outlined {
+    font-size: 46px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* === STAGE COPY — staggered in with the funnel ==================== */
+  .pt-label {
+    position: absolute;
+    width: 1000px; height: 44px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 44px;
+    z-index: 3;
+  }
+  .pt-label-1 { left: 796px; top: 308px; color: var(--color-1); }
+  .pt-label-2 { left: 769px; top: 452px; color: var(--color-2); }
+  .pt-label-3 { left: 741px; top: 596px; color: var(--color-3); }
+  .pt-label-4 { left: 717px; top: 740px; color: var(--color-4); }
+  .pt-label-5 { left: 689px; top: 884px; color: var(--color-5); }
+
+  .pt-body {
+    position: absolute;
+    width: 1000px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--text-muted);
+    z-index: 3;
+  }
+  .pt-body-1 { left: 796px; top: 358px; }
+  .pt-body-2 { left: 769px; top: 502px; }
+  .pt-body-3 { left: 741px; top: 646px; }
+  .pt-body-4 { left: 717px; top: 790px; }
+  .pt-body-5 { left: 689px; top: 934px; }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-5P-010"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <h1 class="headline" data-token="title">AARRR Funnel</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+  <div class="rule rule-3"></div>
+  <div class="rule rule-4"></div>
+  <div class="rule rule-5"></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <!-- Each bar: flat top and bottom, a 37px point either side. The mid
+         half-width shrinks 27px a step (295 -> 188) while the point depth
+         stays at 37, which is what makes it read as one funnel. -->
+    <path class="bar bar-1" fill="var(--color-1)"
+          d="M 162 320 H 678 L 715 372 L 678 424 H 162 L 125 372 Z"/>
+    <path class="bar bar-2" fill="var(--color-2)"
+          d="M 189 464 H 651 L 688 516 L 651 568 H 189 L 152 516 Z"/>
+    <path class="bar bar-3" fill="var(--color-3)"
+          d="M 217 608 H 623 L 660 660 L 623 712 H 217 L 180 660 Z"/>
+    <path class="bar bar-4" fill="var(--color-4)"
+          d="M 241 752 H 599 L 636 804 L 599 856 H 241 L 204 804 Z"/>
+    <path class="bar bar-5" fill="var(--color-5)"
+          d="M 269 896 H 571 L 608 948 L 571 1000 H 269 L 232 948 Z"/>
+
+    <circle class="well well-1" cx="420" cy="372" r="46" fill="var(--well)"/>
+    <circle class="well well-2" cx="420" cy="516" r="46" fill="var(--well)"/>
+    <circle class="well well-3" cx="420" cy="660" r="46" fill="var(--well)"/>
+    <circle class="well well-4" cx="420" cy="804" r="46" fill="var(--well)"/>
+    <circle class="well well-5" cx="420" cy="948" r="46" fill="var(--well)"/>
+  </svg>
+
+  <div class="well-icon well-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">group_add</span></div>
+  <div class="well-icon well-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">touch_app</span></div>
+  <div class="well-icon well-icon-3"><span class="material-symbols-outlined" data-token="p3.icon">autorenew</span></div>
+  <div class="well-icon well-icon-4"><span class="material-symbols-outlined" data-token="p4.icon">share</span></div>
+  <div class="well-icon well-icon-5"><span class="material-symbols-outlined" data-token="p5.icon">paid</span></div>
+
+  <div class="pt-label pt-label-1" data-token="p1.label">Acquisition</div>
+  <div class="pt-label pt-label-2" data-token="p2.label">Activation</div>
+  <div class="pt-label pt-label-3" data-token="p3.label">Retention</div>
+  <div class="pt-label pt-label-4" data-token="p4.label">Referral</div>
+  <div class="pt-label pt-label-5" data-token="p5.label">Revenue</div>
+
+  <div class="pt-body pt-body-1" data-token="p1.body">Lorem ipsum dolor sitaam amet, consectetuer diam nonummy nibh euismod tincidunt laoreet doloreas</div>
+  <div class="pt-body pt-body-2" data-token="p2.body">Lorem ipsum dolor sitaam amet, consectetuer diam nonummy nibh euismod tincidunt laoreet doloreas</div>
+  <div class="pt-body pt-body-3" data-token="p3.body">Lorem ipsum dolor sitaam amet, consectetuer diam nonummy nibh euismod tincidunt laoreet doloreas</div>
+  <div class="pt-body pt-body-4" data-token="p4.body">Lorem ipsum dolor sitaam amet, consectetuer diam nonummy nibh euismod tincidunt laoreet doloreas</div>
+  <div class="pt-body pt-body-5" data-token="p5.body">Lorem ipsum dolor sitaam amet, consectetuer diam nonummy nibh euismod tincidunt laoreet doloreas</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function () {
+  gsap.set('.headline, .deck', { opacity: 0, y: 24 });
+  gsap.set('.rule', { opacity: 0, scaleX: 0, transformOrigin: '50% 50%' });
+
+  /* every bar opens from the funnel's own axis, so the stack builds as
+     one shape narrowing rather than five bars sliding in */
+  [[1, 372], [2, 516], [3, 660], [4, 804], [5, 948]].forEach(function (p) {
+    gsap.set('.bar-'  + p[0], { opacity: 0, scaleX: 0.06, svgOrigin: '420 ' + p[1] });
+    gsap.set('.well-' + p[0], { opacity: 0, scale: 0.35, svgOrigin: '420 ' + p[1] });
+  });
+  gsap.set('.well-icon', { opacity: 0, scale: 0.5, transformOrigin: '50% 50%' });
+  gsap.set('.pt-label',  { opacity: 0, x: 26 });
+  gsap.set('.pt-body',   { opacity: 0, x: 26 });
+
+  var tl = gsap.timeline({ paused: true });
+
+  tl.to('.headline', { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.00)
+    .to('.deck',     { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.18)
+    .to('.rule',     { opacity: 1, scaleX: 1, duration: 0.42, ease: 'power2.out', stagger: 0.07 }, 0.40);
+
+  [1, 2, 3, 4, 5].forEach(function (n, i) {
+    var t = 0.72 + i * 0.36;
+    tl.to('.bar-' + n,       { opacity: 1, scaleX: 1, duration: 0.52, ease: 'power3.out' }, t)
+      .to('.well-' + n,      { opacity: 1, scale: 1, duration: 0.40, ease: 'back.out(2)' }, t + 0.18)
+      .to('.well-icon-' + n, { opacity: 1, scale: 1, duration: 0.34, ease: 'back.out(2)' }, t + 0.26)
+      .to('.pt-label-' + n,  { opacity: 1, x: 0, duration: 0.42, ease: 'power2.out' }, t + 0.22)
+      .to('.pt-body-' + n,   { opacity: 1, x: 0, duration: 0.44, ease: 'power2.out' }, t + 0.30);
+  });
+
+  window.__libraryTimeline = tl;
+
+  /* === SNAPSHOT MODE — mandatory ==================================== */
+  if (new URLSearchParams(location.search).get('snapshot') === '1') {
+    tl.progress(1);
+    document.documentElement.setAttribute('data-snapshot-ready', '1');
+  } else {
+    tl.play();
+  }
+})();
+</script>
+
+</body>
+</html>

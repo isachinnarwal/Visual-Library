@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-4P-021 — Grey cards with a colour band and footer bar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F3F5F4;   /* vignette mid                            */
+    --bg-edge:     #EDF0EF;   /* vignette outer                          */
+    --card:        #E2E2E2;   /* the grey card                           */
+    --on-color:    #FFFFFF;   /* label on the colour band                */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+    --text-muted:  #7C7E81;   /* card body copy                          */
+
+    --color-1:     #F0B234;   /* point 1 — amber                         */
+    --color-2:     #306073;   /* point 2 — dark teal                     */
+    --color-3:     #C7384E;   /* point 3 — crimson                       */
+    --color-4:     #318C8B;   /* point 4 — teal                          */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Four 415x670 grey cards on a 455px pitch. Each carries a tinted
+       glyph up top, a full-bleed COLOUR BAND across the middle holding
+       the label, body copy below, and a squared FOOTER BAR at the foot.
+       The band and the bar are the only colour — the card itself stays
+       neutral, which is what keeps four saturated hues on one page calm.
+       Margins: top 70 · left 70 · right 70 · bottom 80.                */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 30%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — four-segment rule, one per point ==================== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 250px; height: 10px; width: 129px; border-radius: 2px; }
+  .rule-1 { left: 702px;  background: var(--color-1); }
+  .rule-2 { left: 831px;  background: var(--color-2); }
+  .rule-3 { left: 960px;  background: var(--color-3); }
+  .rule-4 { left: 1089px; background: var(--color-4); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === CARD GLYPHS — tinted with their own point ==================== */
+  .card-icon {
+    position: absolute;
+    top: 404px; width: 415px; height: 92px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 3;
+  }
+  .card-icon-1 { left: 70px;   color: var(--color-1); }
+  .card-icon-2 { left: 525px;  color: var(--color-2); }
+  .card-icon-3 { left: 980px;  color: var(--color-3); }
+  .card-icon-4 { left: 1435px; color: var(--color-4); }
+  .card-icon .material-symbols-outlined {
+    font-size: 92px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* === BAND LABEL =================================================== */
+  .band-label {
+    position: absolute;
+    top: 594px; width: 415px; height: 48px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 48px;
+    text-align: center;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .band-label-1 { left: 70px;   }
+  .band-label-2 { left: 525px;  }
+  .band-label-3 { left: 980px;  }
+  .band-label-4 { left: 1435px; }
+
+  /* === CARD BODY ==================================================== */
+  .card-body {
+    position: absolute;
+    top: 710px; width: 343px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--text-muted);
+    z-index: 3;
+  }
+  .card-body-1 { left: 106px;  }
+  .card-body-2 { left: 561px;  }
+  .card-body-3 { left: 1016px; }
+  .card-body-4 { left: 1471px; }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-4P-021"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <h1 class="headline" data-token="title">4Cs Education</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+  <div class="rule rule-3"></div>
+  <div class="rule rule-4"></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <g class="card card-1">
+      <rect class="plate" x="70"  y="330" width="415" height="670" rx="72" fill="var(--card)"/>
+      <rect class="band"  x="70"  y="570" width="415" height="96"  fill="var(--color-1)"/>
+      <rect class="foot"  x="70"  y="982" width="415" height="18"  fill="var(--color-1)"/>
+    </g>
+    <g class="card card-2">
+      <rect class="plate" x="525" y="330" width="415" height="670" rx="72" fill="var(--card)"/>
+      <rect class="band"  x="525" y="570" width="415" height="96"  fill="var(--color-2)"/>
+      <rect class="foot"  x="525" y="982" width="415" height="18"  fill="var(--color-2)"/>
+    </g>
+    <g class="card card-3">
+      <rect class="plate" x="980" y="330" width="415" height="670" rx="72" fill="var(--card)"/>
+      <rect class="band"  x="980" y="570" width="415" height="96"  fill="var(--color-3)"/>
+      <rect class="foot"  x="980" y="982" width="415" height="18"  fill="var(--color-3)"/>
+    </g>
+    <g class="card card-4">
+      <rect class="plate" x="1435" y="330" width="415" height="670" rx="72" fill="var(--card)"/>
+      <rect class="band"  x="1435" y="570" width="415" height="96"  fill="var(--color-4)"/>
+      <rect class="foot"  x="1435" y="982" width="415" height="18"  fill="var(--color-4)"/>
+    </g>
+  </svg>
+
+  <div class="card-icon card-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">psychology</span></div>
+  <div class="card-icon card-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">forum</span></div>
+  <div class="card-icon card-icon-3"><span class="material-symbols-outlined" data-token="p3.icon">handshake</span></div>
+  <div class="card-icon card-icon-4"><span class="material-symbols-outlined" data-token="p4.icon">emoji_objects</span></div>
+
+  <div class="band-label band-label-1" data-token="p1.label">Critical Thinking</div>
+  <div class="band-label band-label-2" data-token="p2.label">Communication</div>
+  <div class="band-label band-label-3" data-token="p3.label">Collaboration</div>
+  <div class="band-label band-label-4" data-token="p4.label">Creativity</div>
+
+  <div class="card-body card-body-1" data-token="p1.body">Lorem ipsum dolor sitari amet, consectetuer ape adipiscing elit, sed diam nonummy nibh euipewe smod tincidunt uti gedri</div>
+  <div class="card-body card-body-2" data-token="p2.body">Lorem ipsum dolor sitari amet, consectetuer ape adipiscing elit, sed diam nonummy nibh euipewe smod tincidunt uti gedri</div>
+  <div class="card-body card-body-3" data-token="p3.body">Lorem ipsum dolor sitari amet, consectetuer ape adipiscing elit, sed diam nonummy nibh euipewe smod tincidunt uti gedri</div>
+  <div class="card-body card-body-4" data-token="p4.body">Lorem ipsum dolor sitari amet, consectetuer ape adipiscing elit, sed diam nonummy nibh euipewe smod tincidunt uti gedri</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function () {
+  gsap.set('.headline, .deck', { opacity: 0, y: 24 });
+  gsap.set('.rule',  { opacity: 0, scaleX: 0, transformOrigin: '50% 50%' });
+  gsap.set('.plate', { opacity: 0, y: 46 });
+
+  /* band and footer wipe across from the card's left edge */
+  [[1, 70], [2, 525], [3, 980], [4, 1435]].forEach(function (p) {
+    gsap.set('.card-' + p[0] + ' .band', { opacity: 0, scaleX: 0, svgOrigin: p[1] + ' 618' });
+    gsap.set('.card-' + p[0] + ' .foot', { opacity: 0, scaleX: 0, svgOrigin: p[1] + ' 991' });
+  });
+  gsap.set('.card-icon',  { opacity: 0, scale: 0.5, transformOrigin: '50% 50%' });
+  gsap.set('.band-label', { opacity: 0, y: 16 });
+  gsap.set('.card-body',  { opacity: 0, y: 16 });
+
+  var tl = gsap.timeline({ paused: true });
+
+  tl.to('.headline', { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.00)
+    .to('.deck',     { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.18)
+    .to('.rule',     { opacity: 1, scaleX: 1, duration: 0.44, ease: 'power2.out', stagger: 0.08 }, 0.40);
+
+  [1, 2, 3, 4].forEach(function (n, i) {
+    var t = 0.75 + i * 0.40;
+    tl.to('.card-' + n + ' .plate', { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, t)
+      .to('.card-icon-' + n,        { opacity: 1, scale: 1, duration: 0.40, ease: 'back.out(2)' }, t + 0.16)
+      .to('.card-' + n + ' .band',  { opacity: 1, scaleX: 1, duration: 0.46, ease: 'power2.out' }, t + 0.22)
+      .to('.band-label-' + n,       { opacity: 1, y: 0, duration: 0.42, ease: 'power2.out' }, t + 0.36)
+      .to('.card-body-' + n,        { opacity: 1, y: 0, duration: 0.46, ease: 'power2.out' }, t + 0.44)
+      .to('.card-' + n + ' .foot',  { opacity: 1, scaleX: 1, duration: 0.40, ease: 'power2.out' }, t + 0.50);
+  });
+
+  window.__libraryTimeline = tl;
+
+  /* === SNAPSHOT MODE — mandatory ==================================== */
+  if (new URLSearchParams(location.search).get('snapshot') === '1') {
+    tl.progress(1);
+    document.documentElement.setAttribute('data-snapshot-ready', '1');
+  } else {
+    tl.play();
+  }
+})();
+</script>
+
+</body>
+</html>

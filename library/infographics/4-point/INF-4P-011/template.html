@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-4P-011 — SWOT quad cards with a white centre tile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F3F5F4;   /* vignette mid                            */
+    --bg-edge:     #EDF0EF;   /* vignette outer                          */
+    --disc:        #FFFFFF;   /* icon disc on each card                  */
+    --tile:        #FFFFFF;   /* the centre tile                         */
+    --tile-text:   #2C2C2C;   /* the word on the centre tile             */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+    --text-label:  #333335;   /* point labels — dark, not tinted         */
+    --text-muted:  #7E8083;   /* point body copy                         */
+
+    --color-1:     #EC8A2B;   /* point 1 — orange, top-left              */
+    --color-1-lo:  #E5801F;
+    --color-2:     #6D1EEA;   /* point 2 — violet, top-right             */
+    --color-2-lo:  #5E11DC;
+    --color-3:     #36A3E0;   /* point 3 — blue,   bottom-left           */
+    --color-3-lo:  #2A96D6;
+    --color-4:     #EB4750;   /* point 4 — red,    bottom-right          */
+    --color-4-lo:  #E33A45;
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       A 2x2 of 260x210 gradient cards at (691|969, 386|706) with an 18px
+       gutter, each carrying a white icon disc. A white tile sits over the
+       junction, centred on the block at (960,651) — it names the model
+       the four cards belong to, so it lands LAST.
+       Copy flanks the block: left column right-aligned, right column
+       left-aligned, both reading inward.
+       Margins: top 70 · left 200 · right 200 · bottom 164.             */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 30%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — four-segment rule, one per point ==================== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 250px; height: 10px; width: 129px; border-radius: 2px; }
+  .rule-1 { left: 702px;  background: var(--color-1); }
+  .rule-2 { left: 831px;  background: var(--color-2); }
+  .rule-3 { left: 960px;  background: var(--color-3); }
+  .rule-4 { left: 1089px; background: var(--color-4); }
+
+  /* === THE 2x2 ====================================================== */
+  .card {
+    position: absolute;
+    width: 260px; height: 210px;
+    border-radius: 16px;
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+  }
+  .card-1 { left: 691px; top: 386px; background: linear-gradient(135deg, var(--color-1) 0%, var(--color-1-lo) 100%); }
+  .card-2 { left: 969px; top: 386px; background: linear-gradient(135deg, var(--color-2) 0%, var(--color-2-lo) 100%); }
+  .card-3 { left: 691px; top: 706px; background: linear-gradient(135deg, var(--color-3) 0%, var(--color-3-lo) 100%); }
+  .card-4 { left: 969px; top: 706px; background: linear-gradient(135deg, var(--color-4) 0%, var(--color-4-lo) 100%); }
+
+  .disc {
+    position: absolute;
+    width: 112px; height: 112px;
+    border-radius: 50%;
+    background: var(--disc);
+    box-shadow: 0 7px 16px rgba(0, 0, 0, 0.20);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .disc-1 { left: 765px;  top: 435px; }
+  .disc-2 { left: 1043px; top: 435px; }
+  .disc-3 { left: 765px;  top: 755px; }
+  .disc-4 { left: 1043px; top: 755px; }
+  .disc-1 .material-symbols-outlined { color: var(--color-1); }
+  .disc-2 .material-symbols-outlined { color: var(--color-2); }
+  .disc-3 .material-symbols-outlined { color: var(--color-3); }
+  .disc-4 .material-symbols-outlined { color: var(--color-4); }
+  .disc .material-symbols-outlined {
+    font-size: 56px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* the tile straddles the junction — it must sit above all four cards */
+  .tile {
+    position: absolute;
+    left: 866px; top: 563px; width: 188px; height: 176px;
+    border-radius: 34px;
+    background: var(--tile);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 40px;
+    letter-spacing: 0.04em;
+    color: var(--tile-text);
+    z-index: 4;
+  }
+
+  /* === FLANKING COPY ================================================
+       Left column right-aligned, right column left-aligned — every block
+       reads in toward the 2x2.                                          */
+  .pt-label {
+    position: absolute;
+    width: 440px; height: 44px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 34px;
+    line-height: 44px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-label);
+    z-index: 3;
+  }
+  .pt-label-1 { left: 200px;  top: 407px; text-align: right; }
+  .pt-label-2 { left: 1280px; top: 407px; text-align: left;  }
+  .pt-label-3 { left: 200px;  top: 727px; text-align: right; }
+  .pt-label-4 { left: 1280px; top: 727px; text-align: left;  }
+
+  .pt-body {
+    position: absolute;
+    width: 440px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--text-muted);
+    z-index: 3;
+  }
+  .pt-body-1 { left: 200px;  top: 459px; text-align: right; }
+  .pt-body-2 { left: 1280px; top: 459px; text-align: left;  }
+  .pt-body-3 { left: 200px;  top: 779px; text-align: right; }
+  .pt-body-4 { left: 1280px; top: 779px; text-align: left;  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-4P-011"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <h1 class="headline" data-token="title">SWOT Analysis</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+  <div class="rule rule-3"></div>
+  <div class="rule rule-4"></div>
+
+  <div class="card card-1"></div>
+  <div class="card card-2"></div>
+  <div class="card card-3"></div>
+  <div class="card card-4"></div>
+
+  <div class="disc disc-1"><span class="material-symbols-outlined" data-token="p1.icon">fitness_center</span></div>
+  <div class="disc disc-2"><span class="material-symbols-outlined" data-token="p2.icon">link_off</span></div>
+  <div class="disc disc-3"><span class="material-symbols-outlined" data-token="p3.icon">lightbulb</span></div>
+  <div class="disc disc-4"><span class="material-symbols-outlined" data-token="p4.icon">warning</span></div>
+
+  <div class="tile" data-token="centre">SWOT</div>
+
+  <div class="pt-label pt-label-1" data-token="p1.label">Strength</div>
+  <div class="pt-label pt-label-2" data-token="p2.label">Weakness</div>
+  <div class="pt-label pt-label-3" data-token="p3.label">Opportunity</div>
+  <div class="pt-label pt-label-4" data-token="p4.label">Threat</div>
+
+  <div class="pt-body pt-body-1" data-token="p1.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed do eiusmod tempor.</div>
+  <div class="pt-body pt-body-2" data-token="p2.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed do eiusmod tempor.</div>
+  <div class="pt-body pt-body-3" data-token="p3.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed do eiusmod tempor.</div>
+  <div class="pt-body pt-body-4" data-token="p4.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed do eiusmod tempor.</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function () {
+  gsap.set('.headline, .deck', { opacity: 0, y: 24 });
+  gsap.set('.rule',  { opacity: 0, scaleX: 0, transformOrigin: '50% 50%' });
+  gsap.set('.card',  { opacity: 0, scale: 0.62 });
+  gsap.set('.card-1', { transformOrigin: '100% 100%' });   /* each card grows */
+  gsap.set('.card-2', { transformOrigin: '0% 100%'   });   /* out of the block */
+  gsap.set('.card-3', { transformOrigin: '100% 0%'   });   /* centre it sits on */
+  gsap.set('.card-4', { transformOrigin: '0% 0%'     });
+  gsap.set('.disc',  { opacity: 0, scale: 0.4, transformOrigin: '50% 50%' });
+  gsap.set('.tile',  { opacity: 0, scale: 0.45, transformOrigin: '50% 50%' });
+  gsap.set('.pt-label-1, .pt-body-1, .pt-label-3, .pt-body-3', { opacity: 0, x: -28 });
+  gsap.set('.pt-label-2, .pt-body-2, .pt-label-4, .pt-body-4', { opacity: 0, x:  28 });
+
+  var tl = gsap.timeline({ paused: true });
+
+  tl.to('.headline', { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.00)
+    .to('.deck',     { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.18)
+    .to('.rule',     { opacity: 1, scaleX: 1, duration: 0.44, ease: 'power2.out', stagger: 0.08 }, 0.40);
+
+  /* one point at a time: card grows out of the centre, disc pops, copy in */
+  [1, 2, 3, 4].forEach(function (n, i) {
+    var t = 0.75 + i * 0.42;
+    tl.to('.card-' + n,  { opacity: 1, scale: 1, duration: 0.55, ease: 'back.out(1.5)' }, t)
+      .to('.disc-' + n,  { opacity: 1, scale: 1, duration: 0.42, ease: 'back.out(2)'   }, t + 0.16)
+      .to('.pt-label-' + n + ', .pt-body-' + n,
+          { opacity: 1, x: 0, duration: 0.50, ease: 'power2.out', stagger: 0.08 }, t + 0.10);
+  });
+
+  /* the model's name lands last — it is what the four cards add up to */
+  tl.to('.tile', { opacity: 1, scale: 1, duration: 0.60, ease: 'back.out(1.8)' }, 2.62);
+
+  window.__libraryTimeline = tl;
+
+  /* === SNAPSHOT MODE — mandatory ==================================== */
+  if (new URLSearchParams(location.search).get('snapshot') === '1') {
+    tl.progress(1);
+    document.documentElement.setAttribute('data-snapshot-ready', '1');
+  } else {
+    tl.play();
+  }
+})();
+</script>
+
+</body>
+</html>

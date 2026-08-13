@@ -1,0 +1,4052 @@
+{
+  "generated": "2026-08-13",
+  "visuals": [
+    {
+      "id": "INF-2P-001",
+      "name": "2 Stage hub-left + 2 horizontal stripes right",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "hub-left",
+        "horizontal-stripes",
+        "compare",
+        "asymmetric",
+        "title-subtitle"
+      ],
+      "duration_seconds": 6,
+      "notes": "Asymmetric 2-point layout: large white circle hub (540×540) on LEFT bottom with '2 POINTS creative' inside + 3 dots, and 2 colored horizontal stripes (1340×200 each) on RIGHT that overlap into the hub. Each stripe has white-outlined icon circle on left + label + body. Title block at top with subtitle paragraph and 2-color (orange | blue) dash bar. Sequential reveal: title → subtitle → bar → hub → stripes (1, 2). Body 200 chars / 3 lines @ 28px.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-001/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-001/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-001/template.html"
+    },
+    {
+      "id": "INF-2P-002",
+      "name": "INFOGRAPHIC ELEMENT 2 curved cards with bracket + connecting icons",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "curved-cards",
+        "bracket-title",
+        "side-by-side",
+        "joint-icons"
+      ],
+      "duration_seconds": 6,
+      "notes": "2 large curved rectangles side-by-side (850×620 each). Card 1 (green) on left with concave right edge; Card 2 (teal) on right with concave left edge — the curves form a wave at the joint. Two icon circles sit at the joint (top: lightbulb, bot: target). Title 'INFOGRAPHIC ELEMENT' centered above, with SVG bracket dropping vertical lines + colored dots to either side. Sequential reveal: bracket → title → cards slide in from sides → text fades → joint icons pop.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-002/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-002/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-002/template.html"
+    },
+    {
+      "id": "INF-2P-003",
+      "name": "EV vs ICE 2-card comparison with abbreviation squares",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "comparison",
+        "stacked-stripes",
+        "abbreviation-tag",
+        "icon-circle-right",
+        "vs"
+      ],
+      "duration_seconds": 6,
+      "notes": "2-row comparison layout. Each stripe (1620×280): colored abbreviation tag (240×280 with big white EV/ICE text) on LEFT + white pill body card with colored label + body text in middle + colored circle with white icon on RIGHT. Title block at top: subtitle line + big 'INFOGRAPHICS' headline + blue/red 2-color dash. Sequential reveal: title → stripes (1, 2) each with tag-slides-from-left → card-expands → icon-pops → text-fades. Body up to 320 chars / 4 lines @ 24px (compact for dense comparison).",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-003/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-003/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-003/template.html"
+    },
+    {
+      "id": "INF-2P-004",
+      "name": "Human vs AI side-by-side comparison columns",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "comparison",
+        "side-by-side",
+        "columns",
+        "bullet-list",
+        "slider",
+        "vs"
+      ],
+      "duration_seconds": 6,
+      "notes": "Two side-by-side columns (800×660 each) for richer comparison than a single line of body text. Each column: narrow colored side bar on the OUTER edge (left for col 1, right for col 2) containing number + icon, plus a gray inner card with colored label tab + body + 3-item bullet list + decorative slider line at bottom. Title block at top with subtitle and teal/blue dash. Sequential reveal: title → 2 columns slide in from outer edges → tab/body/list/slider cascade. Body 130 chars, list items 50 chars each.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-004/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-004/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-004/template.html"
+    },
+    {
+      "id": "INF-2P-005",
+      "name": "2 Points stripes with L-bracket accents",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "L-bracket",
+        "mirror-layout",
+        "stacked-stripes",
+        "big-numbers",
+        "icon-circles"
+      ],
+      "duration_seconds": 6,
+      "notes": "2 mirror-layout stripes (1500×240 each). Stripe 1 (top, orange) has L-bracket on LEFT (number + label leftmost, icon rightmost). Stripe 2 (bottom, green) is mirrored — icon leftmost + number/label on RIGHT, bracket on right. The L-bracket is a thick colored border (14px) on a slightly oversized invisible frame, open on the inner side, with 28px radius giving the curved corners look. Title block at top with subtitle paragraph. Sequential reveal: title → 2 stripes cascade (each: card-fade → num → label → body → icon).",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-005/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-005/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-005/template.html"
+    },
+    {
+      "id": "INF-2P-006",
+      "name": "Vertical 2-circle spine + rounded stripe cards",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "comparison",
+        "vs",
+        "ringed-circles",
+        "icon-nodes",
+        "vertical-spine",
+        "stripe-cards",
+        "stadium-end",
+        "accent-bar-left",
+        "title-deck",
+        "split-rule"
+      ],
+      "duration_seconds": 6,
+      "notes": "Two-point comparison where each side deserves a full paragraph. Reads top-down: headline → deck → split rule → node 1 → card 1 → spine → node 2 → card 2, ~3.9s of build then a hold to 6.0. The spine is drawn behind both nodes and masked by their --halo discs, so it only shows in the 60px gap between them — animate it after card 1 so it reads as 'and then'. Cards are square on the left (12px colour bar flush to the edge) and fully rounded on the right (r = h/2 = 125), so body copy is capped at 750px and stops 25px before the arc starts. Body copy is 28px (the library floor) rather than the reference's ~23px equivalent, so the card is 250px tall instead of the reference's proportional 212px; everything else keeps the reference's ratios. Icons are Material Symbols so they stay swappable — the reference's bespoke calendar-with-$ and BUY-button-with-cursor art is documented in the icon token notes. Headline is capped at 55 chars and the deck at 200; past those they wrap into the split rule.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-006/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-006/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-006/template.html"
+    },
+    {
+      "id": "INF-2P-007",
+      "name": "Mirrored outline cards with lens number badges",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "comparison",
+        "vs",
+        "mirrored",
+        "outline-cards",
+        "dashed-ring",
+        "lens-badge",
+        "crescent",
+        "numbered",
+        "side-tab",
+        "solid-icons",
+        "title-deck",
+        "dot-separator"
+      ],
+      "duration_seconds": 6,
+      "notes": "Head-to-head comparison where the two sides are peers, not a sequence — the mirror is the whole point, so don't reuse this for cause-and-effect. Construction is four stacked layers: dashed ring (z1) → card (z2, opaque in --bg, which is what hides the ring across the card's interior) → lens badge (z3, covers the card's inner edge and the ring's outer arc) → copy/icon/tab (z4). The lens is the ring's outer segment cut by a vertical line at x=805 with a soft S-wave bulging 27px toward the card; the ring's radius (270) is deliberately 3px inside the lens arc (273) so the dashes cannot bleed past the badge's edge. Body copy is 28px (the library floor) rather than the reference's ~16px equivalent, so it caps at 5 lines / ~100 chars per side and the labels stay to one short word; every ratio in the artwork itself is the reference's. Icons are solid (FILL 1) Material Symbols so they stay swappable — the reference's engine-piston glyph has no Material equivalent and is substituted, see the p2.icon note. Left half builds 1.25→2.5s, right half repeats from 3.0s, hold to 6.0.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-007/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-007/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-007/template.html"
+    },
+    {
+      "id": "INF-2P-008",
+      "name": "Interlocking S-seam cards with lobe icon circles",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "interlocking",
+        "s-seam",
+        "yin-yang",
+        "solid-cards",
+        "lobe",
+        "icon-circle",
+        "white-disc",
+        "rotational-symmetry",
+        "bracket-rule",
+        "eyebrow-title",
+        "options"
+      ],
+      "duration_seconds": 6,
+      "notes": "Two peer options that belong to one whole — the interlock is the message, so this is the wrong pick for cause-and-effect or before/after. Geometry: one S-seam, drawn twice with an 88px offset; the white channel between the cards is the page showing through, not a stroke. Each card's lobe is a 180deg arc of radius 107 tangent to the card's own top (green) or bottom (teal) edge, and the white icon disc is CONCENTRIC with that lobe (r 75 inside r 107, so a 32px colour ring reads as a crescent where the seam curves away). The two card paths are exact 180deg rotations of each other about (962.5, 684). Body copy is 28px (the library floor) rather than the reference's ~23px equivalent; the wide 460px column absorbs it, so this template keeps the reference's full 7-line paragraph — no copy was sacrificed. Icons are outline Material Symbols so they stay swappable. GSAP note: svgOrigin is set in the SAME call as the transform it belongs to for every SVG target — setting it in a follow-up call makes GSAP bake a compensating translate that survives the tween and throws the element off-canvas.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-008/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-008/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-008/template.html"
+    },
+    {
+      "id": "INF-2P-009",
+      "name": "Stacked rows with arc-ringed icon circles and dashed panels",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "comparison",
+        "vs",
+        "stacked-rows",
+        "numbered-badge",
+        "icon-ring",
+        "open-arc",
+        "dashed-panel",
+        "outline",
+        "solid-icons",
+        "title-deck",
+        "dot-separator"
+      ],
+      "duration_seconds": 6,
+      "notes": "Two options presented as peers in a list rather than head-to-head — the stacked rows read top-down, so this also works for a sequence. Per row the circle cluster is three concentric ideas: a solid numbered badge (r 61) whose right edge tucks under a 176deg open arc (r 144, 7px), which in turn hugs an unfilled ring (r 119, 4px) holding the icon. The panel is a rounded rect with NO left side, starting 9px left of the ring centre so the ring crosses its dashes exactly as in the reference. ADAPTATION: the reference is a 1.09 aspect (667x611) portrait-ish crop, so it could not be uniformly scaled to 16:9. Row geometry is scaled x1.73 and the circle cluster keeps its position; the panel and copy column are stretched into the extra width. Consequently the body is 3 wide centre-aligned lines at 28px (the library floor) instead of the reference's 7 narrow lines at ~7px — same ~210 characters, different shape. SVG note: do NOT put pathLength on the dashed panels. pathLength rescales stroke-dasharray, which collapses the dashes into one solid line; the draw-on is a clip-path rect wipe instead. The solid arcs do use pathLength for their stroke-dashoffset draw, which is correct because they carry no dash pattern of their own.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-009/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-009/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-009/template.html"
+    },
+    {
+      "id": "INF-2P-010",
+      "name": "Gradient donuts with slide-out numbered tabs",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "donut",
+        "ring",
+        "gradient",
+        "numbered-tab",
+        "slab",
+        "icon-in-circle",
+        "copy-in-circle",
+        "overlap",
+        "title-deck",
+        "pip-separator"
+      ],
+      "duration_seconds": 6,
+      "notes": "Two options given equal, generous weight — the donut is the hero, so pick this when the visual wants to carry the beat and the copy is short. Both units are the same object translated 685px right; unit 2's tab deliberately starts 28px inside unit 1's donut so it reads as tucked behind (tabs z1, donuts z2, wells z3, contents z4). The 'ring' is not a stroke: it is a full gradient circle with an opaque --disc well punched over it, which is why the gradient stays continuous across the ring. THE CONSTRAINT TO KNOW: copy sits inside a circle, so p1.body/p2.body cap at ~72 chars — 3 lines at 28px in a 320px column, with the block's bottom corners inside r 209. The reference fits ~200 chars there only because its type is ~9px; at the library's 28px floor that is geometrically impossible, so this template trades body length for the visual. Put the long paragraph in the deck instead, which is sized for 300 chars. Audit note: the badge and donut bounding boxes intersect, but the circles do not — centre distance 366 vs radii sum 332.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-010/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-010/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-010/template.html"
+    },
+    {
+      "id": "INF-2P-011",
+      "name": "Centre panel flanked by two colour bars",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "comparison",
+        "vs",
+        "centre-panel",
+        "pivot",
+        "colour-bars",
+        "mirrored",
+        "ring-icon",
+        "outline-icons",
+        "title-deck",
+        "split-rule"
+      ],
+      "duration_seconds": 6,
+      "notes": "Head-to-head where the comparison itself gets a voice — the centre panel restates the two sides and is deliberately taller than the bars, so it reads as the pivot rather than a third option. It does NOT overlap them: bar 1 ends at 735, the panel runs 741→1179, bar 2 starts at 1185, so a 6px reveal of background separates all three, exactly as in the reference. The bars' copy mirrors (right-aligned left, left-aligned right) and each ringed icon sits at its bar's INNER end, closest to the panel. Animation order matters here: the bars grow outward from the centre first and the panel drops in last, at 3.45s — leading with the panel would read as three items rather than two-and-a-pivot. Header is the same family as INF-2P-006 (58px headline, 2-line deck, 534px split rule) — the two references share a template family, so keep them in step if you restyle either. Copy caps: bars ~110 chars, centre body ~72, centre.line1 ~14 since it renders at 56px in a 340px measure.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-011/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-011/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-011/template.html"
+    },
+    {
+      "id": "INF-2P-012",
+      "name": "Diagonal-cut gradient pills with dashed relay",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "sequence",
+        "process",
+        "stadium-pill",
+        "diagonal-cut",
+        "gradient",
+        "dashed-relay",
+        "badge-disc",
+        "drop-shadow",
+        "no-header",
+        "offset-rows"
+      ],
+      "duration_seconds": 6,
+      "notes": "A two-beat SEQUENCE, not a comparison — the relay runs one way, so pill 1 must precede pill 2 in the argument. No headline block: this template is the whole frame, so put the title in the surrounding scene. Everything hangs off one line, x = 1293 − 0.625y: pill 1's right end and pill 2's left end are cut along it (they are not stadiums on that side), the light slash lies on it, and both badge centres sit exactly on it. If you re-time or re-scale, recompute the cuts from that equation rather than nudging the paths. Pills carry a vertical 3-stop gradient that is bright for the top 45% then falls away — that is what gives them the moulded look; a flat fill loses it. Copy is 28px (the library floor) at 4 lines in a 510px column, so ~120 chars per pill; the reference fits ~200 chars there only at ~9px type. The relay carries its own dash pattern, so it CANNOT also draw via stroke-dashoffset — it fades in as a whole. The slash does draw that way, because it is a plain solid line.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-012/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-012/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-012/template.html"
+    },
+    {
+      "id": "INF-2P-013",
+      "name": "Hub ring with two bars cut to its inner edge",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "comparison",
+        "vs",
+        "hub-ring",
+        "stadium-bars",
+        "split-stadium",
+        "circle-clip",
+        "badge-disc",
+        "two-tone-title",
+        "title-deck",
+        "split-rule"
+      ],
+      "duration_seconds": 6,
+      "notes": "Head-to-head where the framing belongs in the hub and the detail belongs in the bars — the ring restates the comparison (two coloured words plus a neutral joiner) and the bars carry each side. Three facts make the geometry work: (1) the two bars are ONE stadium — right end r 212 at (1550,645), total height 424 — sliced into two 198px bars with a 31px gap; (2) their curved left ends are literally the ring's INNER circle (r 299 at (504,646)), so if you move or resize the ring you must recompute both bar paths from it; (3) the bars are drawn OVER the ring, which is why the ring only shows on the left, top and bottom. Everything in the hub is inside r 299 by construction, so hub copy can never collide with a bar. Copy is 28px throughout (the library floor); the bars are 198px tall, so keep p1/p2 body to 2 lines (~95 chars) — 3 fit but leave only 14px of air. Header is the same family as INF-2P-006 and INF-2P-011.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-013/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-013/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-013/template.html"
+    },
+    {
+      "id": "INF-2P-014",
+      "name": "Split ring with two arms running opposite ways",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "comparison",
+        "vs",
+        "split-ring",
+        "half-annulus",
+        "opposed-arms",
+        "rotational-symmetry",
+        "hub-disc",
+        "gradient-shading",
+        "no-icons",
+        "title-deck",
+        "split-rule"
+      ],
+      "duration_seconds": 6,
+      "notes": "Head-to-head with true rotational balance — neither side leads, which makes it the right pick when the two options are genuinely equal and the wrong one for a sequence. The construction is one shape drawn twice: arm 1 is the ring's TOP half annulus plus a 296px band running right to a stadium end; arm 2 is that same path rotated 180 degrees about the ring centre (964, 656). The split is exactly the ring's horizontal diameter, so the two arms meet edge-to-edge with no gap and no overlap. Verify any edit by rotating: every point in arm 2 is (1928 - x, 1312 - y) of arm 1. Each arm carries a horizontal gradient that dips to a darker tone right where it leaves the ring and recovers by the copy — that shading is what makes the arm read as passing behind the ring; a flat fill flattens the whole thing. The hub is a white gap ring (r 244) with a grey disc (r 190) on top, drawn last so both arms tuck under it. No icons in this one — the reference has none, and the arms are already busy. Copy is 28px (the library floor) at 5 lines per arm, ~135 chars. Header is the same family as INF-2P-006 / 011 / 013.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-014/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-014/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-014/template.html"
+    },
+    {
+      "id": "INF-2P-015",
+      "name": "Quadrant-arc rings with dotted remainder and step arrow",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "sequence",
+        "process",
+        "step-arrow",
+        "arc-ring",
+        "opposite-quadrants",
+        "dotted-circle",
+        "white-well",
+        "copy-in-circle",
+        "no-header",
+        "drop-shadow"
+      ],
+      "duration_seconds": 6,
+      "notes": "A two-beat SEQUENCE — the arrow points one way, so unit 1 must precede unit 2. No header block: this template is the whole frame, so put the title in the surrounding scene. The ring is the thing to get right: two 84deg solid arcs on OPPOSITE quadrants (upper-left and lower-right), with a full dotted circle underneath filling the other two. Drawing the dots as a complete circle rather than two arcs is what keeps the dot phase continuous through the join. The dotted r 248 sits inside the solid band (212→251) so the arcs cover it cleanly. THE CONSTRAINT TO KNOW: copy sits inside a circle, so p1/p2 body cap at ~66 chars — 3 lines at 28px in a 320px column with the block's bottom corners inside r 203. The reference fits ~110 chars there only at ~9px type; at the library's 28px floor that is geometrically impossible. Margins are large (284px top/bottom) because the reference is a 1.27 aspect scaled to fill 16:9 by height — the two rings are the whole composition.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-015/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-015/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-015/template.html"
+    },
+    {
+      "id": "INF-2P-016",
+      "name": "Mirrored ribbon banners with fold tails over a panel",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "comparison",
+        "vs",
+        "ribbon",
+        "banner",
+        "fold-tail",
+        "mirrored",
+        "backdrop-panel",
+        "bleed",
+        "outline-icons",
+        "title-deck",
+        "split-rule"
+      ],
+      "duration_seconds": 6,
+      "notes": "Head-to-head where the two sides face away from each other — ribbon 1 reads left-to-right (icon left, copy left-aligned) and ribbon 2 reads right-to-left, which is what sells 'out' versus 'in'. Keep that opposition if you re-purpose it; flipping only the colours loses the point. Three details do the work: the grey panel BLEEDS off the bottom edge (it is not a closed box), the ribbons overhang it on both sides so they read as wrapped around it, and each fold tail drops from the OPPOSITE bottom corner — ribbon 1 bottom-right, ribbon 2 bottom-left — drawn under its ribbon so the fold reads as going behind. Copy is 28px (the library floor) at 3 lines in a 400px column, ~80 chars; a 4th line touches the ribbon edge since the ribbon is only 214px tall. Header is the same family as INF-2P-006 / 011 / 013 / 014.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-016/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-016/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-016/template.html"
+    },
+    {
+      "id": "INF-2P-017",
+      "name": "Bracket rules descending to a plate hub with dotted arc",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "comparison",
+        "hairline",
+        "L-bracket",
+        "numbered",
+        "plate-hub",
+        "bevel",
+        "dotted-arc",
+        "gradient-arc",
+        "mirrored",
+        "no-header",
+        "editorial"
+      ],
+      "duration_seconds": 6,
+      "notes": "The quietest layout in this set — hairlines and type, no filled panels — so it suits a dense editorial beat where two points feed one idea. Everything keys off the hand-off: the bracket stems sit at x 736 and 1184, stop at y 684, and the dotted arc picks up 32px below at x 731 and 1189, so the eye completes the loop through the plate. If you move the plate you must move the stems, or the gesture breaks. The arc's stroke is a left-to-right gradient from --color-1 to --color-2, which is what makes the two columns read as meeting in the middle. The plate is a radial gradient (light centre, dark rim) with a recessed well — flat fills lose the raised look. SVG note: do NOT put pathLength on the dotted arc. pathLength rescales stroke-dasharray, which collapses the dots into one solid arc — the brackets do use pathLength for their draw-on, which is correct because they carry no dash pattern of their own. Copy is 28px throughout (the library floor); columns take ~175 chars over 6 lines. No header block — put the title in the surrounding scene.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-017/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-017/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-017/template.html"
+    },
+    {
+      "id": "INF-2P-018",
+      "name": "Mirrored cards with header pill and overhanging icon disc",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "comparison",
+        "vs",
+        "cards",
+        "header-pill",
+        "overhang-disc",
+        "bullets",
+        "foot-bar",
+        "mirrored",
+        "outline-icons",
+        "title-deck",
+        "split-rule"
+      ],
+      "duration_seconds": 6,
+      "notes": "The most copy-dense layout in this set — body plus three bullets per side — so reach for it when the comparison needs specifics rather than a single line. The mirror is partial and deliberate: the pill's title alignment and the icon disc's side flip between cards, but the BULLETS do not — markers stay on the left in both, because mirroring a list wrecks its readability. The disc straddles the card's outer edge and overlaps the pill's inner end; a bounding-box audit will flag disc-x-pill as an overlap and that is correct behaviour, not a defect. The card uses overflow:hidden so the foot bar picks up the card's bottom corner radius without needing its own. Copy is 28px throughout (the library floor) and the vertical budget is tight: body 3 lines (~75 chars), bullet 1 may run to 2 lines, bullets 2 and 3 must stay to one, or the block reaches the dots at y 926. Header is the same family as INF-2P-006 / 011 / 013 / 014 / 016.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-018/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-018/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-018/template.html"
+    },
+    {
+      "id": "INF-2P-019",
+      "name": "Overlapping ringed discs with flanking label pills",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "comparison",
+        "vs",
+        "overlapping-discs",
+        "venn",
+        "ringed-disc",
+        "white-halo",
+        "watermark-letter",
+        "label-pill",
+        "flanking-columns",
+        "title-deck",
+        "split-rule"
+      ],
+      "duration_seconds": 6,
+      "notes": "Two options that belong to one subject — the discs interlock, so this reads as 'two modes of the same thing' rather than a hard either/or. The offset is diagonal (+292 x, +201 y), not horizontal; keeping the vertical component is what stops it looking like a plain Venn. The overlap is achieved by z-order, not clipping: disc 2's stack starts with a white halo at r 264 that cuts a clean gap out of disc 1, then its ring, then its fill. If you restyle, set --gap to the page colour rather than pure white or the cut-out reads as a drawn ring. Each disc carries an outlined watermark letter (transparent fill, -webkit-text-stroke) above an outline glyph — the letter is decoration, so keep it to one character. The flanking columns mirror: column 1 is right-aligned on the left, column 2 left-aligned on the right, each sitting on its own disc's outer side. Copy is 28px throughout (the library floor) at 7 lines per column, ~165 chars. Header is the same family as INF-2P-006 / 011 / 013 / 014 / 016 / 018.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-019/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-019/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-019/template.html"
+    },
+    {
+      "id": "INF-2P-020",
+      "name": "Offset stadium bars linked by a grey capsule spine",
+      "category": "infographics/2-point",
+      "aspect": "16:9",
+      "tags": [
+        "2-point",
+        "sequence",
+        "offset-rows",
+        "stadium-bar",
+        "icon-disc",
+        "dashed-ring",
+        "capsule-spine",
+        "halo",
+        "white-ground",
+        "outline-icons",
+        "title-deck"
+      ],
+      "duration_seconds": 6,
+      "notes": "A two-beat SEQUENCE on white — the bars step down and away from each other (bar 1 runs right from its disc, bar 2 runs left from its), so the eye travels 01 → 02 diagonally. THE THING THAT BIT ME: the grey spine cannot be a single round-capped stroke. A round linecap draws only a HALF disc at each end, so the halo appears on the outer side of each circle and vanishes on the inner side, leaving a faceted shape. It is drawn as circle (r 181) + circle (r 181) + a 362px butt-capped band between the centres, all in one filtered group — that is what makes the halo continuous all the way round each disc. The discs (r 153) sit 28px inside the halo. Each disc carries a dashed white ring at r 126 inside it, and the bars are plain stadiums that start at their disc's centre so the disc covers the join. Copy is 28px (the library floor) at 4 lines in a 500px column, ~115 chars per side. Header has no split rule — unlike the rest of this batch.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/2-point/INF-2P-020/preview.png",
+      "thumbUrl": "library/infographics/2-point/INF-2P-020/thumb.webp",
+      "templateUrl": "library/infographics/2-point/INF-2P-020/template.html"
+    },
+    {
+      "id": "INF-3P-001",
+      "name": "Our Mission 3-card with watermark numbers + ribbon tabs",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "watermark-numbers",
+        "ribbon-tabs",
+        "circular-icons",
+        "gradient-bg",
+        "values-vision-mission",
+        "vertical-cards"
+      ],
+      "duration_seconds": 6,
+      "notes": "3 vertical card units (480px wide each, x positions 110/720/1330) on a teal→green diagonal gradient. Each unit stacks: (1) big watermark number 01/02/03 at top, (2) colored ribbon tab over it (Values/Vision/Mission), (3) white card body with label + body text, (4) circular bottom icon, (5) small caption below icon. Sequential reveal: title → 3 units cascade (1-2-3) with 0.6s stagger. Each unit reveals: number → tab → card → label → body → icon → caption (full reveal ~1.3s). Body capped 110 chars / 3 lines @ 28px.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-001/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-001/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-001/template.html"
+    },
+    {
+      "id": "INF-3P-002",
+      "name": "BUSINESS hub-left + 3 pill cards right",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "hub-left",
+        "horizontal-cards",
+        "dotted-connectors",
+        "icon-circles-right",
+        "asymmetric"
+      ],
+      "duration_seconds": 6,
+      "notes": "Asymmetric layout: big white hub circle (400×400) on the LEFT with 'Business / Infographics' title, and 3 horizontal pill cards (1170×200) stacked on the RIGHT (y=180/440/700). Each card has a colored left ribbon, label + body text, plus a 200px white circle on the right end containing the colored icon. Dotted connecting lines from hub edge to a colored dot at the left of each card. Sequential reveal: hub scales in → 3 cards reveal in order (line strokes → dot pops → card slides → icon pops → label → body). 0.6s stagger between cards.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-002/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-002/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-002/template.html"
+    },
+    {
+      "id": "INF-3P-003",
+      "name": "Pill title bar + 3 icon circles with descending lines",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "title-pill",
+        "icon-circles",
+        "descender-lines",
+        "dotted-bg",
+        "steps"
+      ],
+      "duration_seconds": 6,
+      "notes": "Large white pill-shaped title bar at top (1080×240) containing 'Infographics' + '- Elements -'. 3 icon circles (180×180, colored with white border) overlap the pill's bottom edge at y=280. From each circle a vertical 3px line descends 130px to a colored 'Step NN' label, with body text below. Subtle dotted background pattern. Sequential reveal: title pill → icon circles → descender lines → step labels → body text. 0.4s stagger between columns.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-003/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-003/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-003/template.html"
+    },
+    {
+      "id": "INF-3P-004",
+      "name": "Growth Loop Framework 3-column with pin tails",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "framework",
+        "pin-tail",
+        "baseline",
+        "ring-marker",
+        "numbered-circles",
+        "input-action-output"
+      ],
+      "duration_seconds": 6,
+      "notes": "3-column framework with rich vertical structure. Each column: numbered circle on top (double-ring effect via inset + outset shadows), gray rounded card with icon/label/body/dots, colored downward-pointing pin tail, and ring marker sitting on a horizontal baseline at the bottom. Title block with multi-color dash bar. Sequential reveal: title → baseline draws across → 3 columns cascade (each: num → card → icon → label → body → dots → tail → ring).",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-004/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-004/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-004/template.html"
+    },
+    {
+      "id": "INF-3P-005",
+      "name": "3 Points Template outlined cards with bottom icons",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "outlined-cards",
+        "bottom-icon",
+        "dense-text",
+        "minimal-frame"
+      ],
+      "duration_seconds": 6,
+      "notes": "3 outlined cards (480×580 each) with 5px colored border and 28px rounded corners. Each card has colored 'Points 0X' label at top + dense body text (up to 280 chars). A solid colored icon circle (130px) hangs OFF the bottom edge of each card (bottom: -65px) — half inside, half outside, with a thick canvas-colored border for a punched-out look. Title block with multi-color dash bar. Sequential reveal: title → cards scale-in → labels → body → bottom icons pop.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-005/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-005/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-005/template.html"
+    },
+    {
+      "id": "INF-3P-006",
+      "name": "Three ringed discs riding a wide grey arc",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "acronym",
+        "okr",
+        "arc",
+        "ringed-disc",
+        "letter-badge",
+        "raised-middle",
+        "outline-icons",
+        "title-deck",
+        "three-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "Built for an ACRONYM — the letter badges (O-K-R) are the hook, so reach for this when the three points spell something. Swap the letters for numerals if they don't. The geometry has one governing circle: centre (960,1271) r 600, drawn as the grey arc, with all three disc centres lying exactly on it. The middle disc rides higher because the arc lifts it; that is not a manual offset. Each badge sits at a constant (+101,-93) from its disc centre, i.e. upper-right on all three — which is why the RIGHT copy column has to start at x 1566 to clear badge 3, while the left column can run to 354. Stack per disc: white gap disc → coloured ring → coloured disc → badge, so the ring reads as separated from the fill. Copy is 28px (the library floor) at 4 lines, ~90 chars per point; the middle point is boxed in between the rule and its disc, so treat 90 as a hard ceiling there.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-006/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-006/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-006/template.html"
+    },
+    {
+      "id": "INF-3P-007",
+      "name": "Three big discs on a rule with corner icon pips",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "big-discs",
+        "rail",
+        "icon-pip",
+        "copy-in-circle",
+        "tick-divider",
+        "equal-weight",
+        "outline-icons",
+        "title-deck",
+        "three-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "Three peers of equal weight — the discs are identical in size and sit on one rail, so nothing reads as first or biggest. Good for a named model (three conditions, three forces) rather than a sequence. Two construction facts: the rail is a single full-width line drawn BEHIND all three discs and capped with a dot at each end, so it reads as continuous; and each icon pip is drawn BEFORE its disc at a constant (-136,-217) offset, so the disc laps over the pip's lower-right and the pip reads as tucked behind. THE CONSTRAINT: all copy is inside a circle. Label, tick and 4 body lines must finish by y 838 where r 213 still allows a 160px half-width — that caps the body at ~70 chars and the label at ~18. Push past it and the last line's corners fall outside the disc. Put anything longer in the deck.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-007/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-007/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-007/template.html"
+    },
+    {
+      "id": "INF-3P-008",
+      "name": "Three overlapping white discs with half-ring accents",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "overlapping-discs",
+        "chain",
+        "half-ring",
+        "alternating",
+        "lettered",
+        "copy-in-circle",
+        "white-cards",
+        "no-icons",
+        "kicker-title"
+      ],
+      "duration_seconds": 7,
+      "notes": "A CHAIN of three — the discs overlap by 50px and the accent arcs alternate bottom / top / bottom, which makes the eye run left to right. Keep the alternation; three arcs on the same side reads as three unrelated badges. Two things make it work: every accent arc is drawn AFTER all three discs, so an arc laps over its neighbour's ring exactly as in the reference; and the un-accented part of each ring is the same white as the disc, so only the coloured 170deg reads as a ring at all. Set --bg darker than --disc or the whole construction disappears. THE CONSTRAINT: all copy is inside a circle — letter, label, 5 body lines and the dash pair must finish by y 806 inside r 268, which caps the body at ~80 chars. There is no deck in this template; the header is a tracked kicker over a single heavy word.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-008/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-008/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-008/template.html"
+    },
+    {
+      "id": "INF-3P-009",
+      "name": "Interlocking chevron bands with letter tabs",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "sequence",
+        "chevron",
+        "arrow-band",
+        "interlocking",
+        "letter-tab",
+        "acronym",
+        "vertical-rule",
+        "outline-icons",
+        "title-deck",
+        "three-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "A three-beat SEQUENCE — the chevrons all point right, so order is load-bearing. Also built for an ACRONYM: the letter tabs (D-E-I) stand proud above the band, so swap them for numerals if the three points don't spell anything. The interlock is exact: each notch is the inverse of the previous point (seams at 578/708 and 1141/1271), so there is no gap to hide and no overlap to manage. Bands are drawn RIGHT TO LEFT so band 1 sits on top and its drop shadow falls onto band 2, which is what gives the depth. THE TRAP: bands 2 and 3 must start their copy 42px past their NOTCH TIP, not past their flat left edge — at mid-height the notch reaches 130px into the band, so copy aligned to the flat edge would fall outside the shape. Copy is 28px (the library floor) at 5 lines in a 290px column, ~100 chars, with the label capped at ~16 chars before it reaches the vertical rule.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-009/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-009/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-009/template.html"
+    },
+    {
+      "id": "INF-3P-010",
+      "name": "Three overlapping rounded diamonds with two-tone fill",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "diamond",
+        "rotated-square",
+        "overlapping",
+        "two-tone",
+        "numbered",
+        "copy-in-shape",
+        "outline-icons",
+        "white-ground",
+        "no-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "Three peers with a strong graphic shape — the diamonds overlap by 83px and later ones sit on top, which reads as a row rather than a sequence. TWO GOTCHAS, both from the 45deg rotation. (1) The two-tone fill must be a 135deg gradient, not 180deg: CSS gradients rotate with their element, so 135+45 renders screen-vertical. (2) GSAP replaces an element's whole transform, so the resting rotate(45deg) has to be a GSAP value — the spin-in animates rotation 5 -> 45, not -40 -> 0, or the diamonds land as plain squares. Copy is bounded by the shape, not a box: half-width is 318-|dy| out to |dy| 218, then a 100-radius corner arc to the tip at 318. That is why the label sits at y 530 rather than higher, and why it must stay to ONE line at 40px in a 360px measure. All content is un-rotated HTML positioned over the rotated divs.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-010/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-010/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-010/template.html"
+    },
+    {
+      "id": "INF-3P-011",
+      "name": "Three outline pills feeding a hub ring",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "hub-and-spoke",
+        "outline-pills",
+        "wire",
+        "connector",
+        "lettered-knob",
+        "acronym",
+        "hub-ring",
+        "stacked-rows",
+        "outline-icons"
+      ],
+      "duration_seconds": 7,
+      "notes": "HUB-AND-SPOKE, not a sequence — all three rows feed one destination, so use it when the three points combine into a named whole. Also built for an acronym whose words share an initial (P-P-P); change p*.letter to 1/2/3 otherwise. Draw order is load-bearing: wires first, then hub, then tips, then knobs, then the pills LAST — each later layer caps the one before, which is how the wires vanish cleanly behind the pills. That only works because the pill fill is --bg; if you re-colour the field, the pills follow it. Rows 1 and 3 elbow into the hub's top and bottom with a quadratic corner while row 2 runs straight in — keep that or the three wires read as parallel rather than converging. ADAPTATION: the reference is a 1.43 aspect, so the pills and wires are stretched horizontally to fill 16:9 while the rows keep their vertical rhythm. Copy is 28px (the library floor) at 2 lines in a 620px column, ~88 chars; a third line crosses the pill's bottom border.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-011/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-011/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-011/template.html"
+    },
+    {
+      "id": "INF-3P-012",
+      "name": "Three map pins at staggered heights on a wave",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "map-pin",
+        "teardrop",
+        "staggered",
+        "wave",
+        "road",
+        "letter",
+        "acronym",
+        "white-well",
+        "outline-icons",
+        "title-deck",
+        "three-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "Three peers with a travelling feel — the pins stagger in height along a wave, so it reads as a journey without being a hard sequence. Also built for an ACRONYM: each pin carries a letter on its neck (P-P-T). The pin body is NOT a teardrop primitive: it is the head circle plus its two tangent lines down to the tip, so the neck meets the head smoothly. For r 154 and a 272 drop the tangent points land at (cx +/- 127, cy + 87); resize either and both must be recomputed or the neck will kink. THE LAYOUT RULE that makes staggered pins readable: each copy block sits on a DIFFERENT side — right of pin 1, below pin 2, left of pin 3. Point 3's column is the tight one at 305px, boxed between the pin 2 and pin 3 heads, so its body caps lower (~70 chars) than the other two (~80). GSAP note: svgOrigin is set in the same call as the transform it belongs to; a follow-up call bakes a compensating translate that displaces the well.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-012/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-012/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-012/template.html"
+    },
+    {
+      "id": "INF-3P-013",
+      "name": "Three arrow rows with icon tile and grey tail panel",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "rows",
+        "arrow-band",
+        "icon-tile",
+        "numbered",
+        "tail-panel",
+        "list",
+        "outline-icons",
+        "title-deck",
+        "three-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "The most copy-generous 3-point in the set — 155 chars per row on the grey tail — so use it when the three points need real explanation rather than a headline each. Reads as a numbered LIST, not a flow: the arrows all point right but they run onto separate panels, so order is soft. Per row the draw order is tile, tail, arrow, number block: the tail is laid down first and the arrow is driven over its left end, then the number block caps the arrow's blunt left edge. Keep the -dk tokens a half-step darker than their base rather than a different hue, or the tile and number block stop reading as the same object. Copy is 28px throughout (the library floor); at 3 lines the body fills a 155px row with 15px to spare, so treat 155 chars as the ceiling.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-013/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-013/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-013/template.html"
+    },
+    {
+      "id": "INF-3P-014",
+      "name": "Lettered tabs with icon discs over stacked cards",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "sequence",
+        "acronym",
+        "letter-tab",
+        "icon-disc",
+        "chevron",
+        "white-cards",
+        "foot-tab",
+        "drop-shadow",
+        "kicker-title"
+      ],
+      "duration_seconds": 7,
+      "notes": "A three-beat SEQUENCE built for an ACRONYM — the chevrons point on to the next unit and the letters (C-A-R) are the hook, so swap them for numerals if the points don't spell anything. Note the third chevron still points right, off the end; that is the reference's behaviour and it reads as 'and onward'. Per unit the disc is drawn LAST so it laps over both the tab's right end and the card's top edge, tying the two halves of the unit together — draw it earlier and the unit falls apart into two objects. The foot tab deliberately straddles the card's bottom edge. This is the only 3-point in the set with a grey headline rather than black; --bg must stay darker than --card. Copy is 28px (the library floor) at 5 lines in a 380px column, ~120 chars, which fills the 333px card.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-014/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-014/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-014/template.html"
+    },
+    {
+      "id": "INF-3P-015",
+      "name": "Dome badges over grey cards in outlined speech frames",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "acronym",
+        "dome-badge",
+        "speech-frame",
+        "outline",
+        "grey-card",
+        "baseline-rail",
+        "ring-marker",
+        "outline-icons",
+        "title-deck",
+        "three-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "Three peers, each anchored to a shared baseline — the frames point down to rings on one rail, which is what ties the set together. Built for an ACRONYM (C-R-M); swap the dome letters for numerals otherwise. The stack per unit is frame, then card OVER it, then dome: the card hides the frame's top edge, and the dome's flat side sits exactly on the card's top y so the two read as one object. Change the card's y and the dome must follow. GOTCHA THAT COST ME A RENDER: pathLength must be an ATTRIBUTE on the frame path, not a GSAP property — gsap.set(el, {pathLength: 1}) throws and silently kills every gsap.set after it, which leaves half the artwork stuck at opacity 0. Copy is 28px (the library floor) at 4 lines in a 340px column, ~82 chars; a 5th line reaches the dot row.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-015/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-015/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-015/template.html"
+    },
+    {
+      "id": "INF-3P-016",
+      "name": "Banded pyramid with outline pill rows",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "pyramid",
+        "hierarchy",
+        "banded",
+        "shaded-wedge",
+        "outline-pills",
+        "lettered-disc",
+        "acronym",
+        "right-aligned",
+        "title-deck",
+        "three-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "A HIERARCHY, not a flat set — the pyramid widens downward, so band 1 reads as the apex and band 3 as the base. Use it when the three points nest or build on each other; for peers use INF-3P-007 instead. Also built for an acronym whose words share an initial (P-P-P). The pyramid's whole geometry falls out of one slope: the right edge runs (1160,330) to (1504,1000), dx/dy 0.514, and each band's right x is read off that line at its split. Each band is a base trapezoid plus a darker wedge filling the slope — drop the wedge and the pyramid flattens into three bars. Pills are drawn FIRST so the pyramid laps over their right ends, and the lettered discs LAST so they sit on the pill's left end. THE CAP THAT MATTERS: the pill is 150px tall and the label takes 42 of it, so the body is 2 lines / ~58 chars. A third line breaks out of the pill.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-016/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-016/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-016/template.html"
+    },
+    {
+      "id": "INF-3P-017",
+      "name": "Faceted 3D pyramid with stepped leader rows",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "pyramid",
+        "hierarchy",
+        "faceted",
+        "3d",
+        "leader-line",
+        "ring-icon",
+        "lettered-disc",
+        "acronym",
+        "stepped-rows",
+        "title-deck",
+        "three-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "The sibling of INF-3P-016 — same content shape, but here the pyramid is symmetrical and faceted, and the copy fans out on leaders instead of sitting in pills. Pick this one when the pyramid itself should be the hero. The 3D read comes from two things: every tier's lower edge is a V dipping to the centre line at x 567, and each tier is drawn as TWO paths split at that line (darker left face, lighter right). Flatten either and it becomes three stacked bars. Rows step RIGHT as they descend so each wire can start on the pyramid's flank at its own y — recompute wire_from_x if you move a row. THE SPACING RULE: rows sit 200px apart and each block is a label plus 3 lines (159px), leaving 41px of air. A 4th body line reaches the next row's label, so ~100 chars is the cap.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-017/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-017/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-017/template.html"
+    },
+    {
+      "id": "INF-3P-018",
+      "name": "Pyramid tiers extended into pale copy bands",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "pyramid",
+        "hierarchy",
+        "tinted-bands",
+        "copy-band",
+        "lettered-disc",
+        "acronym",
+        "widening",
+        "outline-icons",
+        "title-deck",
+        "three-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "The third pyramid variant in this set and the most copy-generous — each tier runs on into a full-width pale band, so it takes ~110 chars per point against ~58 for INF-3P-016. Pick it when the hierarchy needs explaining, not just naming. Two details carry the idea: each band's LEFT edge is the pyramid's own slope rather than a vertical, so the band grows out of the tier instead of butting against it; and each band is LONGER than the one above (1554 / 1670 / 1778), echoing the flare. The pale tokens should be the same hue at roughly a quarter strength — a neutral grey band breaks the link to its tier. The lettered discs straddle the left slope and need a much darker tone (--color-N-dk) for the white letter to hold. Copy is 28px (the library floor) at 3 lines; a 4th spills below the 220px band.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-018/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-018/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-018/template.html"
+    },
+    {
+      "id": "INF-3P-019",
+      "name": "Overlapping hexagon cluster with icon-hex rows",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "hexagon",
+        "cluster",
+        "overlapping",
+        "multiply-blend",
+        "numbered",
+        "icon-hex",
+        "rows",
+        "outline-icons",
+        "title-deck",
+        "three-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "Three things that OVERLAP — the cluster says the points share ground, so use it for a Venn-ish relationship rather than a sequence. The row hexes on the right repeat the cluster's shape at 35% scale, which is what ties the two halves together; keep them hexagons if you re-skin. THE BLEND GOTCHA: mix-blend-mode must sit on EACH hexagon path with isolation:isolate on the wrapping group. Put multiply on the group alone and it blends the whole group with the page instead of sibling-to-sibling, and the intersections stay flat. Because the fills multiply, pick mid-tone colours — two dark hues make the intersections read as black. Copy is 28px (the library floor) at 3 lines in a 700px column, ~115 chars; rows sit ~190-220px apart so a 4th line reaches the next label.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-019/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-019/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-019/template.html"
+    },
+    {
+      "id": "INF-3P-020",
+      "name": "Pinwheel triangle with numbered badges at three points",
+      "category": "infographics/3-point",
+      "aspect": "16:9",
+      "tags": [
+        "3-point",
+        "pinwheel",
+        "triangle",
+        "rotational-symmetry",
+        "petals",
+        "numbered-badge",
+        "halo-rings",
+        "compass-points",
+        "outline-icons",
+        "title-deck",
+        "three-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "Three peers turning around one centre. The pinwheel has no start, so this is the wrong pick for a sequence — use it when the three points are co-equal facets of one thing. The mark is ONE authored path reused twice with transform=rotate(120|240, 960, 790). GSAP GOTCHA: petals 2 and 3 carry that static rotate in the markup and GSAP's `rotation` REPLACES an element's transform, so their resting values in the timeline must be 120 and 240, not 0 — otherwise they unwind on top of each other on the first tick. Copy sits at the three compass points the petals face (left / above / right). Point 2's block is the constrained one: it sits directly over the apex at y 517, so 3 lines is a hard cap there. All three bodies are held to ~70 chars for consistency.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/3-point/INF-3P-020/preview.png",
+      "thumbUrl": "library/infographics/3-point/INF-3P-020/thumb.webp",
+      "templateUrl": "library/infographics/3-point/INF-3P-020/template.html"
+    },
+    {
+      "id": "INF-4P-001",
+      "name": "Hub + arc to 4-point cards",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "hub-and-arc",
+        "4-point",
+        "pill-cards",
+        "left-hub",
+        "right-cards",
+        "vertical-stack",
+        "arc-connector",
+        "asymmetric",
+        "process-steps",
+        "concepts"
+      ],
+      "duration_seconds": 6,
+      "notes": "Use for 'four pillars / four concepts / four phases' beats. Asymmetric layout — dark hub anchors the LEFT, four color-coded cards stack on the RIGHT, connected via a curved silver arc with colored dots at each junction. Reveals SEQUENTIALLY: hub → arc draws → card 1 → 2 → 3 → 4 with 0.6s stagger between card starts. Each card reveal: hub-line strokes → arc dot pops → arc-line strokes → icon pops → pill expands → label → body (1.3s per card). 4 distinct colors (one per card) — good when each point has a different category/department/phase. Body capped at 80 chars / 2 lines @ 28px. Safe margin 100px all sides. Icons are Material Symbols Outlined names — pick from https://fonts.google.com/icons.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-001/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-001/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-001/template.html"
+    },
+    {
+      "id": "INF-4P-002",
+      "name": "4-card 2x2 grid with L-accents (horizontal icon-left layout)",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "grid",
+        "2x2",
+        "white-cards",
+        "corner-accents",
+        "L-shape",
+        "icon-left",
+        "horizontal-card",
+        "feature-matrix"
+      ],
+      "duration_seconds": 6,
+      "notes": "Use for '4 capabilities / 4 services / 4 pillars' beats where each item is substantial enough to deserve a horizontal card with prominent icon + 2-line title + paragraph. Cards are 800×400 each (huge), allowing ~130 chars of body text. Icon on the LEFT (150px Material Symbol, colored to match accent), text on the RIGHT (label 40px upper, body 28px). Sequential 1-2-3-4 reveal in reading order with 0.6s stagger. Each card: scale-in → icon slides from left → label → body (~0.95s). The L-accent thickness/length and the accent color are tokenised.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-002/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-002/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-002/template.html"
+    },
+    {
+      "id": "INF-4P-003",
+      "name": "Vertical 4-pill stack with gradient end-arcs",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "vertical-stack",
+        "pill-cards",
+        "title-bar",
+        "multi-color-bar",
+        "gradient-arcs",
+        "icon-left",
+        "list"
+      ],
+      "duration_seconds": 6,
+      "notes": "4 horizontal pill cards stacked vertically (1300×170 each, 30px gap). Each pill has gradient colored end-arcs that fade from accent color → transparent, plus icon-left + colored label + gray body. Title bar at top has 4-color underline matching the 4 accents. Sequential reveal: title → 4-color bar staggers → each pill slides in from left with icon pop, label, body (0.5s stagger between pills). Body 120 chars / 2 lines @ 28px.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-003/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-003/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-003/template.html"
+    },
+    {
+      "id": "INF-4P-004",
+      "name": "4 alternating ribbon banners with angled ends",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "ribbon",
+        "banner",
+        "alternating",
+        "horizontal-cascade",
+        "big-numbers",
+        "option-list"
+      ],
+      "duration_seconds": 6,
+      "notes": "4 colored ribbon banners (1500×200 each) with parallelogram-rounded-ends clip-path. Alternating left/right offset (1,3 at x=80; 2,4 at x=340) for cascading visual rhythm. Each ribbon: number block (OPTION + 01-04) + body text + small icon-in-circle. Sequential reveal: ribbons slide in from opposite sides (1,3 from left; 2,4 from right) with 0.6s stagger. Body 160 chars (large 1500px ribbon allows long body text). Snapshot mode included.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-004/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-004/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-004/template.html"
+    },
+    {
+      "id": "INF-4P-005",
+      "name": "4-hexagon cluster with colored backers",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "hexagon",
+        "cluster",
+        "layered-depth",
+        "icon-on-top",
+        "zigzag"
+      ],
+      "duration_seconds": 6,
+      "notes": "4 white pointy-top hexagons (400×450) spread horizontally with slight zigzag offset (1,3 high at top=280; 2,4 low at top=340). Each white hex has a colored hex backer offset diagonally (+50, +32) for layered-depth feel. Inside each: icon (64px) + label (28px) + body (28px, ~3 lines, 90 chars max — hex tapers narrow body width). Sequential reveal: backer scales in → front scales in → icon → label → body. 0.6s stagger between hexes. Snapshot mode included.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-005/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-005/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-005/template.html"
+    },
+    {
+      "id": "INF-4P-006",
+      "name": "4 arrow/flag cards (text-left, chevron-right)",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "flag",
+        "chevron",
+        "arrow",
+        "icon-circle",
+        "option-list",
+        "horizontal-stack"
+      ],
+      "duration_seconds": 6,
+      "notes": "4 horizontal flag cards (1500×190 each). Each: white text area on left + colored chevron arrow on right (470px wide, points LEFT into white area via clip-path with 15% offset at left edge). Circular colored icon sits at the visual boundary. Sequential reveal: white card slides from left + arrow slides from right (simultaneously) → icon pops → label → body → arrow-label → big number. 0.6s stagger between flags.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-006/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-006/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-006/template.html"
+    },
+    {
+      "id": "INF-4P-007",
+      "name": "4-row infographic elements with icon-left + stripe-right",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "vertical-stack",
+        "icon-circle",
+        "colored-stripe",
+        "two-tone-title",
+        "elements-list"
+      ],
+      "duration_seconds": 6,
+      "notes": "4 rows stacked vertically (1450×170 each, 30px gap). Each row: circular accent-colored icon hanging off LEFT edge + white card body with label/body + accent-colored stripe on RIGHT edge of card. Two-tone title at top: 'INFOGRAPHIC ELEMENTS' (dark + gold). Label uses inline highlight: 'PLACE [your text] HERE' where the middle span gets accent color. Sequential reveal: title → rows slide in from left with icon pop, label fade, body fade (0.5s stagger). Body 140 chars / 2-3 lines @ 28px.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-007/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-007/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-007/template.html"
+    },
+    {
+      "id": "INF-4P-008",
+      "name": "4 circular cards with offset colored backers",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "circular-cards",
+        "offset-backers",
+        "step-idea",
+        "horizontal-row",
+        "alternating-icons"
+      ],
+      "duration_seconds": 6,
+      "notes": "4 horizontal units (360×480 each, 50px gap, 4 columns at x=130/540/950/1360). Each unit: white circle (300×300) sitting on a colored rounded-square backer (260×260) offset diagonally (u-1 bottom-left, u-2 top-right, u-3 bottom-right, u-4 top-left), plus a small icon circle hanging off the opposite side (u-1/u-3 top, u-2/u-4 bottom), plus body text below. Inside white circle: 'Step A' tag + big colored headline 'IDEA'. Sequential reveal 1-4: backer pops → circle pops → tag → headline → icon → body. 0.6s stagger. Body capped 80 chars / 2 lines @ 28px.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-008/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-008/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-008/template.html"
+    },
+    {
+      "id": "INF-4P-009",
+      "name": "Vertical 4-pill stack with gradient + center icon + text",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "pill-stack",
+        "vertical",
+        "gradient-left",
+        "icon-center",
+        "big-numbers",
+        "option-list"
+      ],
+      "duration_seconds": 6,
+      "notes": "4 pill banners (1500×200 each, gap 30, centered horizontally) on a soft gradient bg. Each pill: left gradient zone (280px wide) with 'Option' label + big number, middle icon zone (200px wide, divided by vertical line), right body text zone with bold colored lead-in word. Sequential reveal 1-4: pill slides in from left → gradient zone fades → icon pops → text slides in. 0.6s stagger between pills. Body 110 chars / 2 lines @ 28px. Pills positioned at top: 110/340/570/800 (200 tall each, 30 gap).",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-009/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-009/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-009/template.html"
+    },
+    {
+      "id": "INF-4P-010",
+      "name": "Centre quad tile with four corner panels on coloured rules",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "quadrant",
+        "2x2",
+        "centre-tile",
+        "corner-panels",
+        "matrix",
+        "inner-edge-rule",
+        "mirrored",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "The 2x2 tile makes this a MATRIX layout — the four points are quadrants of one whole, not a sequence, and their diagonal relationships read as meaningful. Wrong pick for four steps. Two details do the work: the panels run under the tile by ~128px so it reads as pinned on top rather than parked between them, and each panel's rule sits on its INNER edge so all four rules point at the centre. Copy alignment follows the same logic — left panels right-aligned, right panels left-aligned, everything reading inward. Build the tile as four paths with one rounded outer corner each; four rounded rects would leave a plus-shaped notch where they meet. --plate must stay darker than --panel or the frame disappears. Copy is 28px (the library floor) at 3 lines in a 460px column; a 4th line clears the 252px panel.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-010/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-010/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-010/template.html"
+    },
+    {
+      "id": "INF-4P-011",
+      "name": "SWOT quad cards with a white centre tile",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "swot",
+        "2x2",
+        "quadrant",
+        "matrix",
+        "gradient-cards",
+        "centre-tile",
+        "named-model",
+        "icon-disc",
+        "flanking-copy",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "A NAMED 2x2 — the centre tile is what separates this from INF-4P-010. Use it when the four points are a recognised model (SWOT, PEST, BCG, Johari) and the model's name earns its place in the middle; if the four points are just four points, INF-4P-010 is the better tile. The timing carries that idea: each card grows out of the block centre with its disc and copy, and the name lands LAST, at 2.62s, as the thing the four cards add up to. Labels are deliberately NEUTRAL grey rather than tinted per point — the cards are already saturated and tinting the labels too makes the page shout. Built in plain HTML/CSS; box-shadow does all the depth, so there is no SVG here at all. Copy is 28px (the library floor) at 3 lines in a 440px column. The centre token is an ACRONYM slot — 6 characters, not a phrase.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-011/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-011/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-011/template.html"
+    },
+    {
+      "id": "INF-4P-012",
+      "name": "SWOT leaf cards carved by a corner arc",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "swot",
+        "2x2",
+        "quadrant",
+        "leaf",
+        "carved-corner",
+        "arc-cut",
+        "gradient-cards",
+        "icon-disc",
+        "flanking-copy",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "The third 2x2 in this set and the one with movement in it — every card's inward corner is cut by an arc struck from that card's OWN outer corner, so the four leaves curve outward from the middle. Use it when the four points radiate from a shared origin; use INF-4P-010 for a plain matrix and INF-4P-011 when the model has a name worth putting in the centre (this one leaves the middle empty on purpose). THE GEOMETRY: arc_r 301 against a 282px card means the arc lands 105px from the inward corner on both adjacent edges — sqrt(301^2 - 282^2). Resize the card and both numbers must be recomputed. Only the block's four outer corners are rounded; the interior corners stay sharp, which is what holds the four leaves together as one square. Each card's GSAP svgOrigin is its own outer corner — the same point the arc is struck from — so the leaf unfurls instead of zooming. Glyphs are dark neutral, not tinted: a tinted glyph on a white disc on a matching leaf loses the disc entirely.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-012/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-012/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-012/template.html"
+    },
+    {
+      "id": "INF-4P-013",
+      "name": "Gradient columns with overhanging label pills",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "columns",
+        "row-of-cards",
+        "gradient-cards",
+        "hue-ramp",
+        "overhanging-pill",
+        "label-pill",
+        "reverse-copy",
+        "process",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "The overhang is the entire idea. The white pill breaks each column's silhouette, so the eye lands on the label before the copy, and it is the pill — not the column — that sets the page's side margin. Keep the 20px overhang if you resize: flush pills turn this back into four plain cards. The four colours are a deliberate HUE RAMP (cyan to magenta) rather than four unrelated hues, which is what makes this read as a sequence — a good pick for stages, a poor one for unranked peers. Copy is reversed out on the column at 88% white rather than pure white, so the pill stays the loudest thing in each column. The columns were widened from the literal reference scale (310 -> 386): 28px body copy will not hold in a 310px card, and this was the smaller compromise. Body is 3 lines at the 28px floor; a 4th still clears the column, a 5th does not.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-013/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-013/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-013/template.html"
+    },
+    {
+      "id": "INF-4P-014",
+      "name": "Shield columns with a notched circle head",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "columns",
+        "row-of-cards",
+        "notch",
+        "circle-head",
+        "shield",
+        "gradient-cards",
+        "hue-ramp",
+        "reverse-copy",
+        "label-at-foot",
+        "process",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "The sibling of INF-4P-013 from the same stock family, and the better pick when the icon should lead: the head breaks the column's top edge instead of the pill breaking its middle, and the NAME moves to the foot so the eye runs icon -> copy -> name. THE GEOMETRY: head and notch are struck from the same centre (cx, 500) at r 82 and r 100, which is what keeps the 18px channel of open page even all the way round. The notch arc meets the column's top edge 99.5px either side of the centreline — sqrt(100^2 - 10^2), since that edge sits 10px below the shared centre. TWO SHADOWS, not one: the head is filtered separately and much lighter, because its shadow falls into the open channel and a column-strength shadow there reads as a grey ring inside the notch. Head and column also share one userSpaceOnUse gradient spanning y 418..940, so the head is simply the light end of the column's own ramp rather than a separate tint. Columns were widened from the literal reference scale (325 -> 366) so 28px copy holds.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-014/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-014/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-014/template.html"
+    },
+    {
+      "id": "INF-4P-015",
+      "name": "Gradient discs with a white icon disc on the crown",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "discs",
+        "circles",
+        "row",
+        "crown-badge",
+        "icon-disc",
+        "gradient",
+        "hue-ramp",
+        "reverse-copy",
+        "copy-in-circle",
+        "steps",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "Third of the same stock family (with INF-4P-013 and INF-4P-014) and the most copy-hostile of the three: everything lives INSIDE a circle, so the usable width is the chord at each line's own height, not the diameter. That is why the body caps at 62 characters here against 95-100 in its siblings — pick this one when the four points have short labels and one sentence each, and pick INF-4P-013 when they need explaining. The crown disc's centre sits exactly on the big disc's top point so precisely half overhangs; nudge it up and it floats free, nudge it down and it reads as a hole punched in the disc. Discs were enlarged from the literal reference scale (r 170 -> 195) with the gutter tightened to buy chord width back. Glyph is dark neutral: the crown disc straddles page and disc, so a tinted glyph loses it against one or the other.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-015/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-015/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-015/template.html"
+    },
+    {
+      "id": "INF-4P-016",
+      "name": "Chained rings joined by waisted connector bands",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "chain",
+        "linked",
+        "rings",
+        "connector-band",
+        "tangent-arc",
+        "waisted",
+        "metaball",
+        "steps",
+        "sequence",
+        "icon-well",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "A real CHAIN, not four things in a row — the links are physically joined, so this is for a sequence where each step feeds the next, never for four independent items. TWO things make it work. First the waist: each band edge is an arc of r 172 struck TANGENT to both rings, so the band grows out of the ring instead of butting against it. The construction is in layout.band._formula — pick a waist height, solve for the arc, derive the tangent point; change the ring radius or the pitch and all of it moves together. Second the direction: each band takes the colour of the ring on its LEFT, so colour flows forward and the last ring feeds nothing. DRAW ORDER is load-bearing: bands, then the solid ring circles, then the white wells. The band's tangent points sit 94px inside each ring centre — inside the well — so it is the stacking that keeps the wells clean, not any clipping. The timeline follows the chain: each link lands, then the band that LEAVES it runs out toward the next.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-016/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-016/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-016/template.html"
+    },
+    {
+      "id": "INF-4P-017",
+      "name": "White discs edged with tapered crescents on a thin rail",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "discs",
+        "crescent",
+        "lens",
+        "two-arc",
+        "rail",
+        "connector",
+        "steps",
+        "sequence",
+        "white-disc",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "The quietest of this batch's step layouts — the disc stays white and only its rim carries colour, so the icons lead and the palette stays out of the way. Good for a sequence you want to read as calm rather than energetic; INF-4P-016's chain is the loud alternative. THE CRESCENT is the whole trick and it is NOT a ring with gaps: the outer edge is the r-173 circle about the disc centre, but the inner edge is a much flatter r-366 arc struck from 224px past centre on the OPPOSITE side. That mismatch is what makes the two edges actually meet, at (±120, ±125), and taper to a point. A concentric inner circle gives a plain uniform ring instead. GSAP note: the crescents are scaled about the DISC centre (svgOrigin), never their own bounding box — their bbox is off-axis, so a default origin swings them sideways as they open. Left and right crescents take two tones of one hue; the right tone also drives that point's rail and its header rule segment.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-017/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-017/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-017/template.html"
+    },
+    {
+      "id": "INF-4P-018",
+      "name": "Four teardrop petals radiating from one point",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "teardrop",
+        "petal",
+        "pinwheel",
+        "radial",
+        "shared-origin",
+        "tangent-line",
+        "hub",
+        "icon-well",
+        "corner-copy",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "Four facets of ONE thing — they literally share an origin point, so this is the right pick for a named model (4Cs, 4Ps) and the wrong one for four sequential steps. THE TEARDROP is a head circle plus the two TANGENT LINES from the apex to that circle, not a wedge with a rounded end: the tangents are what make the petal narrow to a true point and swell smoothly into the head. Tangent length is sqrt(d^2 - r^2) at asin(r/d) either side of the apex-to-head line; change the head radius or its distance and both move. large-arc-flag is 1 on all four petals because the arc must run the LONG way round, away from the apex — flag it 0 and you get a lens instead of a teardrop. Every petal's GSAP svgOrigin is the shared apex, so they unfurl out of the hub together rather than popping in place. This is also the one layout in the batch where the glyph IS tinted with its point colour: the well is large enough (r 78) that a tinted glyph still reads.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-018/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-018/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-018/template.html"
+    },
+    {
+      "id": "INF-4P-019",
+      "name": "Alternating hexagons above and below a broken rule",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "hexagon",
+        "alternating",
+        "zigzag",
+        "timeline",
+        "broken-rule",
+        "segmented-spine",
+        "dotted-leader",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "The alternation is the point: hexagon above / copy below, then the reverse, so the eye zigzags across instead of scanning four identical columns. It also buys real estate — each point gets the full column height on one side of the rule rather than half of it. The spine is BROKEN into four segments with a gap between; make it continuous and this stops being four points and becomes a timeline. Hexagon, dotted leader, rule segment and copy all share one centreline per point, which is what holds each column together across the break. Hexagons are POINTY-TOP (vertices top and bottom) — flat-top reads as a honeycomb tile instead of a marker. The leaders are neutral grey on purpose; tinting them per point puts four loud verticals through the middle of the page. GSAP note: the leaders carry stroke-dasharray, so they cannot use a pathLength draw-on — dasharray and pathLength fight, and the dashes collapse into one solid segment. They fade instead.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-019/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-019/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-019/template.html"
+    },
+    {
+      "id": "INF-4P-020",
+      "name": "Quartered stadium block with a named centre disc",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "stadium",
+        "quadrant",
+        "2x2",
+        "centre-hub",
+        "named-model",
+        "corner-ring",
+        "reverse-copy",
+        "solid-block",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "The third named 2x2 in this batch, and the one that reads as ONE OBJECT: the four points are quadrants of a single stadium rather than four cards, so use it when they are inseparable parts of one whole and INF-4P-011 when they are four related-but-separate things. Two details hold it together. The stadium's end radius equals its half-height (280), which is what makes the ends true semicircles instead of soft rectangles — change the block height and the radius must follow. And the corner rings are centred 15px OUTSIDE the stadium's own edge so each straddles the silhouette; sitting them fully inside leaves the corners dead. Copy is reversed out at 88% white with labels at full, and every block reads inward toward the hub — left quadrants right-aligned, right quadrants left-aligned. The hub word lands LAST at 2.42s. It is one token in a single colour: the reference coloured it letter by letter, which cannot survive a text swap.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-020/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-020/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-020/template.html"
+    },
+    {
+      "id": "INF-4P-021",
+      "name": "Grey cards with a colour band and footer bar",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "cards",
+        "columns",
+        "colour-band",
+        "full-bleed-band",
+        "footer-bar",
+        "neutral-card",
+        "tinted-icons",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "The most copy-generous layout in this batch — up to 180 characters per point against 60-130 elsewhere — because the card is a plain rectangle and the text is not fighting a circle, a chord or an overhanging pill. Reach for it when the four points need explaining rather than naming. The card stays NEUTRAL and only the band, the footer bar and the glyph carry colour, which is what lets four saturated hues share a page without shouting; tint the card itself and the page turns into INF-4P-013. Two small details are load-bearing: the band sits at the card's waist where the 72px corner radius does not reach, so it reads as a true full-bleed cut, and the footer bar is SQUARE at the very bottom, so its ends overhang the rounded corners slightly — that overhang is what makes it a bar rather than part of the card. The band label is one line on a fixed 96px band and will not wrap gracefully.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-021/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-021/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-021/template.html"
+    },
+    {
+      "id": "INF-4P-022",
+      "name": "Colour cards with a grey number tab notched into the corner",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "cards",
+        "columns",
+        "number-tab",
+        "notch",
+        "l-plate",
+        "corner-cut",
+        "reverse-copy",
+        "right-aligned",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "The inverse of INF-4P-021 from the same stock family: there the card is neutral and only a band carries colour, here the whole card is saturated and the only neutral is a grey NOTCH bitten out of its top-left corner. Louder, and much tighter on copy — 110 characters against 180 — because the body is right-aligned in a 334px column at the 28px floor, about 22 characters a line. Use it when the four points are short and the colour is the message. The L is ONE path drawn AFTER the card: its top strip sits above the card and shows on the page, its tab drops over the card's corner. Draw it before the card and the tab disappears. Everything on the card is right-aligned so the notch reads as a deliberate bite rather than an accident. The number is tinted with the card's own colour on light grey, which is the one place a light hue can fail — check it if you re-skin.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-022/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-022/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-022/template.html"
+    },
+    {
+      "id": "INF-4P-023",
+      "name": "Fan of four sectors from a hub with leader lines",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "fan",
+        "sectors",
+        "annulus-sector",
+        "wedge",
+        "hub",
+        "named-model",
+        "leader-line",
+        "node",
+        "icon-well",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "Four things that RADIATE from one named source — the hub is the model and the sectors are its parts, so this and INF-4P-018 are the two picks for a named framework; the fan wins when the four need real copy beside them rather than in the corners. THE FILLET RULE is what keeps it looking like one object: only the fan's two extreme corners are rounded, every internal seam stays sharp. Round all eight corners and you get four separate wedges floating near a circle. Each leader leaves at its own sector's mid-angle and only then runs level, so the line points back into the wedge it belongs to — a common shortcut is to start all four leaders at the same x, which breaks that. The hub is drawn LAST, over the fan's inner edge, so the point where four sectors converge never has to be clean. Copy is capped at 3 lines: the blocks are only ~176px apart and a 4th line lands on the next label.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-023/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-023/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-023/template.html"
+    },
+    {
+      "id": "INF-4P-024",
+      "name": "Overlapping disc row around a named grey centre",
+      "category": "infographics/4-point",
+      "aspect": "16:9",
+      "tags": [
+        "4-point",
+        "discs",
+        "overlapping",
+        "chain",
+        "centre-hub",
+        "named-model",
+        "number-badge",
+        "reverse-copy",
+        "copy-in-circle",
+        "outline-icons",
+        "title-deck",
+        "four-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "Four points that OVERLAP around a named centre — the discs physically lap over each other, so it reads as one connected set rather than four columns. Two things are easy to get wrong. STACKING builds inward: 1 under 2 under the hub, 4 under 3 under the hub, so every seam is the arc of the disc nearer the middle. And each BADGE goes down after the disc it must show against but before its own disc — badge 2 after disc 1, badge 3 after disc 4 — so only its outer half survives. Put all four badges first (the obvious thing to do) and the two inner ones vanish under the discs entirely. Because each disc is clipped by its neighbour, the copy is centred on the VISIBLE CRESCENT (x 288 / 595 / 1325 / 1633), not on the disc's own centre; centring on the disc pushes the text under the next one. Copy caps hard at 75 characters — the crescent is only ~306px wide and narrows toward the disc's foot. The hub lands last, on top, as the thing the four surround.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/4-point/INF-4P-024/preview.png",
+      "thumbUrl": "library/infographics/4-point/INF-4P-024/thumb.webp",
+      "templateUrl": "library/infographics/4-point/INF-4P-024/template.html"
+    },
+    {
+      "id": "INF-5P-001",
+      "name": "Half-pie hub + 5 numbered list cards",
+      "category": "infographics/5-point",
+      "aspect": "16:9",
+      "tags": [
+        "5-point",
+        "half-pie",
+        "donut-wedges",
+        "hub-left",
+        "numbered-cards-right",
+        "asymmetric",
+        "categorization",
+        "list-with-visual"
+      ],
+      "duration_seconds": 7,
+      "notes": "Use for '5 categories / 5 departments / 5 phases' where you want BOTH a visual categorisation summary (the pie) AND a numbered text list (the cards). Reveals SEQUENTIALLY: hub circle → hub title → step 1 (wedge rotates in + icon pops + card slides from right + label + body) → step 2 → … → step 5 with 0.6s stagger between steps. Each step ~1.0s. The pie is built from 5 SVG donut wedges (inner R=170, outer R=340) at fixed 36° intervals from -90° (top) to +90° (bottom); wedge SVG paths are precomputed in the HTML and not parameterised by step count. Card bodies are 110 chars (plenty of room) — cards are 1000px wide. Safe margin 100px on all sides. Icons are Material Symbols Outlined names — pick from https://fonts.google.com/icons. Snapshot mode included; preview.sh works out of the box.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/5-point/INF-5P-001/preview.png",
+      "thumbUrl": "library/infographics/5-point/INF-5P-001/thumb.webp",
+      "templateUrl": "library/infographics/5-point/INF-5P-001/template.html"
+    },
+    {
+      "id": "INF-5P-002",
+      "name": "5-step horizontal with circular icons + ribbon connector",
+      "category": "infographics/5-point",
+      "aspect": "16:9",
+      "tags": [
+        "5-point",
+        "horizontal",
+        "circular-icons",
+        "ribbon-connector",
+        "gradient-ribbon",
+        "process-steps"
+      ],
+      "duration_seconds": 6,
+      "notes": "5-step process layout adapted from vertical to 16:9 horizontal. Horizontal gradient ribbon (orange→red→purple) spans the canvas at y=380-420. 5 circular icon cards (200×200) sit on the ribbon at evenly-spaced x positions. Below each icon: label + body text. Reveal sequence: ribbon scales from left → icons pop sequentially (left to right) with text fade. 0.5s stagger. Body capped at 90 chars / ~3 lines @ 28px.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/5-point/INF-5P-002/preview.png",
+      "thumbUrl": "library/infographics/5-point/INF-5P-002/thumb.webp",
+      "templateUrl": "library/infographics/5-point/INF-5P-002/template.html"
+    },
+    {
+      "id": "INF-5P-003",
+      "name": "5 circles connected by S-curve snake ribbon",
+      "category": "infographics/5-point",
+      "aspect": "16:9",
+      "tags": [
+        "5-point",
+        "snake-ribbon",
+        "S-curve",
+        "horizontal-circles",
+        "gradient-ribbon",
+        "dotted-bg",
+        "process-flow"
+      ],
+      "duration_seconds": 6,
+      "notes": "5 circles (320×320) in horizontal row, connected by S-curve gradient ribbon (cubic bezier path) that weaves up/down between circle centers. Each circle holds: icon + colored label + body text. Subtle dotted bg pattern. Title has two-tone color ('INFO' dark, 'GRAPHIC' green) with 5 colored dots below. Sequential reveal: title → ribbon strokes left-to-right (1.2s) → circles pop sequentially (0.4s stagger). Body 80 chars / 3 lines max because circle text width is constrained.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/5-point/INF-5P-003/preview.png",
+      "thumbUrl": "library/infographics/5-point/INF-5P-003/thumb.webp",
+      "templateUrl": "library/infographics/5-point/INF-5P-003/template.html"
+    },
+    {
+      "id": "INF-5P-004",
+      "name": "MODERN INFOGRAPHIC 5-card 3-2 mosaic",
+      "category": "infographics/5-point",
+      "aspect": "16:9",
+      "tags": [
+        "5-point",
+        "3-2-mosaic",
+        "angled-cards",
+        "title-subtitle",
+        "modern",
+        "feature-list"
+      ],
+      "duration_seconds": 6,
+      "notes": "5 cards in 3-2 mosaic layout (row 1: 3 cards at x=130/700/1270, row 2: 2 cards centered at x=415/985). Each card 520×200 — colored angled-left section with icon + white right section with label + body. Small colored triangle accent in top-right corner. Title 'MODERN INFOGRAPHIC' (light + bold) with subtitle paragraph. Sequential reveal 1-5 in reading order with 0.4s stagger. Body 100 chars / 2-3 lines @ 26px (slightly under floor for compact fit; bump to 28px if you have shorter copy).",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/5-point/INF-5P-004/preview.png",
+      "thumbUrl": "library/infographics/5-point/INF-5P-004/thumb.webp",
+      "templateUrl": "library/infographics/5-point/INF-5P-004/template.html"
+    },
+    {
+      "id": "INF-5P-005",
+      "name": "5 STEPS chevron banners with number circles",
+      "category": "infographics/5-point",
+      "aspect": "16:9",
+      "tags": [
+        "5-point",
+        "chevron-stack",
+        "vertical",
+        "number-circles",
+        "right-arrow",
+        "option-steps",
+        "bar-chart-title"
+      ],
+      "duration_seconds": 6,
+      "notes": "5 chevron banners stacked (1500×140 each, gap ~22, y=220/380/540/700/860). Each banner: white number circle (130px, colored number) on LEFT overlapping a colored chevron ribbon (right-pointing arrow via clip-path) with label + body text, plus icon outside chevron tip on RIGHT. Title at top: ascending color-bar chart icon + '5 Steps Infographics'. Sequential reveal 1-5: number pops → chevron slides from left → label/body fade → icon pops. 0.4s stagger between banners. Body capped 80 chars / 2 lines @ 22px (body is intentionally smaller here as banners are compact; bump if needed).",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/5-point/INF-5P-005/preview.png",
+      "thumbUrl": "library/infographics/5-point/INF-5P-005/thumb.webp",
+      "templateUrl": "library/infographics/5-point/INF-5P-005/template.html"
+    },
+    {
+      "id": "INF-5P-006",
+      "name": "Theory of Constraints 5 hexagons alternating up/down",
+      "category": "infographics/5-point",
+      "aspect": "16:9",
+      "tags": [
+        "5-point",
+        "hexagons",
+        "alternating-zigzag",
+        "dashed-connectors",
+        "color-bar-divider",
+        "process-loop"
+      ],
+      "duration_seconds": 7,
+      "notes": "5 hexagons (160×180, CSS clip-path) in horizontal zigzag layout. Cols 1, 3, 5 are BOTTOM-hex (text top y=280, dashed connector down, hex at y=700). Cols 2, 4 are TOP-hex (hex at y=240, dashed connector down, text at y=660). Horizontal 5-color bar across the middle at y=580 (visually divides upper/lower zones). Sequential reveal: title → color bar strokes across → 5 columns cascade (hex → dashed line → label → body), 0.4s stagger.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/5-point/INF-5P-006/preview.png",
+      "thumbUrl": "library/infographics/5-point/INF-5P-006/thumb.webp",
+      "templateUrl": "library/infographics/5-point/INF-5P-006/template.html"
+    },
+    {
+      "id": "INF-5P-007",
+      "name": "Grey cards with a lettered pennant hanging over the top",
+      "category": "infographics/5-point",
+      "aspect": "16:9",
+      "tags": [
+        "5-point",
+        "cards",
+        "columns",
+        "pennant",
+        "banner",
+        "ribbon",
+        "lettered",
+        "acronym",
+        "footer-bar",
+        "neutral-card",
+        "title-deck",
+        "five-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "Five points is where a page starts to feel crowded, and this handles it by keeping the CARD neutral: only the pennant, the footer bar and the label carry colour, so five saturated hues can share one row. The pennant is the detail worth preserving — a 188px flange that overhangs the card by 21px, steps in to a 154px body, then finishes in a V. Drop the overhang and it reads as printed on the card; drop the step and it reads as a plain arrow. Letters, not numbers, in the ring: this is an acronym layout (A-E), and the timeline hangs each pennant from above rather than scaling it in place, which is what sells the idea. Copy is TIGHT — 95 characters over 5 lines in a 266px column at the 28px floor, roughly 22 characters a line. If the five points need more than a sentence each, this is the wrong template.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/5-point/INF-5P-007/preview.png",
+      "thumbUrl": "library/infographics/5-point/INF-5P-007/thumb.webp",
+      "templateUrl": "library/infographics/5-point/INF-5P-007/template.html"
+    },
+    {
+      "id": "INF-5P-008",
+      "name": "Interlocking chevron columns full bleed",
+      "category": "infographics/5-point",
+      "aspect": "16:9",
+      "tags": [
+        "5-point",
+        "chevron",
+        "interlocking",
+        "columns",
+        "full-bleed",
+        "sequence",
+        "process",
+        "framework",
+        "numbered-ring",
+        "reverse-copy",
+        "outline-icons",
+        "title-deck",
+        "five-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "A SEQUENCE, unambiguously — the chevrons point one way and the palette runs light to dark, so this is for stages of a framework, never for five peers. THE CHEVRON is one shape used twice per seam: a point on the left column and an identical notch on the right, meshing with no gap and no overlap. Its depth equals its half-height (51), which is what makes it a clean 45 degrees; if the two copies drift apart you get a white sliver or a muddy overlap at every seam. The apex sits at the LABEL's own baseline rather than the column's midpoint, which is what makes the arrow read as 'this leads to that' rather than as decoration. Everything is reversed out in white, so --color-1 is the risk on a re-skin: the reference's amber is already the low-contrast one, and anything paler fails. Copy is tight — 80 characters over 4 lines at the 28px floor; a 5th line reaches the glyph at the foot.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/5-point/INF-5P-008/preview.png",
+      "thumbUrl": "library/infographics/5-point/INF-5P-008/thumb.webp",
+      "templateUrl": "library/infographics/5-point/INF-5P-008/template.html"
+    },
+    {
+      "id": "INF-5P-009",
+      "name": "Pointed colour columns with a haloed icon disc",
+      "category": "infographics/5-point",
+      "aspect": "16:9",
+      "tags": [
+        "5-point",
+        "columns",
+        "pennant",
+        "pointed",
+        "banner",
+        "no-gutter",
+        "icon-disc",
+        "halo",
+        "underline",
+        "reverse-copy",
+        "outline-icons",
+        "title-deck",
+        "five-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "Five stages of a named model. The columns TOUCH — no gutter — so the row reads as one banded block until the V points split it apart at the foot; add a gutter and it becomes five unrelated banners. The HALO is the detail people skip: each white disc sits in a ring of its own column colour darkened about 12%, which is what stops it reading as pasted on. Use a neutral grey there and the link to the column breaks. Copy is 4 lines at the 28px floor and the LAST one falls inside the taper, where the column is only ~266px across against the 280px text box — short final lines only, which is why the cap is 95 characters rather than the ~120 the column width suggests. Labels are one line for the same reason. Glyphs ARE tinted here: at r 98 the disc is large enough to carry colour without losing itself.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/5-point/INF-5P-009/preview.png",
+      "thumbUrl": "library/infographics/5-point/INF-5P-009/thumb.webp",
+      "templateUrl": "library/infographics/5-point/INF-5P-009/template.html"
+    },
+    {
+      "id": "INF-5P-010",
+      "name": "Tapering hex-bar funnel with staggered copy",
+      "category": "infographics/5-point",
+      "aspect": "16:9",
+      "tags": [
+        "5-point",
+        "funnel",
+        "stacked",
+        "hex-bar",
+        "tapering",
+        "stages",
+        "aarrr",
+        "icon-well",
+        "staggered-copy",
+        "outline-icons",
+        "title-deck",
+        "five-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "A FUNNEL, so the order and the widths both carry meaning — use it for stages that lose volume (acquisition to revenue, awareness to purchase) and never for five equal points. Two rules hold the shape together. Every bar keeps the SAME 37px point depth while its mid width shrinks 27px a step; vary the depth as well and it reads as five unrelated bars rather than one narrowing channel. And the copy is STAGGERED — each block starts 81px past its own bar's right point, so the text edge steps inward with the funnel. Aligning all five blocks to one x is the obvious tidy-up and it throws the idea away. Reference was 886x614, not 16:9: scaled by height and the extra width spent widening the copy column, which is what lets the body hold 125 characters in 2 lines at the 28px floor. Stages are 144px apart, so 2 lines is the ceiling.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/5-point/INF-5P-010/preview.png",
+      "thumbUrl": "library/infographics/5-point/INF-5P-010/thumb.webp",
+      "templateUrl": "library/infographics/5-point/INF-5P-010/template.html"
+    },
+    {
+      "id": "INF-5P-011",
+      "name": "Pennant columns with a darkened label band",
+      "category": "infographics/5-point",
+      "aspect": "16:9",
+      "tags": [
+        "5-point",
+        "columns",
+        "pennant",
+        "pointed",
+        "label-band",
+        "tonal-band",
+        "icon-disc",
+        "overhanging-disc",
+        "reverse-copy",
+        "outline-icons",
+        "title-deck",
+        "five-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "The sibling of INF-5P-009 and the one to pick when the stage NAMES need to carry: the label sits in a band of the same colour darkened, running the full column width, which splits each column into a head and a body. A tinted label on plain colour does not do that. The disc overhangs by 77 of its 87px radius, so nine tenths of it is on the page rather than the column — the grey rim exists to keep it legible up there, and dropping the rim is the usual mistake. Three concentric circles per disc (rim, face, tinted hoop) rather than a stroked circle, so each can be animated separately. This reference was 1445x614 — WIDER than 16:9 — so it is scaled to fit the width and the spare height spent on margins, the reverse of the library's usual height-first rule. Copy is 4 lines at the 28px floor; the taper starts at y 873 and a 5th line runs into the V.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/5-point/INF-5P-011/preview.png",
+      "thumbUrl": "library/infographics/5-point/INF-5P-011/thumb.webp",
+      "templateUrl": "library/infographics/5-point/INF-5P-011/template.html"
+    },
+    {
+      "id": "INF-5P-012",
+      "name": "Five overlapping discs in a scalloped grey flower",
+      "category": "infographics/5-point",
+      "aspect": "16:9",
+      "tags": [
+        "5-point",
+        "pentagon",
+        "radial",
+        "overlapping",
+        "discs",
+        "flower",
+        "scalloped-ring",
+        "venn-ish",
+        "corner-copy",
+        "outline-icons",
+        "title-deck",
+        "five-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "Five points that OVERLAP around a shared middle — a Venn-ish relationship, not a sequence. THE FLOWER IS A SUBTRACTION, not a stroked path: five grey r-178 circles make the union, five page-tone r-154 circles punch it back to a 15px scalloped band. The non-obvious part is the r-40 circle at the pentagon centre — the centre sits exactly 170 from every disc, which falls between 154 and 178, so without it the middle of the flower renders grey instead of open. Because that subtraction depends on --flower-void matching the page beneath, animate the ring as ONE GROUP; tween the circles individually and the punch-outs arrive before the shapes they are meant to cut. Disc order is back to front (3, 4, 5, 1, 2) so the top disc stays whole, and the timeline opens the petals clockwise from there. Copy caps at 3 lines: point 4's block sits lowest and a 4th line reaches the bottom margin.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/5-point/INF-5P-012/preview.png",
+      "thumbUrl": "library/infographics/5-point/INF-5P-012/thumb.webp",
+      "templateUrl": "library/infographics/5-point/INF-5P-012/template.html"
+    },
+    {
+      "id": "INF-6P-001",
+      "name": "Hub-and-spoke 6-point infographic with paired color rows",
+      "category": "infographics/6-point",
+      "aspect": "16:9",
+      "tags": [
+        "hub-and-spoke",
+        "6-point",
+        "pill-cards",
+        "paired-rows",
+        "icon-circles",
+        "centered",
+        "symmetrical",
+        "balanced",
+        "comparison"
+      ],
+      "duration_seconds": 7,
+      "notes": "Use for 'six pillars / six steps / six reasons / six pros vs cons' beats. Reveals SEQUENTIALLY: hub → card 1 → 2 → 3 → 4 → 5 → 6 with 0.6s stagger between card starts — gives 6 distinct vocal moments to anchor narration. Card geometry: 620×240px pill with 36px vertical / 56px-130px horizontal padding (room for icon overlap). Label 36px / body 28px (above the 28px floor). Body text capped at 90 chars / ~3 lines. Safe margin 100px on all sides; no element touches the edge. Icons are Material Symbols Outlined name strings (handshake, lightbulb, etc.) — pick from https://fonts.google.com/icons. NOTE: line stroke animation uses pure stroke-dasharray (no GSAP DrawSVG plugin needed).",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/6-point/INF-6P-001/preview.png",
+      "thumbUrl": "library/infographics/6-point/INF-6P-001/thumb.webp",
+      "templateUrl": "library/infographics/6-point/INF-6P-001/template.html"
+    },
+    {
+      "id": "INF-6P-002",
+      "name": "Lightbulb center + 6-wedge top arch",
+      "category": "infographics/6-point",
+      "aspect": "16:9",
+      "tags": [
+        "6-point",
+        "half-arch",
+        "donut-wedges",
+        "lightbulb-center",
+        "ideation",
+        "brainstorm",
+        "warm-cool-gradient",
+        "top-arch"
+      ],
+      "duration_seconds": 7,
+      "notes": "Use for 'six ideas / six pillars of innovation / six aspects of one concept'. Central lightbulb (with glow + rocket flame) emphasises the IDEATION theme. Arch is a top half-circle, 6 donut wedges 30° each, center (960,720) inner R=260 outer R=520. Reveals: lightbulb pops from below → glow blooms → flame ignites → wedges 1-6 left-to-right with labels (0.5s stagger between wedge starts). Each label has number (44px bold) + label (28px upper) + body (28px regular, 2 lines). Body capped at 70 chars because each label box is 220px wide. Snapshot mode included.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/6-point/INF-6P-002/preview.png",
+      "thumbUrl": "library/infographics/6-point/INF-6P-002/thumb.webp",
+      "templateUrl": "library/infographics/6-point/INF-6P-002/template.html"
+    },
+    {
+      "id": "INF-6P-003",
+      "name": "6-card grid (3x2) with L-shape corner accents",
+      "category": "infographics/6-point",
+      "aspect": "16:9",
+      "tags": [
+        "6-point",
+        "grid",
+        "3x2",
+        "white-cards",
+        "corner-accents",
+        "L-shape",
+        "clean",
+        "minimal",
+        "feature-list"
+      ],
+      "duration_seconds": 7,
+      "notes": "Clean, restrained 6-card grid for feature lists / capability matrices. White cards with subtle L-shape colored accents on top-left and bottom-right corners (the L is a thick border, not a fill). Reveals: cards 1-6 sequentially in reading order (top row left-to-right, then bot row) with 0.6s stagger. Each card: scale-in → icon pop → label → body. Body capped at 110 chars (cards are 480×400, plenty of room). Safe margin 100px all sides. The L-accent thickness and length are tokenised (--accent-thickness, --accent-length) so they can be tuned per pipeline.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/6-point/INF-6P-003/preview.png",
+      "thumbUrl": "library/infographics/6-point/INF-6P-003/thumb.webp",
+      "templateUrl": "library/infographics/6-point/INF-6P-003/template.html"
+    },
+    {
+      "id": "INF-6P-004",
+      "name": "BUSINESS INFOGRAPHIC 6-card grid with bottom number pointers",
+      "category": "infographics/6-point",
+      "aspect": "16:9",
+      "tags": [
+        "6-point",
+        "grid",
+        "3x2",
+        "white-cards",
+        "bottom-pointer",
+        "numbered",
+        "title-bar",
+        "business"
+      ],
+      "duration_seconds": 6,
+      "notes": "6 white cards in 3×2 grid (430×320 each). Title bar at top with 6-color underline matching card accents. Each card: colored icon top + colored label + gray body, with a downward-pointing triangle ribbon BELOW card containing accent-colored number 01-06. Sequential reveal 1-6 (reading order): card scales in → icon/label/body cascade → pointer drops down. 0.4s stagger between cards. Body capped 100 chars / 3 lines @ 28px. Distinct from INF-6P-003 (which has L-shape corner accents instead of bottom pointers).",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/6-point/INF-6P-004/preview.png",
+      "thumbUrl": "library/infographics/6-point/INF-6P-004/thumb.webp",
+      "templateUrl": "library/infographics/6-point/INF-6P-004/template.html"
+    },
+    {
+      "id": "INF-6P-005",
+      "name": "6 Steps central segmented hub + 6 mirrored pill cards",
+      "category": "infographics/6-point",
+      "aspect": "16:9",
+      "tags": [
+        "6-point",
+        "segmented-hub",
+        "mirror-cards",
+        "paired-colors",
+        "central-circle",
+        "leaf-icons"
+      ],
+      "duration_seconds": 7,
+      "notes": "Central donut hub (inner R=160, outer R=230) split into 6 colored segments (60° each), with inner white circle containing title and body. 6 pill cards (660×200): 3 on LEFT (icon on inner end) + 3 mirrored on RIGHT (icon on inner end too, flipped row direction). Colors paired by row — TL/TR red, ML/MR orange, BL/BR teal — matching the segment colors. Sequential reveal: hub segments stagger in → inner circle scales in → 6 cards reveal in pair order (TL-TR-ML-MR-BL-BR).",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/6-point/INF-6P-005/preview.png",
+      "thumbUrl": "library/infographics/6-point/INF-6P-005/thumb.webp",
+      "templateUrl": "library/infographics/6-point/INF-6P-005/template.html"
+    },
+    {
+      "id": "INF-6P-006",
+      "name": "Arrow bars converging on a titled centre disc",
+      "category": "infographics/6-point",
+      "aspect": "16:9",
+      "tags": [
+        "6-point",
+        "arrow-bars",
+        "converging",
+        "two-column",
+        "centre-hub",
+        "named-model",
+        "stadium-end",
+        "chevron",
+        "step-caption",
+        "reverse-copy",
+        "monochrome-ramp",
+        "outline-icons",
+        "title-deck",
+        "six-segment-rule"
+      ],
+      "duration_seconds": 7,
+      "notes": "The densest layout in the set and the only 6-pointer here — six bars all pointing IN at a named hub, so it is for six inputs to one thing rather than six steps in a line. Two things make six points survivable on one page. The palette is ONE HUE at three values, repeated down each column; six unrelated hues at this density turn into noise. And every bar's outer end is a true semicircle — the stadium radius equals the bar's own half-height (110) — which reads as a handle against the chevron at the inner end, so the arrow direction is unmistakable. Copy is the tightest in the batch: 60 characters over 3 lines at the 28px floor, roughly 20 a line, because the bar is only 220px tall and already carries a 2-line label. The STEP caption caps at 8 characters — the chord inside the r-84 cap at that height is about 155px. The hub lands LAST, at 2.62s, as the thing all six arrows point at.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/infographics/6-point/INF-6P-006/preview.png",
+      "thumbUrl": "library/infographics/6-point/INF-6P-006/thumb.webp",
+      "templateUrl": "library/infographics/6-point/INF-6P-006/template.html"
+    },
+    {
+      "id": "TML-001",
+      "name": "Business timeline — 5 zigzag steps with winding connector",
+      "category": "timelines",
+      "aspect": "16:9",
+      "tags": [
+        "timeline",
+        "5-step",
+        "zigzag",
+        "process-flow",
+        "winding-connector",
+        "horizontal",
+        "alternating",
+        "asymmetric-corners",
+        "icon-circles",
+        "sequential"
+      ],
+      "duration_seconds": 7,
+      "notes": "Use for '5-step process / 5-phase journey / 5-pillar roadmap' beats where steps follow a clear chronological or causal order. Layout zigzags steps 1-3-5 in LOW position (icon ABOVE), steps 2-4 in HIGH position (icon BELOW), connected by a smooth winding S-curve path through all 5 icon centers. Reveals SEQUENTIALLY: title → underline → winding path strokes left-to-right → step 1 → 2 → 3 → 4 → 5 with 0.6s stagger. Each step reveal: icon pops → vertical connector → card expands → label → body (1.1s per step). Body text capped at 70 chars / 3 lines at 28px because cards are 320px wide. Safe margin 100px on all sides. Icons are Material Symbols Outlined names — pick from https://fonts.google.com/icons. NOTE: includes snapshot-mode block; preview.sh works out of the box.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/timelines/TML-001/preview.png",
+      "thumbUrl": "library/timelines/TML-001/thumb.webp",
+      "templateUrl": "library/timelines/TML-001/template.html"
+    },
+    {
+      "id": "TML-002",
+      "name": "Company milestones — 5 dates radial around central hub",
+      "category": "timelines",
+      "aspect": "16:9",
+      "tags": [
+        "timeline",
+        "milestones",
+        "radial",
+        "central-hub",
+        "5-step",
+        "dated-badges",
+        "company-history",
+        "chronological"
+      ],
+      "duration_seconds": 7,
+      "notes": "5 milestones arrayed radially around a central white hub on a 16:9 canvas. Each milestone = colored date badge (year + label) + step heading + brief body, positioned via elliptical radial layout (rx=520, ry=380 from hub center 960,540). Reveals chronologically: hub → connecting lines + dots cascade → milestones 1-5 in chronological order (1990 → 2000 → 2005 → 2010 → 2018) with 0.5s stagger. Each milestone unit: badge scales in → step heading fades → body fades. Body capped at 80 chars / ~2 lines @ 28px. Snapshot mode included.",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "hasPreview": true,
+      "hasTemplate": true,
+      "previewUrl": "library/timelines/TML-002/preview.png",
+      "thumbUrl": "library/timelines/TML-002/thumb.webp",
+      "templateUrl": "library/timelines/TML-002/template.html"
+    }
+  ],
+  "facets": {
+    "categories": [
+      "infographics/2-point",
+      "infographics/3-point",
+      "infographics/4-point",
+      "infographics/5-point",
+      "infographics/6-point",
+      "timelines"
+    ],
+    "aspects": [
+      "16:9"
+    ],
+    "tags": [
+      {
+        "tag": "title-deck",
+        "count": 44
+      },
+      {
+        "tag": "outline-icons",
+        "count": 36
+      },
+      {
+        "tag": "4-point",
+        "count": 24
+      },
+      {
+        "tag": "2-point",
+        "count": 20
+      },
+      {
+        "tag": "3-point",
+        "count": 20
+      },
+      {
+        "tag": "four-segment-rule",
+        "count": 15
+      },
+      {
+        "tag": "comparison",
+        "count": 13
+      },
+      {
+        "tag": "5-point",
+        "count": 12
+      },
+      {
+        "tag": "three-segment-rule",
+        "count": 11
+      },
+      {
+        "tag": "vs",
+        "count": 11
+      },
+      {
+        "tag": "acronym",
+        "count": 10
+      },
+      {
+        "tag": "reverse-copy",
+        "count": 10
+      },
+      {
+        "tag": "columns",
+        "count": 9
+      },
+      {
+        "tag": "sequence",
+        "count": 8
+      },
+      {
+        "tag": "icon-disc",
+        "count": 7
+      },
+      {
+        "tag": "split-rule",
+        "count": 7
+      },
+      {
+        "tag": "6-point",
+        "count": 6
+      },
+      {
+        "tag": "copy-in-circle",
+        "count": 6
+      },
+      {
+        "tag": "five-segment-rule",
+        "count": 6
+      },
+      {
+        "tag": "mirrored",
+        "count": 6
+      },
+      {
+        "tag": "numbered",
+        "count": 6
+      },
+      {
+        "tag": "2x2",
+        "count": 5
+      },
+      {
+        "tag": "chevron",
+        "count": 5
+      },
+      {
+        "tag": "named-model",
+        "count": 5
+      },
+      {
+        "tag": "process",
+        "count": 5
+      },
+      {
+        "tag": "white-cards",
+        "count": 5
+      },
+      {
+        "tag": "alternating",
+        "count": 4
+      },
+      {
+        "tag": "asymmetric",
+        "count": 4
+      },
+      {
+        "tag": "banner",
+        "count": 4
+      },
+      {
+        "tag": "cards",
+        "count": 4
+      },
+      {
+        "tag": "discs",
+        "count": 4
+      },
+      {
+        "tag": "gradient-cards",
+        "count": 4
+      },
+      {
+        "tag": "icon-circles",
+        "count": 4
+      },
+      {
+        "tag": "icon-well",
+        "count": 4
+      },
+      {
+        "tag": "overlapping",
+        "count": 4
+      },
+      {
+        "tag": "quadrant",
+        "count": 4
+      },
+      {
+        "tag": "steps",
+        "count": 4
+      },
+      {
+        "tag": "big-numbers",
+        "count": 3
+      },
+      {
+        "tag": "centre-hub",
+        "count": 3
+      },
+      {
+        "tag": "chain",
+        "count": 3
+      },
+      {
+        "tag": "drop-shadow",
+        "count": 3
+      },
+      {
+        "tag": "gradient",
+        "count": 3
+      },
+      {
+        "tag": "grid",
+        "count": 3
+      },
+      {
+        "tag": "hexagon",
+        "count": 3
+      },
+      {
+        "tag": "hierarchy",
+        "count": 3
+      },
+      {
+        "tag": "hub-left",
+        "count": 3
+      },
+      {
+        "tag": "hue-ramp",
+        "count": 3
+      },
+      {
+        "tag": "icon-circle",
+        "count": 3
+      },
+      {
+        "tag": "interlocking",
+        "count": 3
+      },
+      {
+        "tag": "lettered-disc",
+        "count": 3
+      },
+      {
+        "tag": "no-header",
+        "count": 3
+      },
+      {
+        "tag": "option-list",
+        "count": 3
+      },
+      {
+        "tag": "pennant",
+        "count": 3
+      },
+      {
+        "tag": "pill-cards",
+        "count": 3
+      },
+      {
+        "tag": "pyramid",
+        "count": 3
+      },
+      {
+        "tag": "radial",
+        "count": 3
+      },
+      {
+        "tag": "ribbon",
+        "count": 3
+      },
+      {
+        "tag": "rotational-symmetry",
+        "count": 3
+      },
+      {
+        "tag": "timeline",
+        "count": 3
+      },
+      {
+        "tag": "vertical-stack",
+        "count": 3
+      },
+      {
+        "tag": "zigzag",
+        "count": 3
+      },
+      {
+        "tag": "3x2",
+        "count": 2
+      },
+      {
+        "tag": "5-step",
+        "count": 2
+      },
+      {
+        "tag": "L-bracket",
+        "count": 2
+      },
+      {
+        "tag": "L-shape",
+        "count": 2
+      },
+      {
+        "tag": "arrow-band",
+        "count": 2
+      },
+      {
+        "tag": "badge-disc",
+        "count": 2
+      },
+      {
+        "tag": "centre-tile",
+        "count": 2
+      },
+      {
+        "tag": "circular-icons",
+        "count": 2
+      },
+      {
+        "tag": "cluster",
+        "count": 2
+      },
+      {
+        "tag": "connector",
+        "count": 2
+      },
+      {
+        "tag": "corner-accents",
+        "count": 2
+      },
+      {
+        "tag": "corner-copy",
+        "count": 2
+      },
+      {
+        "tag": "crescent",
+        "count": 2
+      },
+      {
+        "tag": "dashed-ring",
+        "count": 2
+      },
+      {
+        "tag": "donut-wedges",
+        "count": 2
+      },
+      {
+        "tag": "dot-separator",
+        "count": 2
+      },
+      {
+        "tag": "dotted-bg",
+        "count": 2
+      },
+      {
+        "tag": "feature-list",
+        "count": 2
+      },
+      {
+        "tag": "flanking-copy",
+        "count": 2
+      },
+      {
+        "tag": "footer-bar",
+        "count": 2
+      },
+      {
+        "tag": "framework",
+        "count": 2
+      },
+      {
+        "tag": "gradient-ribbon",
+        "count": 2
+      },
+      {
+        "tag": "halo",
+        "count": 2
+      },
+      {
+        "tag": "horizontal",
+        "count": 2
+      },
+      {
+        "tag": "hub",
+        "count": 2
+      },
+      {
+        "tag": "hub-and-spoke",
+        "count": 2
+      },
+      {
+        "tag": "hub-ring",
+        "count": 2
+      },
+      {
+        "tag": "icon-left",
+        "count": 2
+      },
+      {
+        "tag": "kicker-title",
+        "count": 2
+      },
+      {
+        "tag": "label-pill",
+        "count": 2
+      },
+      {
+        "tag": "leader-line",
+        "count": 2
+      },
+      {
+        "tag": "letter-tab",
+        "count": 2
+      },
+      {
+        "tag": "lettered",
+        "count": 2
+      },
+      {
+        "tag": "list",
+        "count": 2
+      },
+      {
+        "tag": "matrix",
+        "count": 2
+      },
+      {
+        "tag": "neutral-card",
+        "count": 2
+      },
+      {
+        "tag": "no-icons",
+        "count": 2
+      },
+      {
+        "tag": "notch",
+        "count": 2
+      },
+      {
+        "tag": "numbered-badge",
+        "count": 2
+      },
+      {
+        "tag": "offset-rows",
+        "count": 2
+      },
+      {
+        "tag": "outline",
+        "count": 2
+      },
+      {
+        "tag": "outline-pills",
+        "count": 2
+      },
+      {
+        "tag": "overlapping-discs",
+        "count": 2
+      },
+      {
+        "tag": "pinwheel",
+        "count": 2
+      },
+      {
+        "tag": "pointed",
+        "count": 2
+      },
+      {
+        "tag": "process-flow",
+        "count": 2
+      },
+      {
+        "tag": "process-steps",
+        "count": 2
+      },
+      {
+        "tag": "rail",
+        "count": 2
+      },
+      {
+        "tag": "right-aligned",
+        "count": 2
+      },
+      {
+        "tag": "ring-icon",
+        "count": 2
+      },
+      {
+        "tag": "ring-marker",
+        "count": 2
+      },
+      {
+        "tag": "ringed-disc",
+        "count": 2
+      },
+      {
+        "tag": "row-of-cards",
+        "count": 2
+      },
+      {
+        "tag": "rows",
+        "count": 2
+      },
+      {
+        "tag": "side-by-side",
+        "count": 2
+      },
+      {
+        "tag": "solid-icons",
+        "count": 2
+      },
+      {
+        "tag": "stacked-rows",
+        "count": 2
+      },
+      {
+        "tag": "stacked-stripes",
+        "count": 2
+      },
+      {
+        "tag": "stadium-end",
+        "count": 2
+      },
+      {
+        "tag": "swot",
+        "count": 2
+      },
+      {
+        "tag": "teardrop",
+        "count": 2
+      },
+      {
+        "tag": "title-bar",
+        "count": 2
+      },
+      {
+        "tag": "title-subtitle",
+        "count": 2
+      },
+      {
+        "tag": "two-tone-title",
+        "count": 2
+      },
+      {
+        "tag": "vertical",
+        "count": 2
+      },
+      {
+        "tag": "white-disc",
+        "count": 2
+      },
+      {
+        "tag": "white-ground",
+        "count": 2
+      },
+      {
+        "tag": "white-well",
+        "count": 2
+      },
+      {
+        "tag": "3-2-mosaic",
+        "count": 1
+      },
+      {
+        "tag": "3d",
+        "count": 1
+      },
+      {
+        "tag": "S-curve",
+        "count": 1
+      },
+      {
+        "tag": "aarrr",
+        "count": 1
+      },
+      {
+        "tag": "abbreviation-tag",
+        "count": 1
+      },
+      {
+        "tag": "accent-bar-left",
+        "count": 1
+      },
+      {
+        "tag": "alternating-icons",
+        "count": 1
+      },
+      {
+        "tag": "alternating-zigzag",
+        "count": 1
+      },
+      {
+        "tag": "angled-cards",
+        "count": 1
+      },
+      {
+        "tag": "annulus-sector",
+        "count": 1
+      },
+      {
+        "tag": "arc",
+        "count": 1
+      },
+      {
+        "tag": "arc-connector",
+        "count": 1
+      },
+      {
+        "tag": "arc-cut",
+        "count": 1
+      },
+      {
+        "tag": "arc-ring",
+        "count": 1
+      },
+      {
+        "tag": "arrow",
+        "count": 1
+      },
+      {
+        "tag": "arrow-bars",
+        "count": 1
+      },
+      {
+        "tag": "asymmetric-corners",
+        "count": 1
+      },
+      {
+        "tag": "backdrop-panel",
+        "count": 1
+      },
+      {
+        "tag": "balanced",
+        "count": 1
+      },
+      {
+        "tag": "banded",
+        "count": 1
+      },
+      {
+        "tag": "bar-chart-title",
+        "count": 1
+      },
+      {
+        "tag": "baseline",
+        "count": 1
+      },
+      {
+        "tag": "baseline-rail",
+        "count": 1
+      },
+      {
+        "tag": "bevel",
+        "count": 1
+      },
+      {
+        "tag": "big-discs",
+        "count": 1
+      },
+      {
+        "tag": "bleed",
+        "count": 1
+      },
+      {
+        "tag": "bottom-icon",
+        "count": 1
+      },
+      {
+        "tag": "bottom-pointer",
+        "count": 1
+      },
+      {
+        "tag": "bracket-rule",
+        "count": 1
+      },
+      {
+        "tag": "bracket-title",
+        "count": 1
+      },
+      {
+        "tag": "brainstorm",
+        "count": 1
+      },
+      {
+        "tag": "broken-rule",
+        "count": 1
+      },
+      {
+        "tag": "bullet-list",
+        "count": 1
+      },
+      {
+        "tag": "bullets",
+        "count": 1
+      },
+      {
+        "tag": "business",
+        "count": 1
+      },
+      {
+        "tag": "capsule-spine",
+        "count": 1
+      },
+      {
+        "tag": "carved-corner",
+        "count": 1
+      },
+      {
+        "tag": "categorization",
+        "count": 1
+      },
+      {
+        "tag": "centered",
+        "count": 1
+      },
+      {
+        "tag": "central-circle",
+        "count": 1
+      },
+      {
+        "tag": "central-hub",
+        "count": 1
+      },
+      {
+        "tag": "centre-panel",
+        "count": 1
+      },
+      {
+        "tag": "chevron-stack",
+        "count": 1
+      },
+      {
+        "tag": "chronological",
+        "count": 1
+      },
+      {
+        "tag": "circle-clip",
+        "count": 1
+      },
+      {
+        "tag": "circle-head",
+        "count": 1
+      },
+      {
+        "tag": "circles",
+        "count": 1
+      },
+      {
+        "tag": "circular-cards",
+        "count": 1
+      },
+      {
+        "tag": "clean",
+        "count": 1
+      },
+      {
+        "tag": "color-bar-divider",
+        "count": 1
+      },
+      {
+        "tag": "colored-stripe",
+        "count": 1
+      },
+      {
+        "tag": "colour-band",
+        "count": 1
+      },
+      {
+        "tag": "colour-bars",
+        "count": 1
+      },
+      {
+        "tag": "company-history",
+        "count": 1
+      },
+      {
+        "tag": "compare",
+        "count": 1
+      },
+      {
+        "tag": "compass-points",
+        "count": 1
+      },
+      {
+        "tag": "concepts",
+        "count": 1
+      },
+      {
+        "tag": "connector-band",
+        "count": 1
+      },
+      {
+        "tag": "converging",
+        "count": 1
+      },
+      {
+        "tag": "copy-band",
+        "count": 1
+      },
+      {
+        "tag": "copy-in-shape",
+        "count": 1
+      },
+      {
+        "tag": "corner-cut",
+        "count": 1
+      },
+      {
+        "tag": "corner-panels",
+        "count": 1
+      },
+      {
+        "tag": "corner-ring",
+        "count": 1
+      },
+      {
+        "tag": "crown-badge",
+        "count": 1
+      },
+      {
+        "tag": "curved-cards",
+        "count": 1
+      },
+      {
+        "tag": "dashed-connectors",
+        "count": 1
+      },
+      {
+        "tag": "dashed-panel",
+        "count": 1
+      },
+      {
+        "tag": "dashed-relay",
+        "count": 1
+      },
+      {
+        "tag": "dated-badges",
+        "count": 1
+      },
+      {
+        "tag": "dense-text",
+        "count": 1
+      },
+      {
+        "tag": "descender-lines",
+        "count": 1
+      },
+      {
+        "tag": "diagonal-cut",
+        "count": 1
+      },
+      {
+        "tag": "diamond",
+        "count": 1
+      },
+      {
+        "tag": "dome-badge",
+        "count": 1
+      },
+      {
+        "tag": "donut",
+        "count": 1
+      },
+      {
+        "tag": "dotted-arc",
+        "count": 1
+      },
+      {
+        "tag": "dotted-circle",
+        "count": 1
+      },
+      {
+        "tag": "dotted-connectors",
+        "count": 1
+      },
+      {
+        "tag": "dotted-leader",
+        "count": 1
+      },
+      {
+        "tag": "editorial",
+        "count": 1
+      },
+      {
+        "tag": "elements-list",
+        "count": 1
+      },
+      {
+        "tag": "equal-weight",
+        "count": 1
+      },
+      {
+        "tag": "eyebrow-title",
+        "count": 1
+      },
+      {
+        "tag": "faceted",
+        "count": 1
+      },
+      {
+        "tag": "fan",
+        "count": 1
+      },
+      {
+        "tag": "feature-matrix",
+        "count": 1
+      },
+      {
+        "tag": "flag",
+        "count": 1
+      },
+      {
+        "tag": "flanking-columns",
+        "count": 1
+      },
+      {
+        "tag": "flower",
+        "count": 1
+      },
+      {
+        "tag": "fold-tail",
+        "count": 1
+      },
+      {
+        "tag": "foot-bar",
+        "count": 1
+      },
+      {
+        "tag": "foot-tab",
+        "count": 1
+      },
+      {
+        "tag": "full-bleed",
+        "count": 1
+      },
+      {
+        "tag": "full-bleed-band",
+        "count": 1
+      },
+      {
+        "tag": "funnel",
+        "count": 1
+      },
+      {
+        "tag": "gradient-arc",
+        "count": 1
+      },
+      {
+        "tag": "gradient-arcs",
+        "count": 1
+      },
+      {
+        "tag": "gradient-bg",
+        "count": 1
+      },
+      {
+        "tag": "gradient-left",
+        "count": 1
+      },
+      {
+        "tag": "gradient-shading",
+        "count": 1
+      },
+      {
+        "tag": "grey-card",
+        "count": 1
+      },
+      {
+        "tag": "hairline",
+        "count": 1
+      },
+      {
+        "tag": "half-annulus",
+        "count": 1
+      },
+      {
+        "tag": "half-arch",
+        "count": 1
+      },
+      {
+        "tag": "half-pie",
+        "count": 1
+      },
+      {
+        "tag": "half-ring",
+        "count": 1
+      },
+      {
+        "tag": "halo-rings",
+        "count": 1
+      },
+      {
+        "tag": "header-pill",
+        "count": 1
+      },
+      {
+        "tag": "hex-bar",
+        "count": 1
+      },
+      {
+        "tag": "hexagons",
+        "count": 1
+      },
+      {
+        "tag": "horizontal-card",
+        "count": 1
+      },
+      {
+        "tag": "horizontal-cards",
+        "count": 1
+      },
+      {
+        "tag": "horizontal-cascade",
+        "count": 1
+      },
+      {
+        "tag": "horizontal-circles",
+        "count": 1
+      },
+      {
+        "tag": "horizontal-row",
+        "count": 1
+      },
+      {
+        "tag": "horizontal-stack",
+        "count": 1
+      },
+      {
+        "tag": "horizontal-stripes",
+        "count": 1
+      },
+      {
+        "tag": "hub-and-arc",
+        "count": 1
+      },
+      {
+        "tag": "hub-disc",
+        "count": 1
+      },
+      {
+        "tag": "icon-center",
+        "count": 1
+      },
+      {
+        "tag": "icon-circle-right",
+        "count": 1
+      },
+      {
+        "tag": "icon-circles-right",
+        "count": 1
+      },
+      {
+        "tag": "icon-hex",
+        "count": 1
+      },
+      {
+        "tag": "icon-in-circle",
+        "count": 1
+      },
+      {
+        "tag": "icon-nodes",
+        "count": 1
+      },
+      {
+        "tag": "icon-on-top",
+        "count": 1
+      },
+      {
+        "tag": "icon-pip",
+        "count": 1
+      },
+      {
+        "tag": "icon-ring",
+        "count": 1
+      },
+      {
+        "tag": "icon-tile",
+        "count": 1
+      },
+      {
+        "tag": "ideation",
+        "count": 1
+      },
+      {
+        "tag": "inner-edge-rule",
+        "count": 1
+      },
+      {
+        "tag": "input-action-output",
+        "count": 1
+      },
+      {
+        "tag": "joint-icons",
+        "count": 1
+      },
+      {
+        "tag": "l-plate",
+        "count": 1
+      },
+      {
+        "tag": "label-at-foot",
+        "count": 1
+      },
+      {
+        "tag": "label-band",
+        "count": 1
+      },
+      {
+        "tag": "layered-depth",
+        "count": 1
+      },
+      {
+        "tag": "leaf",
+        "count": 1
+      },
+      {
+        "tag": "leaf-icons",
+        "count": 1
+      },
+      {
+        "tag": "left-hub",
+        "count": 1
+      },
+      {
+        "tag": "lens",
+        "count": 1
+      },
+      {
+        "tag": "lens-badge",
+        "count": 1
+      },
+      {
+        "tag": "letter",
+        "count": 1
+      },
+      {
+        "tag": "letter-badge",
+        "count": 1
+      },
+      {
+        "tag": "lettered-knob",
+        "count": 1
+      },
+      {
+        "tag": "lightbulb-center",
+        "count": 1
+      },
+      {
+        "tag": "linked",
+        "count": 1
+      },
+      {
+        "tag": "list-with-visual",
+        "count": 1
+      },
+      {
+        "tag": "lobe",
+        "count": 1
+      },
+      {
+        "tag": "map-pin",
+        "count": 1
+      },
+      {
+        "tag": "metaball",
+        "count": 1
+      },
+      {
+        "tag": "milestones",
+        "count": 1
+      },
+      {
+        "tag": "minimal",
+        "count": 1
+      },
+      {
+        "tag": "minimal-frame",
+        "count": 1
+      },
+      {
+        "tag": "mirror-cards",
+        "count": 1
+      },
+      {
+        "tag": "mirror-layout",
+        "count": 1
+      },
+      {
+        "tag": "modern",
+        "count": 1
+      },
+      {
+        "tag": "monochrome-ramp",
+        "count": 1
+      },
+      {
+        "tag": "multi-color-bar",
+        "count": 1
+      },
+      {
+        "tag": "multiply-blend",
+        "count": 1
+      },
+      {
+        "tag": "no-gutter",
+        "count": 1
+      },
+      {
+        "tag": "no-rule",
+        "count": 1
+      },
+      {
+        "tag": "node",
+        "count": 1
+      },
+      {
+        "tag": "number-badge",
+        "count": 1
+      },
+      {
+        "tag": "number-circles",
+        "count": 1
+      },
+      {
+        "tag": "number-tab",
+        "count": 1
+      },
+      {
+        "tag": "numbered-cards-right",
+        "count": 1
+      },
+      {
+        "tag": "numbered-circles",
+        "count": 1
+      },
+      {
+        "tag": "numbered-ring",
+        "count": 1
+      },
+      {
+        "tag": "numbered-tab",
+        "count": 1
+      },
+      {
+        "tag": "offset-backers",
+        "count": 1
+      },
+      {
+        "tag": "okr",
+        "count": 1
+      },
+      {
+        "tag": "open-arc",
+        "count": 1
+      },
+      {
+        "tag": "opposed-arms",
+        "count": 1
+      },
+      {
+        "tag": "opposite-quadrants",
+        "count": 1
+      },
+      {
+        "tag": "option-steps",
+        "count": 1
+      },
+      {
+        "tag": "options",
+        "count": 1
+      },
+      {
+        "tag": "outline-cards",
+        "count": 1
+      },
+      {
+        "tag": "outlined-cards",
+        "count": 1
+      },
+      {
+        "tag": "overhang-disc",
+        "count": 1
+      },
+      {
+        "tag": "overhanging-disc",
+        "count": 1
+      },
+      {
+        "tag": "overhanging-pill",
+        "count": 1
+      },
+      {
+        "tag": "overlap",
+        "count": 1
+      },
+      {
+        "tag": "paired-colors",
+        "count": 1
+      },
+      {
+        "tag": "paired-rows",
+        "count": 1
+      },
+      {
+        "tag": "pentagon",
+        "count": 1
+      },
+      {
+        "tag": "petal",
+        "count": 1
+      },
+      {
+        "tag": "petals",
+        "count": 1
+      },
+      {
+        "tag": "pill-stack",
+        "count": 1
+      },
+      {
+        "tag": "pin-tail",
+        "count": 1
+      },
+      {
+        "tag": "pip-separator",
+        "count": 1
+      },
+      {
+        "tag": "pivot",
+        "count": 1
+      },
+      {
+        "tag": "plate-hub",
+        "count": 1
+      },
+      {
+        "tag": "process-loop",
+        "count": 1
+      },
+      {
+        "tag": "raised-middle",
+        "count": 1
+      },
+      {
+        "tag": "ribbon-connector",
+        "count": 1
+      },
+      {
+        "tag": "ribbon-tabs",
+        "count": 1
+      },
+      {
+        "tag": "right-arrow",
+        "count": 1
+      },
+      {
+        "tag": "right-cards",
+        "count": 1
+      },
+      {
+        "tag": "ring",
+        "count": 1
+      },
+      {
+        "tag": "ringed-circles",
+        "count": 1
+      },
+      {
+        "tag": "rings",
+        "count": 1
+      },
+      {
+        "tag": "road",
+        "count": 1
+      },
+      {
+        "tag": "rotated-square",
+        "count": 1
+      },
+      {
+        "tag": "row",
+        "count": 1
+      },
+      {
+        "tag": "s-seam",
+        "count": 1
+      },
+      {
+        "tag": "scalloped-ring",
+        "count": 1
+      },
+      {
+        "tag": "sectors",
+        "count": 1
+      },
+      {
+        "tag": "segmented-hub",
+        "count": 1
+      },
+      {
+        "tag": "segmented-spine",
+        "count": 1
+      },
+      {
+        "tag": "sequential",
+        "count": 1
+      },
+      {
+        "tag": "shaded-wedge",
+        "count": 1
+      },
+      {
+        "tag": "shared-origin",
+        "count": 1
+      },
+      {
+        "tag": "shield",
+        "count": 1
+      },
+      {
+        "tag": "side-tab",
+        "count": 1
+      },
+      {
+        "tag": "six-segment-rule",
+        "count": 1
+      },
+      {
+        "tag": "slab",
+        "count": 1
+      },
+      {
+        "tag": "slider",
+        "count": 1
+      },
+      {
+        "tag": "snake-ribbon",
+        "count": 1
+      },
+      {
+        "tag": "solid-block",
+        "count": 1
+      },
+      {
+        "tag": "solid-cards",
+        "count": 1
+      },
+      {
+        "tag": "speech-frame",
+        "count": 1
+      },
+      {
+        "tag": "split-ring",
+        "count": 1
+      },
+      {
+        "tag": "split-stadium",
+        "count": 1
+      },
+      {
+        "tag": "stacked",
+        "count": 1
+      },
+      {
+        "tag": "stadium",
+        "count": 1
+      },
+      {
+        "tag": "stadium-bar",
+        "count": 1
+      },
+      {
+        "tag": "stadium-bars",
+        "count": 1
+      },
+      {
+        "tag": "stadium-pill",
+        "count": 1
+      },
+      {
+        "tag": "stages",
+        "count": 1
+      },
+      {
+        "tag": "staggered",
+        "count": 1
+      },
+      {
+        "tag": "staggered-copy",
+        "count": 1
+      },
+      {
+        "tag": "step-arrow",
+        "count": 1
+      },
+      {
+        "tag": "step-caption",
+        "count": 1
+      },
+      {
+        "tag": "step-idea",
+        "count": 1
+      },
+      {
+        "tag": "stepped-rows",
+        "count": 1
+      },
+      {
+        "tag": "stripe-cards",
+        "count": 1
+      },
+      {
+        "tag": "symmetrical",
+        "count": 1
+      },
+      {
+        "tag": "tail-panel",
+        "count": 1
+      },
+      {
+        "tag": "tangent-arc",
+        "count": 1
+      },
+      {
+        "tag": "tangent-line",
+        "count": 1
+      },
+      {
+        "tag": "tapering",
+        "count": 1
+      },
+      {
+        "tag": "tick-divider",
+        "count": 1
+      },
+      {
+        "tag": "tinted-bands",
+        "count": 1
+      },
+      {
+        "tag": "tinted-icons",
+        "count": 1
+      },
+      {
+        "tag": "title-pill",
+        "count": 1
+      },
+      {
+        "tag": "tonal-band",
+        "count": 1
+      },
+      {
+        "tag": "top-arch",
+        "count": 1
+      },
+      {
+        "tag": "triangle",
+        "count": 1
+      },
+      {
+        "tag": "two-arc",
+        "count": 1
+      },
+      {
+        "tag": "two-column",
+        "count": 1
+      },
+      {
+        "tag": "two-tone",
+        "count": 1
+      },
+      {
+        "tag": "underline",
+        "count": 1
+      },
+      {
+        "tag": "values-vision-mission",
+        "count": 1
+      },
+      {
+        "tag": "venn",
+        "count": 1
+      },
+      {
+        "tag": "venn-ish",
+        "count": 1
+      },
+      {
+        "tag": "vertical-cards",
+        "count": 1
+      },
+      {
+        "tag": "vertical-rule",
+        "count": 1
+      },
+      {
+        "tag": "vertical-spine",
+        "count": 1
+      },
+      {
+        "tag": "waisted",
+        "count": 1
+      },
+      {
+        "tag": "warm-cool-gradient",
+        "count": 1
+      },
+      {
+        "tag": "watermark-letter",
+        "count": 1
+      },
+      {
+        "tag": "watermark-numbers",
+        "count": 1
+      },
+      {
+        "tag": "wave",
+        "count": 1
+      },
+      {
+        "tag": "wedge",
+        "count": 1
+      },
+      {
+        "tag": "white-halo",
+        "count": 1
+      },
+      {
+        "tag": "widening",
+        "count": 1
+      },
+      {
+        "tag": "winding-connector",
+        "count": 1
+      },
+      {
+        "tag": "wire",
+        "count": 1
+      },
+      {
+        "tag": "yin-yang",
+        "count": 1
+      }
+    ],
+    "total": 84
+  }
+}

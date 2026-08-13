@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-2P-006 — Vertical 2-circle spine + rounded stripe cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Poppins:wght@300;400;500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-deep:      #F4F4F4;   /* page field (radial vignette base)     */
+    --bg-edge:      #EBECEB;   /* vignette outer                        */
+    --bg-core:      #FAFAFA;   /* vignette centre                       */
+    --surface:      #F0F0F0;   /* stripe-card fill                      */
+    --halo:         #FCFCFC;   /* white gap ring inside the node        */
+    --spine:        #DEDFDE;   /* vertical connector behind the nodes   */
+
+    --text-dark:    #333333;   /* headline                              */
+    --text-sub:     #6E7073;   /* deck under the headline               */
+    --text-muted:   #7E8083;   /* card body copy                        */
+
+    --color-1:      #53AB73;   /* point 1 — green                       */
+    --color-2:      #466BE9;   /* point 2 — blue                        */
+
+    --font-display: 'Lato', sans-serif;
+    --font-body:    'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Margins (matching the reference): top 70 · left 120 · right 120
+       · bottom 105. Node column left edge 273, card right edge 1638.  */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 52% 42%,
+                var(--bg-core) 0%, var(--bg-deep) 46%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER ======================================================= */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  /* deck sits wider than the card column — 2 lines by design.
+     Keep the token under ~200 chars or it spills onto the split rule. */
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+
+  /* === SPLIT RULE — 534x10, centred, two 264 halves + 6 gap ========= */
+  .rule { position: absolute; top: 268px; height: 10px; border-radius: 2px; }
+  .rule-1 { left: 693px;  width: 264px; background: var(--color-1); }
+  .rule-2 { left: 963px;  width: 264px; background: var(--color-2); }
+
+  /* === SPINE — grey bar behind the two nodes ======================== */
+  .spine {
+    position: absolute;
+    left: 392px; top: 465px;
+    width: 62px; height: 360px;
+    background: var(--spine);
+    z-index: 1;
+  }
+
+  /* === NODE — ring 300 / halo 280 / disc 236, centre x = 423 ========= */
+  .node {
+    position: absolute;
+    left: 273px; width: 300px; height: 300px;
+    z-index: 2;
+  }
+  .node-1 { top: 315px; --accent: var(--color-1); }
+  .node-2 { top: 675px; --accent: var(--color-2); }
+
+  .ring {
+    position: absolute; inset: 0;
+    border: 10px solid var(--accent);
+    border-radius: 50%;
+  }
+  .halo {
+    position: absolute; left: 10px; top: 10px;
+    width: 280px; height: 280px;
+    background: var(--halo);
+    border-radius: 50%;
+  }
+  .disc {
+    position: absolute; left: 32px; top: 32px;
+    width: 236px; height: 236px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .disc .material-symbols-outlined {
+    font-size: 130px;
+    color: #FFFFFF;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* === STRIPE CARD — 1000x250, square left, stadium right =========== */
+  .card {
+    position: absolute;
+    left: 638px; width: 1000px; height: 250px;
+    background: var(--surface);
+    border-radius: 0 125px 125px 0;
+    padding: 0 150px 0 100px;      /* copy runs 738 → 1488, arc starts 1513 */
+    display: flex; flex-direction: column; justify-content: center;
+    z-index: 2;
+  }
+  .card-1 { top: 340px; --accent: var(--color-1); }
+  .card-2 { top: 700px; --accent: var(--color-2); }
+
+  .card-bar {
+    position: absolute;
+    left: 0; top: 0;
+    width: 12px; height: 100%;
+    background: var(--accent);
+  }
+  .card-label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 1.2;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .card-body {
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-2P-006"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <h1 class="headline" data-token="title">Subscription Model vs One Time Purchases</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+
+  <div class="spine"></div>
+
+  <div class="node node-1">
+    <div class="ring"></div>
+    <div class="halo"></div>
+    <div class="disc"><span class="material-symbols-outlined" data-token="p1.icon">event_repeat</span></div>
+  </div>
+
+  <div class="node node-2">
+    <div class="ring"></div>
+    <div class="halo"></div>
+    <div class="disc"><span class="material-symbols-outlined" data-token="p2.icon">ads_click</span></div>
+  </div>
+
+  <article class="card card-1">
+    <div class="card-bar"></div>
+    <h3 class="card-label" data-token="p1.label">Subscription Model</h3>
+    <p  class="card-body"  data-token="p1.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliqure am erat volutpat.</p>
+  </article>
+
+  <article class="card card-2">
+    <div class="card-bar"></div>
+    <h3 class="card-label" data-token="p2.label">One Time Purchases</h3>
+    <p  class="card-body"  data-token="p2.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliqure am erat volutpat.</p>
+  </article>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — top-down build, 6s =============================
+  // 0.15 headline      0.55 deck          0.95 split rule
+  // 1.30 node 1        1.75 card 1        2.35 spine grows
+  // 2.70 node 2        3.15 card 2        ends ~3.9 → hold to 6.0
+
+  gsap.set('.headline',  {opacity: 0, y: -26});
+  gsap.set('.deck',      {opacity: 0, y: -14});
+  gsap.set('.rule',      {scaleX: 0});
+  gsap.set('.rule-1',    {transformOrigin: 'right center'});
+  gsap.set('.rule-2',    {transformOrigin: 'left center'});
+  gsap.set('.spine',     {scaleY: 0, transformOrigin: 'top center'});
+  gsap.set('.ring',      {opacity: 0, scale: 0.55, transformOrigin: 'center'});
+  gsap.set('.halo',      {opacity: 0, scale: 0.55, transformOrigin: 'center'});
+  gsap.set('.disc',      {opacity: 0, scale: 0.45, transformOrigin: 'center'});
+  gsap.set('.disc span', {opacity: 0, scale: 0.6,  transformOrigin: 'center'});
+  gsap.set('.card',      {opacity: 0, x: -60});
+  gsap.set('.card-bar',  {scaleY: 0, transformOrigin: 'center'});
+  gsap.set('.card-label',{opacity: 0, x: -22});
+  gsap.set('.card-body', {opacity: 0, x: -22});
+
+  const tl = gsap.timeline({paused: true});
+
+  tl.to('.headline', {opacity: 1, y: 0, duration: 0.60, ease: 'power2.out'}, 0.15)
+    .to('.deck',     {opacity: 1, y: 0, duration: 0.55, ease: 'power2.out'}, 0.55)
+    .to('.rule',     {scaleX: 1, duration: 0.50, ease: 'power2.out'},        0.95);
+
+  function revealNode(n, t) {
+    const s = '.node-' + n + ' ';
+    tl.to(s + '.ring',      {opacity: 1, scale: 1, duration: 0.50, ease: 'back.out(1.5)'}, t)
+      .to(s + '.halo',      {opacity: 1, scale: 1, duration: 0.40, ease: 'power2.out'},    t + 0.12)
+      .to(s + '.disc',      {opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.6)'}, t + 0.20)
+      .to(s + '.disc span', {opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out'},    t + 0.38);
+  }
+
+  function revealCard(n, t) {
+    const s = '.card-' + n + ' ';
+    tl.to('.card-' + n,     {opacity: 1, x: 0, duration: 0.50, ease: 'power3.out'},        t)
+      .to(s + '.card-bar',  {scaleY: 1, duration: 0.40, ease: 'power2.out'},               t + 0.10)
+      .to(s + '.card-label',{opacity: 1, x: 0, duration: 0.40, ease: 'power2.out'},        t + 0.20)
+      .to(s + '.card-body', {opacity: 1, x: 0, duration: 0.45, ease: 'power2.out'},        t + 0.34);
+  }
+
+  revealNode(1, 1.30);
+  revealCard(1, 1.75);
+  tl.to('.spine', {scaleY: 1, duration: 0.45, ease: 'power2.inOut'}, 2.35);
+  revealNode(2, 2.70);
+  revealCard(2, 3.15);
+
+  tl.to({}, {duration: 1.5}, 4.5);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES ==================================================
+  // ?snapshot=1  →  preview.sh thumbnail: fast-forward to the final frame
+  // __hfSeek     →  HyperFrames pipeline drives the timeline via seek
+  // otherwise    →  standalone preview / Launch panel: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

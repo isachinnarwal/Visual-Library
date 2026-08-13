@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-4P-001 — Hub + arc to 4-point cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+Pro:wght@300;400;600;700&family=Special+Elite&family=JetBrains+Mono:wght@400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-deep: #F4F4F6;
+    --bg-paper: #FFFFFF;
+    --text-light: #FFFFFF;
+    --text-dark: #1A1815;
+    --text-muted: #5A5A60;
+    --accent-primary: #D4A02E;
+    --accent-danger: #C8392B;
+
+    /* Four distinct row colors — one per card. */
+    --color-1: #F0A040;     /* yellow-orange — card 1 (top) */
+    --color-2: #E54F3E;     /* coral-red    — card 2 */
+    --color-3: #6F66B5;     /* purple       — card 3 */
+    --color-4: #3FBBA8;     /* teal         — card 4 (bot) */
+
+    /* Hub + arc treatment */
+    --hub-bg: #2D3A4E;       /* dark navy */
+    --hub-text: #FFFFFF;
+    --hub-shadow: rgba(20, 20, 30, 0.18);
+    --arc-color: #C9CDD3;
+    --line-color: #B8BCC2;
+
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Source Sans Pro', sans-serif;
+    --font-stamp: 'Special Elite', monospace;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920×1080, 100px safe margins ====================== */
+  .canvas {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    background: var(--bg-deep);
+    color: var(--text-dark);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === SVG CONNECTORS + ARC ======================================== */
+  .connections {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  .connections .arc {
+    stroke: var(--arc-color);
+    stroke-width: 8;
+    fill: none;
+    stroke-linecap: round;
+  }
+  .connections .line {
+    stroke: var(--line-color);
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+  }
+  .connections .dot { r: 11; stroke: #FFFFFF; stroke-width: 3; }
+
+  /* === HUB — left circle with title ================================ */
+  .hub {
+    position: absolute;
+    left: 140px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 360px; height: 360px;
+    z-index: 5;
+  }
+  .hub-circle {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: var(--hub-bg);
+    box-shadow:
+      0 18px 36px var(--hub-shadow),
+      inset 0 -8px 24px rgba(0,0,0,0.18),
+      inset 0 8px 24px rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hub-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 1.10;
+    text-align: center;
+    color: var(--hub-text);
+    letter-spacing: 0.06em;
+  }
+
+  /* === CARDS — 680×200 pills on the right side ===================== */
+  .card {
+    position: absolute;
+    right: 100px;             /* safe margin right */
+    width: 680px;
+    height: 200px;
+    z-index: 3;
+  }
+  .card-body {
+    position: absolute;
+    top: 0; bottom: 0;
+    right: 0; left: 70px;
+    border-radius: 100px;
+    box-shadow: 0 10px 28px rgba(20,20,30,0.12);
+    overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+    color: var(--text-light);
+    /* Generous padding inside the pill */
+    padding: 30px 56px 30px 130px;   /* extra left padding for icon overlap area */
+    text-align: left;
+  }
+  .card-label {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: 0.10em;
+    line-height: 1;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .card-text {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.28;
+    opacity: 0.96;
+  }
+  .card-icon {
+    position: absolute;
+    left: 0;                          /* icon hangs off LEFT edge of card div */
+    top: 50%;
+    margin-top: -65px;
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    background: var(--bg-paper);
+    box-shadow: 0 6px 18px rgba(20,20,30,0.18);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 4;
+    /* Each icon gets a colored ring matching its card */
+    border: 4px solid currentColor;
+  }
+  .card-icon .material-symbols-outlined {
+    font-size: 64px;
+    color: var(--text-dark);
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* === ROW PLACEMENT — centers at 200 / 425 / 650 / 875 ============ */
+  .card.row-1 { top: 100px; }   /* center y = 200, safe top 100 ✓ */
+  .card.row-2 { top: 325px; }   /* center y = 425 */
+  .card.row-3 { top: 550px; }   /* center y = 650 */
+  .card.row-4 { top: 775px; }   /* center y = 875, safe bot 980 ✓ */
+
+  /* === PER-CARD COLOR (background + icon ring) ===================== */
+  .card.card-1 .card-body { background: var(--color-1); }
+  .card.card-1 .card-icon { color: var(--color-1); }
+  .card.card-2 .card-body { background: var(--color-2); }
+  .card.card-2 .card-icon { color: var(--color-2); }
+  .card.card-3 .card-body { background: var(--color-3); }
+  .card.card-3 .card-icon { color: var(--color-3); }
+  .card.card-4 .card-body { background: var(--color-4); }
+  .card.card-4 .card-icon { color: var(--color-4); }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-4P-001"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <!-- ============ SVG: ARC + CONNECTING LINES + DOTS ===============
+       Arc: quadratic bezier curving rightward, from (700,100) to (700,980)
+            with control (800,540). Bulges right to peak at ~(750,540).
+       Dots: 4 colored dots ON the arc at each card's y.
+       Per-card lines: hub edge → arc dot → card icon.
+       Coords computed from hub (320,540) r=180 and card icon centers
+       (1205, row_y) where row_y ∈ {200,425,650,875}.                -->
+  <svg class="connections" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+    <!-- ARC -->
+    <path class="arc" d="M 700 100 Q 800 540 700 980" />
+
+    <!-- CARD 1 — top, color-1 -->
+    <line class="line line-1a" x1="457" y1="423" x2="720" y2="200" />
+    <line class="line line-1b" x1="720" y1="200" x2="1140" y2="200" />
+    <circle class="dot dot-1" cx="720" cy="200" fill="var(--color-1)" />
+
+    <!-- CARD 2 — color-2 -->
+    <line class="line line-2a" x1="494" y1="493" x2="747" y2="425" />
+    <line class="line line-2b" x1="747" y1="425" x2="1140" y2="425" />
+    <circle class="dot dot-2" cx="747" cy="425" fill="var(--color-2)" />
+
+    <!-- CARD 3 — color-3 -->
+    <line class="line line-3a" x1="494" y1="585" x2="747" y2="650" />
+    <line class="line line-3b" x1="747" y1="650" x2="1140" y2="650" />
+    <circle class="dot dot-3" cx="747" cy="650" fill="var(--color-3)" />
+
+    <!-- CARD 4 — bot, color-4 -->
+    <line class="line line-4a" x1="458" y1="655" x2="721" y2="875" />
+    <line class="line line-4b" x1="721" y1="875" x2="1140" y2="875" />
+    <circle class="dot dot-4" cx="721" cy="875" fill="var(--color-4)" />
+  </svg>
+
+  <!-- ============ HUB =============================================== -->
+  <div class="hub">
+    <div class="hub-circle">
+      <h1 class="hub-title" data-token="title">OUR<br>BUSINESS<br>CONCEPTS</h1>
+    </div>
+  </div>
+
+  <!-- ============ CARDS ============================================= -->
+  <article class="card row-1 card-1" data-color="1">
+    <div class="card-body">
+      <h3 class="card-label" data-token="p1.label">Lorem ipsum</h3>
+      <p class="card-text"  data-token="p1.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam.</p>
+    </div>
+    <div class="card-icon">
+      <span class="material-symbols-outlined" data-token="p1.icon">add_circle</span>
+    </div>
+  </article>
+
+  <article class="card row-2 card-2" data-color="2">
+    <div class="card-body">
+      <h3 class="card-label" data-token="p2.label">Veniam quis</h3>
+      <p class="card-text"  data-token="p2.body">Dignissim qui blandit veniam quis nostrud, exercitation lorem ipsum.</p>
+    </div>
+    <div class="card-icon">
+      <span class="material-symbols-outlined" data-token="p2.icon">send</span>
+    </div>
+  </article>
+
+  <article class="card row-3 card-3" data-color="3">
+    <div class="card-body">
+      <h3 class="card-label" data-token="p3.label">Ut wisi</h3>
+      <p class="card-text"  data-token="p3.body">Ut wisi enim ad minim veniam, quis nibh nostrud exerci tation ullamcorper.</p>
+    </div>
+    <div class="card-icon">
+      <span class="material-symbols-outlined" data-token="p3.icon">visibility</span>
+    </div>
+  </article>
+
+  <article class="card row-4 card-4" data-color="4">
+    <div class="card-body">
+      <h3 class="card-label" data-token="p4.label">Blandit veniam</h3>
+      <p class="card-text"  data-token="p4.body">Blandit veniam quis nostrud exercitation ullamcorper suscipit blandit.</p>
+    </div>
+    <div class="card-icon">
+      <span class="material-symbols-outlined" data-token="p4.icon">mic</span>
+    </div>
+  </article>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — sequential hub → arc → 1 → 2 → 3 → 4 =========
+  // 0.0  Blank
+  // 0.2  Hub circle scales in
+  // 0.8  Hub title fades up
+  // 1.1  Arc strokes in top → bottom
+  // 1.8  Card 1 (top)    full reveal — lines stroke → dot pops → icon → pill → label → body
+  // 2.4  Card 2
+  // 3.0  Card 3
+  // 3.6  Card 4          ends ~4.7
+  // 4.7  Hold to 6.0
+
+  // Pre-state
+  gsap.set('.hub-circle', {opacity: 0, scale: 0.6, transformOrigin: 'center'});
+  gsap.set('.hub-title', {opacity: 0, y: 10});
+  gsap.set('.card-body', {clipPath: 'inset(0 100% 0 0%)'});  // start collapsed from right
+  gsap.set('.card-label, .card-text', {opacity: 0, y: 8});
+  gsap.set('.card-icon', {scale: 0.6, opacity: 0, transformOrigin: 'center'});
+  gsap.set('.connections .arc', {strokeDasharray: 900, strokeDashoffset: 900});
+  gsap.set('.connections .line', {strokeDasharray: 500, strokeDashoffset: 500});
+  gsap.set('.connections .dot', {opacity: 0, scale: 0, transformOrigin: 'center'});
+
+  const tl = gsap.timeline({paused: true});
+
+  // --- HUB --------------------------------------------------------
+  tl.to('.hub-circle', {opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.4)'}, 0.2);
+  tl.to('.hub-title',  {opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'}, 0.8);
+
+  // --- ARC --------------------------------------------------------
+  tl.to('.connections .arc', {strokeDashoffset: 0, duration: 0.7, ease: 'power2.inOut'}, 1.1);
+
+  // --- Helper: reveal a single card -------------------------------
+  function revealCard(n, startTime) {
+    const cardSel = '.card-' + n;
+    const lineA   = '.line-' + n + 'a';      // hub → arc
+    const lineB   = '.line-' + n + 'b';      // arc → card
+    const dotSel  = '.dot-'  + n;
+
+    // 1. Hub-to-arc line strokes
+    tl.to(lineA,
+      {strokeDashoffset: 0, duration: 0.35, ease: 'power2.inOut'},
+      startTime);
+    // 2. Arc dot pops
+    tl.to(dotSel,
+      {opacity: 1, scale: 1, duration: 0.30, ease: 'back.out(1.8)'},
+      startTime + 0.20);
+    // 3. Arc-to-card line strokes
+    tl.to(lineB,
+      {strokeDashoffset: 0, duration: 0.35, ease: 'power2.inOut'},
+      startTime + 0.30);
+    // 4. Icon pops
+    tl.to(cardSel + ' .card-icon',
+      {scale: 1, opacity: 1, duration: 0.35, ease: 'back.out(1.6)'},
+      startTime + 0.45);
+    // 5. Card pill expands left → right
+    tl.to(cardSel + ' .card-body',
+      {clipPath: 'inset(0 0% 0 0%)', duration: 0.50, ease: 'power3.out'},
+      startTime + 0.55);
+    // 6. Label fades in
+    tl.to(cardSel + ' .card-label',
+      {opacity: 1, y: 0, duration: 0.35, ease: 'power2.out'},
+      startTime + 0.75);
+    // 7. Body fades in
+    tl.to(cardSel + ' .card-text',
+      {opacity: 0.96, y: 0, duration: 0.40, ease: 'power2.out'},
+      startTime + 0.90);
+  }
+
+  revealCard(1, 1.8);
+  revealCard(2, 2.4);
+  revealCard(3, 3.0);
+  revealCard(4, 3.6);
+
+  // Hold to declared duration
+  tl.to({}, {duration: 1.0}, 5.0);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES =================================================
+  // ?snapshot=1 → preview.sh thumbnail: fast-forward after fonts load
+  // __hfSeek    → HyperFrames pipeline drives via seek
+  // otherwise   → standalone preview: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-4P-007 — 4-row infographic elements with icon-left + stripe-right</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&display=swap" rel="stylesheet">
+<style>
+  .canvas {
+    --bg-deep: #F6F6F8;
+    --bg-paper: #FFFFFF;
+    --text-dark: #1A1815;
+    --text-muted: #5A5A60;
+    --text-light: #FFFFFF;
+    --accent-gold: #E5A823;
+    --color-1: #1A8E9F;
+    --color-2: #E5A823;
+    --color-3: #2C6F7F;
+    --color-4: #D03B36;
+    --font-body: 'Source Sans Pro', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: var(--bg-deep);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === TITLE — two-tone "INFOGRAPHIC ELEMENTS" =================== */
+  .title-wrap {
+    position: absolute;
+    top: 80px; left: 0; right: 0;
+    text-align: center;
+    z-index: 5;
+    font-weight: 900;
+    font-size: 72px;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .title-1 { color: var(--text-dark); }
+  .title-2 { color: var(--accent-gold); margin-left: 22px; }
+
+  /* === ROW — circular icon LEFT + white card + colored stripe RIGHT */
+  .row {
+    position: absolute;
+    width: 1450px;
+    height: 170px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .row.r-1 { top: 220px; --accent-color: var(--color-1); }
+  .row.r-2 { top: 420px; --accent-color: var(--color-2); }
+  .row.r-3 { top: 620px; --accent-color: var(--color-3); }
+  .row.r-4 { top: 820px; --accent-color: var(--color-4); }
+
+  /* White card body */
+  .row-card {
+    position: absolute;
+    left: 80px; right: 0;
+    top: 0; bottom: 0;
+    background: var(--bg-paper);
+    border-radius: 14px;
+    box-shadow: 0 10px 26px rgba(20, 20, 30, 0.10);
+    padding: 28px 100px 28px 180px;
+    display: flex; flex-direction: column;
+    justify-content: center;
+  }
+  /* Right-edge colored stripe */
+  .row-card::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 60px;
+    background: var(--accent-color);
+    border-radius: 0 14px 14px 0;
+  }
+  /* Circular icon hanging off LEFT edge */
+  .row-icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    border: 6px solid var(--bg-paper);
+    box-shadow: 0 8px 20px rgba(20, 20, 30, 0.18);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 3;
+  }
+  .row-icon .material-symbols-outlined {
+    font-size: 80px;
+    color: var(--text-light);
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  }
+
+  .row-label {
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .row-label .hl { color: var(--accent-color); }
+  .row-body {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.30;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-4P-007"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <div class="title-wrap">
+    <span class="title-1" data-token="title.left">INFOGRAPHIC</span><span class="title-2" data-token="title.right">ELEMENTS</span>
+  </div>
+
+  <article class="row r-1">
+    <div class="row-card">
+      <h3 class="row-label">PLACE <span class="hl" data-token="s1.label">YOUR TEXT</span> HERE</h3>
+      <p class="row-body"  data-token="s1.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget leo quis sagittis maecenas.</p>
+    </div>
+    <div class="row-icon"><span class="material-symbols-outlined" data-token="s1.icon">bar_chart</span></div>
+  </article>
+
+  <article class="row r-2">
+    <div class="row-card">
+      <h3 class="row-label">PLACE <span class="hl" data-token="s2.label">YOUR TEXT</span> HERE</h3>
+      <p class="row-body"  data-token="s2.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget leo quis sagittis maecenas.</p>
+    </div>
+    <div class="row-icon"><span class="material-symbols-outlined" data-token="s2.icon">search</span></div>
+  </article>
+
+  <article class="row r-3">
+    <div class="row-card">
+      <h3 class="row-label">PLACE <span class="hl" data-token="s3.label">YOUR TEXT</span> HERE</h3>
+      <p class="row-body"  data-token="s3.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget leo quis sagittis maecenas.</p>
+    </div>
+    <div class="row-icon"><span class="material-symbols-outlined" data-token="s3.icon">home</span></div>
+  </article>
+
+  <article class="row r-4">
+    <div class="row-card">
+      <h3 class="row-label">PLACE <span class="hl" data-token="s4.label">YOUR TEXT</span> HERE</h3>
+      <p class="row-body"  data-token="s4.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget leo quis sagittis maecenas.</p>
+    </div>
+    <div class="row-icon"><span class="material-symbols-outlined" data-token="s4.icon">person</span></div>
+  </article>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  gsap.set('.title-1, .title-2', {opacity: 0, y: -10});
+  gsap.set('.row',       {opacity: 0, x: -40});
+  gsap.set('.row-icon',  {opacity: 0, scale: 0.5, transformOrigin: 'center'});
+  gsap.set('.row-card::after', {});
+  gsap.set('.row-label, .row-body', {opacity: 0, y: 6});
+
+  const tl = gsap.timeline({paused: true});
+  tl.to('.title-1', {opacity: 1, y: 0, duration: 0.45, ease: 'power2.out'}, 0.2);
+  tl.to('.title-2', {opacity: 1, y: 0, duration: 0.45, ease: 'power2.out'}, 0.4);
+
+  function revealRow(n, t) {
+    const r = '.r-' + n;
+    tl.to(r,                {opacity: 1, x: 0, duration: 0.50, ease: 'power3.out'}, t);
+    tl.to(r + ' .row-icon', {opacity: 1, scale: 1, duration: 0.40, ease: 'back.out(1.7)'}, t + 0.20);
+    tl.to(r + ' .row-label',{opacity: 1, y: 0, duration: 0.35, ease: 'power2.out'}, t + 0.35);
+    tl.to(r + ' .row-body', {opacity: 1, y: 0, duration: 0.40, ease: 'power2.out'}, t + 0.50);
+  }
+  revealRow(1, 1.0);
+  revealRow(2, 1.5);
+  revealRow(3, 2.0);
+  revealRow(4, 2.5);
+  tl.to({}, {duration: 2.0}, 4.0);
+
+  window.__libraryTimeline = tl;
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+</body>
+</html>

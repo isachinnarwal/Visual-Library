@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-5P-008 — Interlocking chevron columns full bleed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F3F5F4;   /* vignette mid                            */
+    --bg-edge:     #EDF0EF;   /* vignette outer                          */
+    --on-color:    #FFFFFF;   /* numeral, ring, label and glyph          */
+    --on-color-soft: rgba(255, 255, 255, 0.85);  /* column body copy     */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+
+    --color-1:     #F0B64F;   /* point 1 — amber                         */
+    --color-2:     #CF414C;   /* point 2 — red                           */
+    --color-3:     #3C8DA7;   /* point 3 — steel                         */
+    --color-4:     #335B94;   /* point 4 — blue                          */
+    --color-5:     #1F4061;   /* point 5 — navy                          */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Five 360x640 columns butted edge to edge, INTERLOCKED: every seam
+       carries a 51px chevron — a point on the left column's right edge
+       and an exactly matching notch in the right column's left edge, so
+       the two mesh with no gap and no overlap.
+       The apex sits at the label's own baseline (y 602), which is what
+       makes the arrow read as "this leads to that".
+       Margins: top 70 · left 60 · right 60 · bottom 110.               */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 30%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — five-segment rule, one per point ==================== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 250px; height: 10px; width: 103px; border-radius: 2px; }
+  .rule-1 { left: 703px;  background: var(--color-1); }
+  .rule-2 { left: 806px;  background: var(--color-2); }
+  .rule-3 { left: 909px;  background: var(--color-3); }
+  .rule-4 { left: 1012px; background: var(--color-4); }
+  .rule-5 { left: 1115px; background: var(--color-5); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === RING NUMERALS ================================================ */
+  .ring-num {
+    position: absolute;
+    top: 444px; width: 360px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 46px;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .ring-num-1 { left: 60px;   }
+  .ring-num-2 { left: 420px;  }
+  .ring-num-3 { left: 780px;  }
+  .ring-num-4 { left: 1140px; }
+  .ring-num-5 { left: 1500px; }
+
+  /* === COLUMN COPY ================================================== */
+  .pt-label {
+    position: absolute;
+    top: 580px; width: 360px; height: 44px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 34px;
+    line-height: 44px;
+    text-align: center;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .pt-label-1 { left: 60px;   }
+  .pt-label-2 { left: 420px;  }
+  .pt-label-3 { left: 780px;  }
+  .pt-label-4 { left: 1140px; }
+  .pt-label-5 { left: 1500px; }
+
+  .pt-body {
+    position: absolute;
+    top: 640px; width: 300px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--on-color-soft);
+    z-index: 3;
+  }
+  .pt-body-1 { left: 90px;   }
+  .pt-body-2 { left: 450px;  }
+  .pt-body-3 { left: 810px;  }
+  .pt-body-4 { left: 1170px; }
+  .pt-body-5 { left: 1530px; }
+
+  .pt-icon {
+    position: absolute;
+    top: 862px; width: 360px; height: 76px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .pt-icon-1 { left: 60px;   }
+  .pt-icon-2 { left: 420px;  }
+  .pt-icon-3 { left: 780px;  }
+  .pt-icon-4 { left: 1140px; }
+  .pt-icon-5 { left: 1500px; }
+  .pt-icon .material-symbols-outlined {
+    font-size: 76px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-5P-008"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <h1 class="headline" data-token="title">NIST Cybersecurity Framework</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+  <div class="rule rule-3"></div>
+  <div class="rule rule-4"></div>
+  <div class="rule rule-5"></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <!-- Every seam is ONE 51px chevron used twice: as a point on the left
+         column and as an identical notch on the right one. Get the two
+         out of step and you get a white sliver or an overlap. -->
+    <path class="col col-1" fill="var(--color-1)"
+          d="M 60 330 H 420 V 551 L 471 602 L 420 653 V 970 H 60 Z"/>
+    <path class="col col-2" fill="var(--color-2)"
+          d="M 420 330 H 780 V 551 L 831 602 L 780 653 V 970 H 420 V 653 L 471 602 L 420 551 Z"/>
+    <path class="col col-3" fill="var(--color-3)"
+          d="M 780 330 H 1140 V 551 L 1191 602 L 1140 653 V 970 H 780 V 653 L 831 602 L 780 551 Z"/>
+    <path class="col col-4" fill="var(--color-4)"
+          d="M 1140 330 H 1500 V 551 L 1551 602 L 1500 653 V 970 H 1140 V 653 L 1191 602 L 1140 551 Z"/>
+    <path class="col col-5" fill="var(--color-5)"
+          d="M 1500 330 H 1860 V 970 H 1500 V 653 L 1551 602 L 1500 551 Z"/>
+
+    <circle class="ring ring-1" cx="240"  cy="470" r="70" fill="none" stroke="var(--on-color)" stroke-width="5"/>
+    <circle class="ring ring-2" cx="600"  cy="470" r="70" fill="none" stroke="var(--on-color)" stroke-width="5"/>
+    <circle class="ring ring-3" cx="960"  cy="470" r="70" fill="none" stroke="var(--on-color)" stroke-width="5"/>
+    <circle class="ring ring-4" cx="1320" cy="470" r="70" fill="none" stroke="var(--on-color)" stroke-width="5"/>
+    <circle class="ring ring-5" cx="1680" cy="470" r="70" fill="none" stroke="var(--on-color)" stroke-width="5"/>
+  </svg>
+
+  <div class="ring-num ring-num-1" data-token="p1.num">01</div>
+  <div class="ring-num ring-num-2" data-token="p2.num">02</div>
+  <div class="ring-num ring-num-3" data-token="p3.num">03</div>
+  <div class="ring-num ring-num-4" data-token="p4.num">04</div>
+  <div class="ring-num ring-num-5" data-token="p5.num">05</div>
+
+  <div class="pt-label pt-label-1" data-token="p1.label">Identify</div>
+  <div class="pt-label pt-label-2" data-token="p2.label">Protect</div>
+  <div class="pt-label pt-label-3" data-token="p3.label">Detect</div>
+  <div class="pt-label pt-label-4" data-token="p4.label">Respond</div>
+  <div class="pt-label pt-label-5" data-token="p5.label">Recover</div>
+
+  <div class="pt-body pt-body-1" data-token="p1.body">Lorem ipsum dolor sita conseetur adipiscinnai beuisque blan dolor</div>
+  <div class="pt-body pt-body-2" data-token="p2.body">Lorem ipsum dolor sita conseetur adipiscinnai beuisque blan dolor</div>
+  <div class="pt-body pt-body-3" data-token="p3.body">Lorem ipsum dolor sita conseetur adipiscinnai beuisque blan dolor</div>
+  <div class="pt-body pt-body-4" data-token="p4.body">Lorem ipsum dolor sita conseetur adipiscinnai beuisque blan dolor</div>
+  <div class="pt-body pt-body-5" data-token="p5.body">Lorem ipsum dolor sita conseetur adipiscinnai beuisque blan dolor</div>
+
+  <div class="pt-icon pt-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">search</span></div>
+  <div class="pt-icon pt-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">shield</span></div>
+  <div class="pt-icon pt-icon-3"><span class="material-symbols-outlined" data-token="p3.icon">radar</span></div>
+  <div class="pt-icon pt-icon-4"><span class="material-symbols-outlined" data-token="p4.icon">bolt</span></div>
+  <div class="pt-icon pt-icon-5"><span class="material-symbols-outlined" data-token="p5.icon">restart_alt</span></div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function () {
+  gsap.set('.headline, .deck', { opacity: 0, y: 24 });
+  gsap.set('.rule', { opacity: 0, scaleX: 0, transformOrigin: '50% 50%' });
+
+  /* each column wipes in from its own LEFT edge, so the chevrons appear
+     to push the sequence along rather than five panels arriving */
+  [[1, 60], [2, 420], [3, 780], [4, 1140], [5, 1500]].forEach(function (p) {
+    gsap.set('.col-' + p[0], { opacity: 0, scaleX: 0.02, svgOrigin: p[1] + ' 650' });
+  });
+  [[1, 240], [2, 600], [3, 960], [4, 1320], [5, 1680]].forEach(function (p) {
+    gsap.set('.ring-' + p[0], { opacity: 0, scale: 0.35, svgOrigin: p[1] + ' 470' });
+  });
+  gsap.set('.ring-num', { opacity: 0, scale: 0.6, transformOrigin: '50% 50%' });
+  gsap.set('.pt-label', { opacity: 0, y: 18 });
+  gsap.set('.pt-body',  { opacity: 0, y: 18 });
+  gsap.set('.pt-icon',  { opacity: 0, scale: 0.5, transformOrigin: '50% 50%' });
+
+  var tl = gsap.timeline({ paused: true });
+
+  tl.to('.headline', { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.00)
+    .to('.deck',     { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.18)
+    .to('.rule',     { opacity: 1, scaleX: 1, duration: 0.42, ease: 'power2.out', stagger: 0.07 }, 0.40);
+
+  [1, 2, 3, 4, 5].forEach(function (n, i) {
+    var t = 0.72 + i * 0.36;
+    tl.to('.col-' + n,     { opacity: 1, scaleX: 1, duration: 0.50, ease: 'power3.out' }, t)
+      .to('.ring-' + n,    { opacity: 1, scale: 1, duration: 0.40, ease: 'back.out(2)' }, t + 0.18)
+      .to('.ring-num-' + n,{ opacity: 1, scale: 1, duration: 0.34, ease: 'back.out(2)' }, t + 0.24)
+      .to('.pt-label-' + n,{ opacity: 1, y: 0, duration: 0.40, ease: 'power2.out' }, t + 0.22)
+      .to('.pt-body-' + n, { opacity: 1, y: 0, duration: 0.42, ease: 'power2.out' }, t + 0.30)
+      .to('.pt-icon-' + n, { opacity: 1, scale: 1, duration: 0.36, ease: 'back.out(2)' }, t + 0.38);
+  });
+
+  window.__libraryTimeline = tl;
+
+  /* === SNAPSHOT MODE — mandatory ==================================== */
+  if (new URLSearchParams(location.search).get('snapshot') === '1') {
+    tl.progress(1);
+    document.documentElement.setAttribute('data-snapshot-ready', '1');
+  } else {
+    tl.play();
+  }
+})();
+</script>
+
+</body>
+</html>

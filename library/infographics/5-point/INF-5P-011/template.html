@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-5P-011 — Pennant columns with a darkened label band</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F3F5F4;   /* vignette mid                            */
+    --bg-edge:     #EDF0EF;   /* vignette outer                          */
+    --disc:        #FFFFFF;   /* the icon disc                           */
+    --disc-rim:    #E4E4E4;   /* its soft grey rim                       */
+    --on-color:    #FFFFFF;   /* label on the band                       */
+    --on-color-soft: rgba(255, 255, 255, 0.84);  /* column body copy     */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+
+    --color-1:     #EFAD39;   /* stage 1 — amber                         */
+    --color-1-dk:  #D49933;   /*   its label band, ~12% darker           */
+    --color-2:     #D73E5D;   /* stage 2 — rose                          */
+    --color-2-dk:  #BE3752;
+    --color-3:     #554C93;   /* stage 3 — indigo                        */
+    --color-3-dk:  #4B4382;
+    --color-4:     #4AA2B7;   /* stage 4 — teal                          */
+    --color-4-dk:  #4290A2;
+    --color-5:     #E37D3B;   /* stage 5 — orange                        */
+    --color-5-dk:  #C86E34;
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Five 338px pennants on an 18px gutter, each with a shallow 73px V.
+       The label sits in a BAND of the same colour darkened, running the
+       full column width — that band, not the label alone, is what breaks
+       the column into a head and a body.
+       Each icon disc overhangs the column top by 77 of its 87px radius,
+       so only a tenth of it is on the colour.
+       Margins: top 70 · left 79 · right 79 · bottom 134.               */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 30%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — five-segment rule, one per stage =================== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 250px; height: 10px; width: 103px; border-radius: 2px; }
+  .rule-1 { left: 703px;  background: var(--color-1); }
+  .rule-2 { left: 806px;  background: var(--color-2); }
+  .rule-3 { left: 909px;  background: var(--color-3); }
+  .rule-4 { left: 1012px; background: var(--color-4); }
+  .rule-5 { left: 1115px; background: var(--color-5); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === DISC GLYPHS — tinted with their own column =================== */
+  .disc-icon {
+    position: absolute;
+    top: 438px; width: 338px; height: 74px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 3;
+  }
+  .disc-icon-1 { left: 79px;   color: var(--color-1); }
+  .disc-icon-2 { left: 435px;  color: var(--color-2); }
+  .disc-icon-3 { left: 791px;  color: var(--color-3); }
+  .disc-icon-4 { left: 1147px; color: var(--color-4); }
+  .disc-icon-5 { left: 1503px; color: var(--color-5); }
+  .disc-icon .material-symbols-outlined {
+    font-size: 74px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* === COLUMN COPY ================================================== */
+  .pt-label {
+    position: absolute;
+    top: 613px; width: 338px; height: 48px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 48px;
+    text-align: center;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .pt-label-1 { left: 79px;   }
+  .pt-label-2 { left: 435px;  }
+  .pt-label-3 { left: 791px;  }
+  .pt-label-4 { left: 1147px; }
+  .pt-label-5 { left: 1503px; }
+
+  .pt-body {
+    position: absolute;
+    top: 686px; width: 286px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--on-color-soft);
+    z-index: 3;
+  }
+  .pt-body-1 { left: 105px;  }
+  .pt-body-2 { left: 461px;  }
+  .pt-body-3 { left: 817px;  }
+  .pt-body-4 { left: 1173px; }
+  .pt-body-5 { left: 1529px; }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-5P-011"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <h1 class="headline" data-token="title">ADDIE Model</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+  <div class="rule rule-3"></div>
+  <div class="rule rule-4"></div>
+  <div class="rule rule-5"></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <g class="col col-1">
+      <path class="pen"  fill="var(--color-1)" d="M 79 465 H 417 V 873 L 248 946 L 79 873 Z"/>
+      <rect class="band" x="79" y="602" width="338" height="70" fill="var(--color-1-dk)"/>
+      <circle class="rim"  cx="248" cy="475" r="87" fill="var(--disc-rim)"/>
+      <circle class="face" cx="248" cy="475" r="79" fill="var(--disc)"/>
+      <circle class="hoop" cx="248" cy="475" r="70" fill="none" stroke="var(--color-1)" stroke-width="5"/>
+    </g>
+    <g class="col col-2">
+      <path class="pen"  fill="var(--color-2)" d="M 435 465 H 773 V 873 L 604 946 L 435 873 Z"/>
+      <rect class="band" x="435" y="602" width="338" height="70" fill="var(--color-2-dk)"/>
+      <circle class="rim"  cx="604" cy="475" r="87" fill="var(--disc-rim)"/>
+      <circle class="face" cx="604" cy="475" r="79" fill="var(--disc)"/>
+      <circle class="hoop" cx="604" cy="475" r="70" fill="none" stroke="var(--color-2)" stroke-width="5"/>
+    </g>
+    <g class="col col-3">
+      <path class="pen"  fill="var(--color-3)" d="M 791 465 H 1129 V 873 L 960 946 L 791 873 Z"/>
+      <rect class="band" x="791" y="602" width="338" height="70" fill="var(--color-3-dk)"/>
+      <circle class="rim"  cx="960" cy="475" r="87" fill="var(--disc-rim)"/>
+      <circle class="face" cx="960" cy="475" r="79" fill="var(--disc)"/>
+      <circle class="hoop" cx="960" cy="475" r="70" fill="none" stroke="var(--color-3)" stroke-width="5"/>
+    </g>
+    <g class="col col-4">
+      <path class="pen"  fill="var(--color-4)" d="M 1147 465 H 1485 V 873 L 1316 946 L 1147 873 Z"/>
+      <rect class="band" x="1147" y="602" width="338" height="70" fill="var(--color-4-dk)"/>
+      <circle class="rim"  cx="1316" cy="475" r="87" fill="var(--disc-rim)"/>
+      <circle class="face" cx="1316" cy="475" r="79" fill="var(--disc)"/>
+      <circle class="hoop" cx="1316" cy="475" r="70" fill="none" stroke="var(--color-4)" stroke-width="5"/>
+    </g>
+    <g class="col col-5">
+      <path class="pen"  fill="var(--color-5)" d="M 1503 465 H 1841 V 873 L 1672 946 L 1503 873 Z"/>
+      <rect class="band" x="1503" y="602" width="338" height="70" fill="var(--color-5-dk)"/>
+      <circle class="rim"  cx="1672" cy="475" r="87" fill="var(--disc-rim)"/>
+      <circle class="face" cx="1672" cy="475" r="79" fill="var(--disc)"/>
+      <circle class="hoop" cx="1672" cy="475" r="70" fill="none" stroke="var(--color-5)" stroke-width="5"/>
+    </g>
+  </svg>
+
+  <div class="disc-icon disc-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">query_stats</span></div>
+  <div class="disc-icon disc-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">design_services</span></div>
+  <div class="disc-icon disc-icon-3"><span class="material-symbols-outlined" data-token="p3.icon">settings</span></div>
+  <div class="disc-icon disc-icon-4"><span class="material-symbols-outlined" data-token="p4.icon">emoji_objects</span></div>
+  <div class="disc-icon disc-icon-5"><span class="material-symbols-outlined" data-token="p5.icon">workspace_premium</span></div>
+
+  <div class="pt-label pt-label-1" data-token="p1.label">Analyze</div>
+  <div class="pt-label pt-label-2" data-token="p2.label">Design</div>
+  <div class="pt-label pt-label-3" data-token="p3.label">Development</div>
+  <div class="pt-label pt-label-4" data-token="p4.label">Implementation</div>
+  <div class="pt-label pt-label-5" data-token="p5.label">Evaluation</div>
+
+  <div class="pt-body pt-body-1" data-token="p1.body">Elements in the subjects that have some purposes and goals for the busines or company</div>
+  <div class="pt-body pt-body-2" data-token="p2.body">Elements in the subjects that have some purposes and goals for the busines or company</div>
+  <div class="pt-body pt-body-3" data-token="p3.body">Elements in the subjects that have some purposes and goals for the busines or company</div>
+  <div class="pt-body pt-body-4" data-token="p4.body">Elements in the subjects that have some purposes and goals for the busines or company</div>
+  <div class="pt-body pt-body-5" data-token="p5.body">Elements in the subjects that have some purposes and goals for the busines or company</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function () {
+  gsap.set('.headline, .deck', { opacity: 0, y: 24 });
+  gsap.set('.rule', { opacity: 0, scaleX: 0, transformOrigin: '50% 50%' });
+
+  [[1, 248], [2, 604], [3, 960], [4, 1316], [5, 1672]].forEach(function (p) {
+    var n = p[0], cx = p[1], x0 = [79, 435, 791, 1147, 1503][n - 1];
+    gsap.set('.col-' + n + ' .pen',  { opacity: 0, y: -50, scaleY: 0.92, svgOrigin: cx + ' 465' });
+    gsap.set('.col-' + n + ' .band', { opacity: 0, scaleX: 0, svgOrigin: x0 + ' 637' });
+    gsap.set('.col-' + n + ' .rim',  { opacity: 0, scale: 0.4, svgOrigin: cx + ' 475' });
+    gsap.set('.col-' + n + ' .face', { opacity: 0, scale: 0.4, svgOrigin: cx + ' 475' });
+    gsap.set('.col-' + n + ' .hoop', { opacity: 0, scale: 0.4, svgOrigin: cx + ' 475' });
+  });
+  gsap.set('.disc-icon', { opacity: 0, scale: 0.5, transformOrigin: '50% 50%' });
+  gsap.set('.pt-label',  { opacity: 0, y: 16 });
+  gsap.set('.pt-body',   { opacity: 0, y: 16 });
+
+  var tl = gsap.timeline({ paused: true });
+
+  tl.to('.headline', { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.00)
+    .to('.deck',     { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.18)
+    .to('.rule',     { opacity: 1, scaleX: 1, duration: 0.42, ease: 'power2.out', stagger: 0.07 }, 0.40);
+
+  [1, 2, 3, 4, 5].forEach(function (n, i) {
+    var t = 0.72 + i * 0.36;
+    tl.to('.col-' + n + ' .pen',  { opacity: 1, y: 0, scaleY: 1, duration: 0.54, ease: 'power3.out' }, t)
+      .to('.col-' + n + ' .band', { opacity: 1, scaleX: 1, duration: 0.44, ease: 'power2.out' }, t + 0.16)
+      .to('.col-' + n + ' .rim',  { opacity: 1, scale: 1, duration: 0.42, ease: 'back.out(1.8)' }, t + 0.14)
+      .to('.col-' + n + ' .face', { opacity: 1, scale: 1, duration: 0.42, ease: 'back.out(1.8)' }, t + 0.18)
+      .to('.col-' + n + ' .hoop', { opacity: 1, scale: 1, duration: 0.38, ease: 'back.out(2)'   }, t + 0.24)
+      .to('.disc-icon-' + n,      { opacity: 1, scale: 1, duration: 0.34, ease: 'back.out(2)'   }, t + 0.30)
+      .to('.pt-label-' + n,       { opacity: 1, y: 0, duration: 0.38, ease: 'power2.out' }, t + 0.28)
+      .to('.pt-body-' + n,        { opacity: 1, y: 0, duration: 0.42, ease: 'power2.out' }, t + 0.36);
+  });
+
+  window.__libraryTimeline = tl;
+
+  /* === SNAPSHOT MODE — mandatory ==================================== */
+  if (new URLSearchParams(location.search).get('snapshot') === '1') {
+    tl.progress(1);
+    document.documentElement.setAttribute('data-snapshot-ready', '1');
+  } else {
+    tl.play();
+  }
+})();
+</script>
+
+</body>
+</html>

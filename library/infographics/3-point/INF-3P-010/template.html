@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-3P-010 — Three overlapping rounded diamonds with two-tone fill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg:          #FFFFFF;   /* white field                             */
+    --on-color:    #FFFFFF;   /* everything sits on a diamond            */
+
+    --text-dark:   #303030;   /* headline                                */
+    --text-sub:    #5A5A5C;   /* deck                                    */
+
+    --color-1-dk:  #4A8FBC;   /* diamond 1 — blue, upper band            */
+    --color-1:     #58AFEB;   /* diamond 1 — blue, lower band            */
+    --color-2-dk:  #B4682F;   /* diamond 2 — orange                      */
+    --color-2:     #DC8238;
+    --color-3-dk:  #B82F51;   /* diamond 3 — pink                        */
+    --color-3:     #DF3A63;
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Three rounded diamonds — 508px squares, radius 100, rotated 45deg
+       — centred at (408,649), (961,649), (1516,649). Tip-to-centre is
+       318, so at 553 apart they overlap by 83. Later diamonds sit on top.
+       Copy is bounded by the diamond: half-width is 318-|dy| down to
+       |dy| 218, then a 100-radius arc to the tip at 318.
+       The two-tone fill uses 135deg, NOT 180deg: the element is
+       rotated 45deg, so a local 135deg renders screen-vertical.
+       Margins: top 60 · left 90 · right 86 · bottom 113.               */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: var(--bg);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — no rule in this one ================================= */
+  .headline {
+    position: absolute;
+    top: 60px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 143px; left: 100px; width: 1720px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.35;
+    color: var(--text-sub);
+    text-align: center;
+  }
+
+  /* === DIAMONDS — rotated rounded squares =========================== */
+  .dia {
+    position: absolute;
+    top: 395px; width: 508px; height: 508px;
+    border-radius: 100px;
+    transform: rotate(45deg);
+    z-index: 1;
+  }
+  .dia-1 { left: 154px;  background: linear-gradient(135deg, var(--color-1-dk) 0%, var(--color-1-dk) 43%, var(--color-1) 43%, var(--color-1) 100%); }
+  .dia-2 { left: 707px;  background: linear-gradient(135deg, var(--color-2-dk) 0%, var(--color-2-dk) 43%, var(--color-2) 43%, var(--color-2) 100%); }
+  .dia-3 { left: 1262px; background: linear-gradient(135deg, var(--color-3-dk) 0%, var(--color-3-dk) 43%, var(--color-3) 43%, var(--color-3) 100%); }
+
+  /* === DIAMOND CONTENT — un-rotated, centred on the diamond ========= */
+  .dia-num {
+    position: absolute;
+    top: 380px; width: 400px; height: 130px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 110px;
+    line-height: 130px;
+    text-align: center;
+    color: var(--on-color);
+    z-index: 2;
+  }
+  .dia-num-1 { left: 208px;  }
+  .dia-num-2 { left: 761px;  }
+  .dia-num-3 { left: 1316px; }
+
+  .dia-label {
+    position: absolute;
+    top: 530px; width: 360px; height: 50px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 50px;
+    text-align: center;
+    color: var(--on-color);
+    z-index: 2;
+  }
+  .dia-label-1 { left: 228px;  }
+  .dia-label-2 { left: 781px;  }
+  .dia-label-3 { left: 1336px; }
+
+  .dia-body {
+    position: absolute;
+    top: 596px; width: 345px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.5;
+    text-align: center;
+    color: var(--on-color);
+    opacity: 0.96;
+    z-index: 2;
+  }
+  .dia-body-1 { left: 236px;  }
+  .dia-body-2 { left: 789px;  }
+  .dia-body-3 { left: 1344px; }
+
+  .dia-icon {
+    position: absolute;
+    top: 790px; width: 100px; height: 100px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--on-color);
+    z-index: 2;
+  }
+  .dia-icon-1 { left: 358px;  }
+  .dia-icon-2 { left: 911px;  }
+  .dia-icon-3 { left: 1466px; }
+  .dia-icon .material-symbols-outlined {
+    font-size: 96px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-3P-010"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <h1 class="headline" data-token="title">Growth Hacking</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Duis aute irure dolor in reprehenderit in voluptate velit esse sed do</p>
+
+  <div class="dia dia-1"></div>
+  <div class="dia dia-2"></div>
+  <div class="dia dia-3"></div>
+
+  <div class="dia-num dia-num-1" data-token="p1.num">01</div>
+  <div class="dia-num dia-num-2" data-token="p2.num">02</div>
+  <div class="dia-num dia-num-3" data-token="p3.num">03</div>
+
+  <div class="dia-label dia-label-1" data-token="p1.label">Content Marketing</div>
+  <div class="dia-label dia-label-2" data-token="p2.label">Product Marketing</div>
+  <div class="dia-label dia-label-3" data-token="p3.label">Advertising</div>
+
+  <p class="dia-body dia-body-1" data-token="p1.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
+  <p class="dia-body dia-body-2" data-token="p2.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
+  <p class="dia-body dia-body-3" data-token="p3.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
+
+  <div class="dia-icon dia-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">article</span></div>
+  <div class="dia-icon dia-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">deployed_code</span></div>
+  <div class="dia-icon dia-icon-3"><span class="material-symbols-outlined" data-token="p3.icon">campaign</span></div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — each diamond spins up, then fills =============
+  // 0.15 headline  0.55 deck
+  // 1.00 / 2.10 / 3.20 diamond 1 / 2 / 3 (rotate-in → number → label →
+  //      body → icon)                    ends ~4.9 → hold to 7.0
+  // NOTE: GSAP replaces the element's whole transform, so the resting
+  // rotate(45deg) has to be a GSAP value too — it spins 5deg -> 45deg.
+
+  gsap.set('.headline', {opacity: 0, y: -26});
+  gsap.set('.deck',     {opacity: 0, y: -14});
+  gsap.set('.dia',      {opacity: 0, scale: 0.6, rotation: 5, transformOrigin: 'center'});
+  gsap.set('.dia-num',  {opacity: 0, scale: 0.6, transformOrigin: 'center'});
+  gsap.set('.dia-label',{opacity: 0, y: 14});
+  gsap.set('.dia-body', {opacity: 0, y: 14});
+  gsap.set('.dia-icon', {opacity: 0, scale: 0.5, transformOrigin: 'center'});
+
+  const tl = gsap.timeline({paused: true});
+
+  tl.to('.headline', {opacity: 1, y: 0, duration: 0.60, ease: 'power2.out'}, 0.15)
+    .to('.deck',     {opacity: 1, y: 0, duration: 0.55, ease: 'power2.out'}, 0.55);
+
+  function revealDia(n, t) {
+    tl.to('.dia-'       + n, {opacity: 1, scale: 1, rotation: 45, duration: 0.70, ease: 'back.out(1.2)'}, t)
+      .to('.dia-num-'   + n, {opacity: 1, scale: 1, duration: 0.42, ease: 'back.out(1.7)'},              t + 0.34)
+      .to('.dia-label-' + n, {opacity: 1, y: 0, duration: 0.38, ease: 'power2.out'},                     t + 0.48)
+      .to('.dia-body-'  + n, {opacity: 1, y: 0, duration: 0.44, ease: 'power2.out'},                     t + 0.60)
+      .to('.dia-icon-'  + n, {opacity: 1, scale: 1, duration: 0.40, ease: 'back.out(1.6)'},              t + 0.74);
+  }
+
+  revealDia(1, 1.00);
+  revealDia(2, 2.10);
+  revealDia(3, 3.20);
+
+  tl.to({}, {duration: 1.5}, 5.5);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES ==================================================
+  // ?snapshot=1  →  preview.sh thumbnail: fast-forward to the final frame
+  // __hfSeek     →  HyperFrames pipeline drives the timeline via seek
+  // otherwise    →  standalone preview / Launch panel: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

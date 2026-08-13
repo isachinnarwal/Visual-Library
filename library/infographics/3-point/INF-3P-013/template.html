@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-3P-013 — Three arrow rows with icon tile and grey tail panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F3F5F4;   /* vignette mid                            */
+    --bg-edge:     #EDF0EF;   /* vignette outer                          */
+    --tail:        #E2E2E2;   /* the grey panel each arrow runs onto     */
+    --on-color:    #FFFFFF;   /* number, label and glyph on the arrow    */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+    --text-muted:  #7C7C7E;   /* body copy on the grey panel             */
+
+    --color-1:     #377D7B;   /* row 1 — teal                            */
+    --color-1-dk:  #2E7370;   /* row 1 — icon tile + number block        */
+    --color-2:     #F6952C;   /* row 2 — orange                          */
+    --color-2-dk:  #DC892B;
+    --color-3:     #F64559;   /* row 3 — red                             */
+    --color-3-dk:  #E84158;
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Three rows, h 155, tops 382 / 583 / 782 (gap 46). Per row, left to
+       right: icon tile 130→285, then a grey tail 303→1785 with a coloured
+       arrow laid over its left end — number block 303→472, band to 840,
+       point to 919.
+       Margins: top 70 · left 130 · right 135 · bottom 144.             */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 30%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — three-segment rule, one per row ===================== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 268px; height: 10px; width: 200px; border-radius: 2px; }
+  .rule-1 { left: 650px;  background: var(--color-1); }
+  .rule-2 { left: 860px;  background: var(--color-2); }
+  .rule-3 { left: 1070px; background: var(--color-3); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === ROW CONTENT ================================================== */
+  .row-icon {
+    position: absolute;
+    left: 168px; width: 79px; height: 79px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .row-icon-1 { top: 420px; }
+  .row-icon-2 { top: 621px; }
+  .row-icon-3 { top: 820px; }
+  .row-icon .material-symbols-outlined {
+    font-size: 76px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+
+  .row-num {
+    position: absolute;
+    left: 303px; width: 169px; height: 155px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 70px;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .row-num-1 { top: 382px; }
+  .row-num-2 { top: 583px; }
+  .row-num-3 { top: 782px; }
+
+  .row-label {
+    position: absolute;
+    left: 512px; width: 320px; height: 155px;
+    display: flex; align-items: center;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 33px;
+    letter-spacing: 0.01em;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .row-label-1 { top: 382px; }
+  .row-label-2 { top: 583px; }
+  .row-label-3 { top: 782px; }
+
+  .row-body {
+    position: absolute;
+    left: 980px; width: 753px; height: 155px;
+    display: flex; align-items: center;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--text-muted);
+    z-index: 3;
+  }
+  .row-body-1 { top: 382px; }
+  .row-body-2 { top: 583px; }
+  .row-body-3 { top: 782px; }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-3P-013"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <h1 class="headline" data-token="title">3Ps of Marketing</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+  <div class="rule rule-3"></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <g class="row row-1">
+      <rect class="tile" x="130" y="382" width="155" height="155" fill="var(--color-1-dk)"/>
+      <rect class="tail" x="303" y="382" width="1482" height="155" fill="var(--tail)"/>
+      <path class="arrow" fill="var(--color-1)" d="M 303 382 H 840 L 919 460 L 840 537 H 303 Z"/>
+      <rect class="numblock" x="303" y="382" width="169" height="155" fill="var(--color-1-dk)"/>
+    </g>
+    <g class="row row-2">
+      <rect class="tile" x="130" y="583" width="155" height="155" fill="var(--color-2-dk)"/>
+      <rect class="tail" x="303" y="583" width="1482" height="155" fill="var(--tail)"/>
+      <path class="arrow" fill="var(--color-2)" d="M 303 583 H 840 L 919 661 L 840 738 H 303 Z"/>
+      <rect class="numblock" x="303" y="583" width="169" height="155" fill="var(--color-2-dk)"/>
+    </g>
+    <g class="row row-3">
+      <rect class="tile" x="130" y="782" width="155" height="155" fill="var(--color-3-dk)"/>
+      <rect class="tail" x="303" y="782" width="1482" height="155" fill="var(--tail)"/>
+      <path class="arrow" fill="var(--color-3)" d="M 303 782 H 840 L 919 860 L 840 937 H 303 Z"/>
+      <rect class="numblock" x="303" y="782" width="169" height="155" fill="var(--color-3-dk)"/>
+    </g>
+  </svg>
+
+  <div class="row-icon row-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">inventory_2</span></div>
+  <div class="row-icon row-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">paid</span></div>
+  <div class="row-icon row-icon-3"><span class="material-symbols-outlined" data-token="p3.icon">campaign</span></div>
+
+  <div class="row-num row-num-1" data-token="p1.num">01</div>
+  <div class="row-num row-num-2" data-token="p2.num">02</div>
+  <div class="row-num row-num-3" data-token="p3.num">03</div>
+
+  <div class="row-label row-label-1" data-token="p1.label">Product</div>
+  <div class="row-label row-label-2" data-token="p2.label">Price</div>
+  <div class="row-label row-label-3" data-token="p3.label">Promotion</div>
+
+  <div class="row-body row-body-1"><span data-token="p1.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sedarep diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</span></div>
+  <div class="row-body row-body-2"><span data-token="p2.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sedarep diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</span></div>
+  <div class="row-body row-body-3"><span data-token="p3.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sedarep diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</span></div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — each row lays down its tail, then drives the arrow
+  // 0.15 headline  0.55 deck  0.95 rule segments
+  // 1.25 / 2.25 / 3.25 row 1 / 2 / 3 (tile → tail grows → arrow drives in
+  //      → number → label → body)        ends ~4.9 → hold to 7.0
+
+  gsap.set('.headline',  {opacity: 0, y: -26});
+  gsap.set('.deck',      {opacity: 0, y: -14});
+  gsap.set('.rule',      {scaleX: 0, transformOrigin: 'center'});
+  [1,2,3].forEach(function (n) {
+    var y = [0, 460, 661, 860][n];
+    gsap.set('.row-' + n + ' .tile',     {opacity: 0, scale: 0.5, svgOrigin: '207 ' + y});
+    gsap.set('.row-' + n + ' .tail',     {opacity: 0, scaleX: 0.1, svgOrigin: '303 ' + y});
+    gsap.set('.row-' + n + ' .arrow',    {opacity: 0, x: -130});
+    gsap.set('.row-' + n + ' .numblock', {opacity: 0, x: -130});
+  });
+  gsap.set('.row-icon',  {opacity: 0, scale: 0.5, transformOrigin: 'center'});
+  gsap.set('.row-num',   {opacity: 0, x: -24});
+  gsap.set('.row-label', {opacity: 0, x: -24});
+  gsap.set('.row-body',  {opacity: 0, x: 24});
+
+  const tl = gsap.timeline({paused: true});
+
+  tl.to('.headline', {opacity: 1, y: 0, duration: 0.60, ease: 'power2.out'},          0.15)
+    .to('.deck',     {opacity: 1, y: 0, duration: 0.55, ease: 'power2.out'},          0.55)
+    .to('.rule',     {scaleX: 1, duration: 0.45, stagger: 0.10, ease: 'power2.out'},  0.95);
+
+  function revealRow(n, t) {
+    var r = '.row-' + n + ' ';
+    tl.to(r + '.tile',     {opacity: 1, scale: 1, duration: 0.42, ease: 'back.out(1.7)'},  t)
+      .to('.row-icon-'+ n, {opacity: 1, scale: 1, duration: 0.34, ease: 'power2.out'},     t + 0.18)
+      .to(r + '.tail',     {opacity: 1, scaleX: 1, duration: 0.55, ease: 'power3.out'},    t + 0.14)
+      .to(r + '.arrow',    {opacity: 1, x: 0, duration: 0.50, ease: 'power3.out'},         t + 0.34)
+      .to(r + '.numblock', {opacity: 1, x: 0, duration: 0.50, ease: 'power3.out'},         t + 0.34)
+      .to('.row-num-'  + n,{opacity: 1, x: 0, duration: 0.36, ease: 'power2.out'},         t + 0.52)
+      .to('.row-label-'+ n,{opacity: 1, x: 0, duration: 0.36, ease: 'power2.out'},         t + 0.60)
+      .to('.row-body-' + n,{opacity: 1, x: 0, duration: 0.44, ease: 'power2.out'},         t + 0.68);
+  }
+
+  revealRow(1, 1.25);
+  revealRow(2, 2.25);
+  revealRow(3, 3.25);
+
+  tl.to({}, {duration: 1.5}, 5.5);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES ==================================================
+  // ?snapshot=1  →  preview.sh thumbnail: fast-forward to the final frame
+  // __hfSeek     →  HyperFrames pipeline drives the timeline via seek
+  // otherwise    →  standalone preview / Launch panel: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

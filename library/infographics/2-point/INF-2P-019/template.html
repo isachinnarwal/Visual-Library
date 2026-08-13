@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-2P-019 — Overlapping ringed discs with flanking label pills</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F5F6F5;   /* vignette mid                            */
+    --bg-edge:     #EDEFEE;   /* vignette outer                          */
+    --gap:         #FDFDFD;   /* the white halo that separates the discs */
+    --on-color:    #FFFFFF;   /* copy, glyph and watermark on a disc     */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+    --text-muted:  #7C7C7E;   /* flanking body copy                      */
+
+    --color-1:     #50AE71;   /* disc 1 — green                          */
+    --color-2:     #4968E3;   /* disc 2 — blue                           */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Disc 1 centre (810, 560), disc 2 centre (1102, 761) — offset down
+       AND right so they interlock. Each disc r 220 with a ring at r 243.
+       Disc 2's stack starts with a white halo (r 264) so it cuts a clean
+       gap out of disc 1; that halo is what sells the overlap.
+       Margins: top 70 · left 137 · right 144 · bottom 71.              */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 26%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — same family as INF-2P-006 / 011 / 013 / 014 / 016 / 018 */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 268px; height: 10px; border-radius: 2px; }
+  .rule-1 { left: 693px; width: 264px; background: var(--color-1); }
+  .rule-2 { left: 963px; width: 264px; background: var(--color-2); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === DISC CONTENTS — watermark letter over an outline glyph ======== */
+  .mark {
+    position: absolute;
+    width: 300px; height: 150px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 130px;
+    line-height: 150px;
+    text-align: center;
+    color: transparent;
+    -webkit-text-stroke: 5px rgba(255, 255, 255, 0.62);
+    z-index: 2;
+  }
+  .mark-1 { left: 660px;  top: 345px; }
+  .mark-2 { left: 952px;  top: 546px; }
+
+  .disc-icon {
+    position: absolute;
+    width: 160px; height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--on-color);
+    z-index: 2;
+  }
+  .disc-icon-1 { left: 730px;  top: 520px; }
+  .disc-icon-2 { left: 1022px; top: 721px; }
+  .disc-icon .material-symbols-outlined {
+    font-size: 150px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* === FLANKING COLUMNS — mirrored, each on its disc's outer side ==== */
+  .pill {
+    position: absolute;
+    width: 366px; height: 61px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--on-color);
+    z-index: 2;
+  }
+  .pill-1 { left: 137px;  top: 406px; background: var(--color-1); }
+  .pill-2 { left: 1409px; top: 585px; background: var(--color-2); }
+
+  .col-body {
+    position: absolute;
+    width: 366px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    z-index: 2;
+  }
+  .col-body-1 { left: 137px;  top: 490px; text-align: right; }
+  .col-body-2 { left: 1409px; top: 671px; text-align: left;  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-2P-019"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <h1 class="headline" data-token="title">Subscription Model vs One Time Purchases</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <!-- disc 1: ring, then fill -->
+    <circle class="ring ring-1" cx="810" cy="560" r="243" fill="none"
+            stroke="var(--color-1)" stroke-width="9"/>
+    <circle class="disc disc-1" cx="810" cy="560" r="220" fill="var(--color-1)"/>
+
+    <!-- disc 2 stack: white halo FIRST so it clears a gap out of disc 1 -->
+    <circle class="halo halo-2" cx="1102" cy="761" r="264" fill="var(--gap)"/>
+    <circle class="ring ring-2" cx="1102" cy="761" r="243" fill="none"
+            stroke="var(--color-2)" stroke-width="9"/>
+    <circle class="disc disc-2" cx="1102" cy="761" r="220" fill="var(--color-2)"/>
+  </svg>
+
+  <div class="mark mark-1" data-token="p1.mark">S</div>
+  <div class="mark mark-2" data-token="p2.mark">O</div>
+
+  <div class="disc-icon disc-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">event_repeat</span></div>
+  <div class="disc-icon disc-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">ads_click</span></div>
+
+  <div class="pill pill-1"><span data-token="p1.label">Subscription Model</span></div>
+  <div class="pill pill-2"><span data-token="p2.label">One Time Purchases</span></div>
+
+  <p class="col-body col-body-1" data-token="p1.body">Lorem ipsum dolor sit ametadei consectetuer adipiscing elit sed diam nonummy nibh aeuismod tincidunt ut laoreet red ar eddol ore magna aliquam eratidi volu tpat.</p>
+  <p class="col-body col-body-2" data-token="p2.body">Lorem ipsum dolor sit ametadei consectetuer adipiscing elit sed diam nonummy nibh aeuismod tincidunt ut laoreet red ar eddol ore magna aliquam eratidi volu tpat.</p>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — disc 1, then disc 2 lands over it ==============
+  // 0.15 headline  0.55 deck  0.95 split rule
+  // 1.25 disc 1 (ring → fill → watermark → icon) + its pill and body
+  // 2.75 disc 2 lands on top (halo → ring → fill → …) + its column
+  // ends ~4.4 → hold to 6.0
+
+  gsap.set('.headline',   {opacity: 0, y: -26});
+  gsap.set('.deck',       {opacity: 0, y: -14});
+  gsap.set('.rule',       {scaleX: 0});
+  gsap.set('.rule-1',     {transformOrigin: 'right center'});
+  gsap.set('.rule-2',     {transformOrigin: 'left center'});
+  gsap.set('.ring-1',     {opacity: 0, scale: 0.75, svgOrigin: '810 560'});
+  gsap.set('.disc-1',     {opacity: 0, scale: 0.75, svgOrigin: '810 560'});
+  gsap.set('.halo-2',     {opacity: 0, scale: 0.75, svgOrigin: '1102 761'});
+  gsap.set('.ring-2',     {opacity: 0, scale: 0.75, svgOrigin: '1102 761'});
+  gsap.set('.disc-2',     {opacity: 0, scale: 0.75, svgOrigin: '1102 761'});
+  gsap.set('.mark',       {opacity: 0, scale: 0.7, transformOrigin: 'center'});
+  gsap.set('.disc-icon',  {opacity: 0, scale: 0.6, transformOrigin: 'center'});
+  gsap.set('.pill',       {opacity: 0, y: 16});
+  gsap.set('.col-body',   {opacity: 0, y: 16});
+
+  const tl = gsap.timeline({paused: true});
+
+  tl.to('.headline', {opacity: 1, y: 0, duration: 0.60, ease: 'power2.out'}, 0.15)
+    .to('.deck',     {opacity: 1, y: 0, duration: 0.55, ease: 'power2.out'}, 0.55)
+    .to('.rule',     {scaleX: 1, duration: 0.50, ease: 'power2.out'},        0.95);
+
+  function revealSide(n, t) {
+    if (n === 2) tl.to('.halo-2', {opacity: 1, scale: 1, duration: 0.55, ease: 'back.out(1.3)'}, t);
+    tl.to('.ring-'      + n, {opacity: 1, scale: 1, duration: 0.55, ease: 'back.out(1.3)'}, t + (n === 2 ? 0.05 : 0))
+      .to('.disc-'      + n, {opacity: 1, scale: 1, duration: 0.55, ease: 'back.out(1.3)'}, t + 0.12)
+      .to('.mark-'      + n, {opacity: 1, scale: 1, duration: 0.45, ease: 'power2.out'},    t + 0.38)
+      .to('.disc-icon-' + n, {opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.6)'}, t + 0.52)
+      .to('.pill-'      + n, {opacity: 1, y: 0, duration: 0.40, ease: 'power2.out'},        t + 0.62)
+      .to('.col-body-'  + n, {opacity: 1, y: 0, duration: 0.45, ease: 'power2.out'},        t + 0.78);
+  }
+
+  revealSide(1, 1.25);
+  revealSide(2, 2.75);
+
+  tl.to({}, {duration: 1.2}, 4.8);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES ==================================================
+  // ?snapshot=1  →  preview.sh thumbnail: fast-forward to the final frame
+  // __hfSeek     →  HyperFrames pipeline drives the timeline via seek
+  // otherwise    →  standalone preview / Launch panel: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

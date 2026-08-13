@@ -1,0 +1,26 @@
+# Netlify config for the Visual Library static site.
+#
+# There is no build step: the site is plain HTML/CSS/JS plus the pre-built
+# data/ and library/ folders, so there is no build command to run.
+#
+# If this folder is the repository root, the settings below are complete. If you
+# committed the parent "Visual Library" folder instead, set Netlify's base
+# directory to "webapp" (in the UI, or by uncommenting `base` here).
+
+[build]
+  # base  = "webapp"
+  publish = "."
+
+# Netlify only supports a trailing "*" in header paths — a wildcard in the
+# middle of a path (e.g. /library/*/preview.png) does not match. Nothing here is
+# content-hashed and template.html files change in place, so the right policy is
+# Netlify's default anyway: ETag revalidation, which turns repeat visits into
+# cheap 304s while never serving a stale template.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# No X-Frame-Options here on purpose: the preview dialog frames the template
+# pages itself, and framing rules are the one thing that would break it.

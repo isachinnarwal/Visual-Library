@@ -1,0 +1,23 @@
+# macOS AppleDouble sidecars — the library folder is full of these and they
+# must never reach the deploy.
+._*
+.DS_Store
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Python (build script)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editors
+.vscode/
+.idea/
+
+# Netlify CLI
+.netlify/

@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-2P-004 — Human vs AI side-by-side comparison columns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0&display=swap" rel="stylesheet">
+<style>
+  .canvas {
+    --bg-deep: #F2F2F4;
+    --card-bg:  #E4E6E8;
+    --text-dark: #1A1815;
+    --text-muted: #6A6A70;
+    --text-light: #FFFFFF;
+    --color-1: #2EB196;
+    --color-2: #2F5DB8;
+    --font-body: 'Source Sans Pro', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: var(--bg-deep);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === TITLE ====================================================== */
+  .title-wrap {
+    position: absolute;
+    top: 50px; left: 0; right: 0;
+    text-align: center;
+    z-index: 5;
+  }
+  .title {
+    font-weight: 900;
+    font-size: 52px;
+    line-height: 1;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+  }
+  .subtitle {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.32;
+    color: var(--text-muted);
+    max-width: 1300px;
+    margin: 0 auto 18px;
+  }
+  .title-bar {
+    display: inline-flex;
+    gap: 6px;
+    height: 6px;
+  }
+  .title-bar span { width: 100px; height: 100%; border-radius: 3px; display: block; }
+  .title-bar span:nth-child(1) { background: var(--color-1); }
+  .title-bar span:nth-child(2) { background: var(--color-2); }
+
+  /* === UNIT — colored side bar + main card ======================== */
+  .unit {
+    position: absolute;
+    top: 320px;
+    width: 800px;
+    height: 660px;
+    z-index: 3;
+  }
+  .unit.u-1 { left: 100px;   --accent-color: var(--color-1); }
+  .unit.u-2 { left: 1020px;  --accent-color: var(--color-2); }
+
+  /* Side bar — narrow colored column on OUTER side */
+  .unit-side {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 100px;
+    background: var(--accent-color);
+    border-radius: 14px;
+    z-index: 2;
+    color: var(--text-light);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: space-between;
+    padding: 36px 0;
+  }
+  .unit.u-1 .unit-side { left: 0; }
+  .unit.u-2 .unit-side { right: 0; }
+  .unit-side .num {
+    font-weight: 900;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+  .unit-side .material-symbols-outlined {
+    font-size: 64px;
+    color: var(--text-light);
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* Main card */
+  .unit-card {
+    position: absolute;
+    top: 50px;
+    bottom: 50px;
+    background: var(--card-bg);
+    border-radius: 14px;
+    box-shadow: 0 10px 24px rgba(20, 30, 50, 0.10);
+    padding: 80px 40px 40px;
+    z-index: 3;
+  }
+  .unit.u-1 .unit-card { left: 80px;  right: 0; }
+  .unit.u-2 .unit-card { left: 0;     right: 80px; }
+
+  /* Colored label tab at top of card */
+  .unit-tab {
+    position: absolute;
+    top: -20px;
+    left: 40px; right: 40px;
+    height: 78px;
+    background: var(--accent-color);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-light);
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: 0.04em;
+    box-shadow: 0 8px 20px rgba(20, 30, 50, 0.18);
+  }
+
+  .unit-body {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.32;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .unit-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 26px;
+  }
+  .unit-list li {
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.30;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 12px;
+    padding-right: 22px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  .unit-list li::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    opacity: 0.5;
+  }
+
+  /* Slider line */
+  .unit-slider {
+    position: absolute;
+    bottom: 30px;
+    left: 50px; right: 50px;
+    height: 4px;
+    background: var(--text-muted);
+    opacity: 0.4;
+    border-radius: 2px;
+  }
+  .unit-slider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--bg-deep);
+    border: 5px solid var(--accent-color);
+    box-shadow: 0 4px 12px rgba(20, 30, 50, 0.18);
+  }
+  .unit.u-1 .unit-slider::after { right: 30%; }
+  .unit.u-2 .unit-slider::after { left:  30%; }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-2P-004"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <div class="title-wrap">
+    <h1 class="title" data-token="title">Human vs Artificial Intelligence</h1>
+    <p class="subtitle" data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+    <span class="title-bar"><span></span><span></span></span>
+  </div>
+
+  <article class="unit u-1">
+    <div class="unit-side">
+      <span class="num" data-token="s1.num">01</span>
+      <span class="material-symbols-outlined" data-token="s1.icon">groups</span>
+    </div>
+    <div class="unit-card">
+      <div class="unit-tab" data-token="s1.label">Human</div>
+      <p class="unit-body"  data-token="s1.body">Lorem ipsum dolor sit amet coredai nsectetur tempora adipiscing elit dolor et sed diamar nonummy</p>
+      <ul class="unit-list">
+        <li data-token="s1.li1">Lorem ipsum dolor sitared amet, consectetuer</li>
+        <li data-token="s1.li2">sed diamar nonummy ni</li>
+        <li data-token="s1.li3">tincidunt ut laoreet dolore</li>
+      </ul>
+      <div class="unit-slider"></div>
+    </div>
+  </article>
+
+  <article class="unit u-2">
+    <div class="unit-side">
+      <span class="num" data-token="s2.num">02</span>
+      <span class="material-symbols-outlined" data-token="s2.icon">smart_toy</span>
+    </div>
+    <div class="unit-card">
+      <div class="unit-tab" data-token="s2.label">Artificial Intelligence</div>
+      <p class="unit-body"  data-token="s2.body">Lorem ipsum dolor sit amet coredai nsectetur tempora adipiscing elit dolor et sed diamar nonummy</p>
+      <ul class="unit-list">
+        <li data-token="s2.li1">Lorem ipsum dolor sitared amet, consectetuer</li>
+        <li data-token="s2.li2">sed diamar nonummy ni</li>
+        <li data-token="s2.li3">tincidunt ut laoreet dolore</li>
+      </ul>
+      <div class="unit-slider"></div>
+    </div>
+  </article>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  gsap.set('.title, .subtitle, .title-bar', {opacity: 0, y: -8});
+  gsap.set('.unit.u-1',   {opacity: 0, x: -50});
+  gsap.set('.unit.u-2',   {opacity: 0, x:  50});
+  gsap.set('.unit-tab',   {opacity: 0, y: -8});
+  gsap.set('.unit-body',  {opacity: 0, y: 6});
+  gsap.set('.unit-list li',{opacity: 0, y: 6});
+  gsap.set('.unit-slider',{opacity: 0});
+
+  const tl = gsap.timeline({paused: true});
+  tl.to('.title',     {opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'}, 0.2);
+  tl.to('.subtitle',  {opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'}, 0.45);
+  tl.to('.title-bar', {opacity: 1, y: 0, duration: 0.4, ease: 'power2.out'}, 0.7);
+
+  function revealUnit(n, t) {
+    const u = '.u-' + n;
+    tl.to(u,                  {opacity: 1, x: 0, duration: 0.55, ease: 'power3.out'}, t);
+    tl.to(u + ' .unit-tab',   {opacity: 1, y: 0, duration: 0.40, ease: 'back.out(1.5)'}, t + 0.25);
+    tl.to(u + ' .unit-body',  {opacity: 1, y: 0, duration: 0.40, ease: 'power2.out'}, t + 0.40);
+    tl.to(u + ' .unit-list li', {opacity: 1, y: 0, duration: 0.35, stagger: 0.10, ease: 'power2.out'}, t + 0.55);
+    tl.to(u + ' .unit-slider', {opacity: 1, duration: 0.30, ease: 'power2.out'}, t + 0.85);
+  }
+  revealUnit(1, 1.0);
+  revealUnit(2, 1.3);
+  tl.to({}, {duration: 2.0}, 4.0);
+
+  window.__libraryTimeline = tl;
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+</body>
+</html>

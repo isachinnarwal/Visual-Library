@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-4P-018 — Four teardrop petals radiating from one point</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F3F5F4;   /* vignette mid                            */
+    --bg-edge:     #EDF0EF;   /* vignette outer                          */
+    --halo-out:    #E2E2E2;   /* outer grey disc behind the hub          */
+    --halo-in:     #C5C5C5;   /* inner grey disc behind the hub          */
+    --well:        #FFFFFF;   /* white disc in each petal head           */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+    --text-muted:  #8A8A8C;   /* point body copy                         */
+
+    --color-1:     #D99B31;   /* point 1 — amber,     top-left           */
+    --color-2:     #295565;   /* point 2 — dark teal, top-right          */
+    --color-3:     #BC354A;   /* point 3 — red,       bottom-left        */
+    --color-4:     #328C88;   /* point 4 — teal,      bottom-right       */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Four teardrops all struck from ONE apex at (960,660). Each is a
+       r-105 head circle plus the two TANGENT LINES from the apex to that
+       circle — so the petal narrows to a true point instead of a wedge.
+       Heads sit at apex ± (208,197), i.e. on the diagonals.
+       Two flat grey discs sit behind the apex as a hub.
+       Copy fills the four corners, each block reading inward.
+       Margins: top 70 · left 120 · right 120 · bottom 90.              */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 30%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — four-segment rule, one per point ==================== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 250px; height: 10px; width: 129px; border-radius: 2px; }
+  .rule-1 { left: 702px;  background: var(--color-1); }
+  .rule-2 { left: 831px;  background: var(--color-2); }
+  .rule-3 { left: 960px;  background: var(--color-3); }
+  .rule-4 { left: 1089px; background: var(--color-4); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === WELL GLYPHS — tinted with their own petal ==================== */
+  .well-icon {
+    position: absolute;
+    width: 210px; height: 72px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 3;
+  }
+  .well-icon-1 { left: 647px;  top: 427px; color: var(--color-1); }
+  .well-icon-2 { left: 1063px; top: 427px; color: var(--color-2); }
+  .well-icon-3 { left: 647px;  top: 821px; color: var(--color-3); }
+  .well-icon-4 { left: 1063px; top: 821px; color: var(--color-4); }
+  .well-icon .material-symbols-outlined {
+    font-size: 72px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* === CORNER COPY ================================================== */
+  .pt-label {
+    position: absolute;
+    width: 440px; height: 48px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 38px;
+    line-height: 48px;
+    z-index: 3;
+  }
+  .pt-label-1 { left: 120px;  top: 372px; text-align: right; color: var(--color-1); }
+  .pt-label-2 { left: 1360px; top: 372px; text-align: left;  color: var(--color-2); }
+  .pt-label-3 { left: 120px;  top: 778px; text-align: right; color: var(--color-3); }
+  .pt-label-4 { left: 1360px; top: 778px; text-align: left;  color: var(--color-4); }
+
+  .pt-body {
+    position: absolute;
+    width: 440px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--text-muted);
+    z-index: 3;
+  }
+  .pt-body-1 { left: 120px;  top: 428px; text-align: right; }
+  .pt-body-2 { left: 1360px; top: 428px; text-align: left;  }
+  .pt-body-3 { left: 120px;  top: 834px; text-align: right; }
+  .pt-body-4 { left: 1360px; top: 834px; text-align: left;  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-4P-018"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <h1 class="headline" data-token="title">4Cs Education</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+  <div class="rule rule-3"></div>
+  <div class="rule rule-4"></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <!-- hub: two flat grey discs, dead centre on the apex -->
+    <circle class="halo halo-out" cx="960" cy="660" r="190" fill="var(--halo-out)"/>
+    <circle class="halo halo-in"  cx="960" cy="660" r="135" fill="var(--halo-in)"/>
+
+    <!-- TEARDROPS. apex -> tangent point -> major arc round the head ->
+         tangent point -> close. Tangent length sqrt(286.5^2 - 105^2) =
+         266.5 at 21.5 deg either side of the apex-to-head line; the
+         large-arc flag is 1 on all four because the arc has to run the
+         LONG way round, away from the apex. -->
+    <path class="petal petal-1" fill="var(--color-1)"
+          d="M 960 660 L 847 419 A 105 105 0 1 0 713 561 Z"/>
+    <path class="petal petal-2" fill="var(--color-2)"
+          d="M 960 660 L 1073 419 A 105 105 0 1 1 1207 561 Z"/>
+    <path class="petal petal-3" fill="var(--color-3)"
+          d="M 960 660 L 847 901 A 105 105 0 1 1 713 759 Z"/>
+    <path class="petal petal-4" fill="var(--color-4)"
+          d="M 960 660 L 1073 901 A 105 105 0 1 0 1207 759 Z"/>
+
+    <circle class="well well-1" cx="752"  cy="463" r="78" fill="var(--well)"/>
+    <circle class="well well-2" cx="1168" cy="463" r="78" fill="var(--well)"/>
+    <circle class="well well-3" cx="752"  cy="857" r="78" fill="var(--well)"/>
+    <circle class="well well-4" cx="1168" cy="857" r="78" fill="var(--well)"/>
+  </svg>
+
+  <div class="well-icon well-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">psychology</span></div>
+  <div class="well-icon well-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">forum</span></div>
+  <div class="well-icon well-icon-3"><span class="material-symbols-outlined" data-token="p3.icon">handshake</span></div>
+  <div class="well-icon well-icon-4"><span class="material-symbols-outlined" data-token="p4.icon">emoji_objects</span></div>
+
+  <div class="pt-label pt-label-1" data-token="p1.label">Critical Thinking</div>
+  <div class="pt-label pt-label-2" data-token="p2.label">Communication</div>
+  <div class="pt-label pt-label-3" data-token="p3.label">Collaboration</div>
+  <div class="pt-label pt-label-4" data-token="p4.label">Creativity</div>
+
+  <div class="pt-body pt-body-1" data-token="p1.body">Lorem ipsum dolor sit amet, consede ctetuer adipiscing elit, sed diam meir nonummy nibh euismiod tincidunt ut</div>
+  <div class="pt-body pt-body-2" data-token="p2.body">Lorem ipsum dolor sit amet, consede ctetuer adipiscing elit, sed diam meir nonummy nibh euismiod tincidunt ut</div>
+  <div class="pt-body pt-body-3" data-token="p3.body">Lorem ipsum dolor sit amet, consede ctetuer adipiscing elit, sed diam meir nonummy nibh euismiod tincidunt ut</div>
+  <div class="pt-body pt-body-4" data-token="p4.body">Lorem ipsum dolor sit amet, consede ctetuer adipiscing elit, sed diam meir nonummy nibh euismiod tincidunt ut</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function () {
+  gsap.set('.headline, .deck', { opacity: 0, y: 24 });
+  gsap.set('.rule', { opacity: 0, scaleX: 0, transformOrigin: '50% 50%' });
+  gsap.set('.halo', { opacity: 0, scale: 0.4, svgOrigin: '960 660' });
+
+  /* every petal is struck from the apex, so every petal scales from it —
+     they unfurl out of the hub rather than each popping in place */
+  [1, 2, 3, 4].forEach(function (n) {
+    gsap.set('.petal-' + n, { opacity: 0, scale: 0.18, svgOrigin: '960 660' });
+  });
+  [[1, '752 463'], [2, '1168 463'], [3, '752 857'], [4, '1168 857']].forEach(function (p) {
+    gsap.set('.well-' + p[0], { opacity: 0, scale: 0.35, svgOrigin: p[1] });
+  });
+  gsap.set('.well-icon', { opacity: 0, scale: 0.5, transformOrigin: '50% 50%' });
+  gsap.set('.pt-label-1, .pt-body-1, .pt-label-3, .pt-body-3', { opacity: 0, x: -28 });
+  gsap.set('.pt-label-2, .pt-body-2, .pt-label-4, .pt-body-4', { opacity: 0, x:  28 });
+
+  var tl = gsap.timeline({ paused: true });
+
+  tl.to('.headline', { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.00)
+    .to('.deck',     { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.18)
+    .to('.rule',     { opacity: 1, scaleX: 1, duration: 0.44, ease: 'power2.out', stagger: 0.08 }, 0.40)
+    .to('.halo',     { opacity: 1, scale: 1, duration: 0.55, ease: 'power3.out', stagger: 0.10 }, 0.60);
+
+  [1, 2, 3, 4].forEach(function (n, i) {
+    var t = 0.90 + i * 0.42;
+    tl.to('.petal-' + n,     { opacity: 1, scale: 1, duration: 0.58, ease: 'back.out(1.4)' }, t)
+      .to('.well-' + n,      { opacity: 1, scale: 1, duration: 0.44, ease: 'back.out(2)'   }, t + 0.24)
+      .to('.well-icon-' + n, { opacity: 1, scale: 1, duration: 0.38, ease: 'back.out(2)'   }, t + 0.34)
+      .to('.pt-label-' + n + ', .pt-body-' + n,
+          { opacity: 1, x: 0, duration: 0.50, ease: 'power2.out', stagger: 0.08 }, t + 0.20);
+  });
+
+  window.__libraryTimeline = tl;
+
+  /* === SNAPSHOT MODE — mandatory ==================================== */
+  if (new URLSearchParams(location.search).get('snapshot') === '1') {
+    tl.progress(1);
+    document.documentElement.setAttribute('data-snapshot-ready', '1');
+  } else {
+    tl.play();
+  }
+})();
+</script>
+
+</body>
+</html>

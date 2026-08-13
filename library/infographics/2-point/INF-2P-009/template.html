@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-2P-009 — Stacked rows with arc-ringed icon circles and dashed panels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg:          #F0F0F0;   /* flat field                              */
+    --text-dark:   #313131;   /* headline                                */
+    --text-sub:    #7A7A7A;   /* deck                                    */
+    --text-muted:  #8C8C8C;   /* panel body copy                         */
+    --dot:         #C4C4C4;   /* the four separator squares              */
+    --on-color:    #FFFFFF;   /* numeral inside the solid badge          */
+
+    --color-1:     #48B0A6;   /* row 1 — teal                            */
+    --color-2:     #E24622;   /* row 2 — red                             */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Lato', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Two stacked rows, centres y 489 and 835.
+       Per row: badge cx 239 r 61 · ring cx 442 r 119 · open arc r 144
+       · dashed panel x 433->1740, height 240 centred on the row.
+       Margins: top 66 · left 178 · right 180 · bottom 101.            */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: var(--bg);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER ======================================================= */
+  .headline {
+    position: absolute;
+    top: 66px; left: 360px; width: 1200px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 52px;
+    line-height: 1.15;
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  /* deck is a narrow centred column — 3 lines by design, ~130 char cap */
+  .deck {
+    position: absolute;
+    top: 150px; left: 650px; width: 620px;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .dots {
+    position: absolute;
+    top: 285px; left: 926px; width: 69px; height: 9px;
+    display: flex; justify-content: space-between;
+  }
+  .dots i { display: block; width: 9px; height: 9px; background: var(--dot); border-radius: 2px; }
+
+  /* === LAYERS — dashed panels + arcs + rings all live in one SVG ===== */
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === NUMBER BADGE — solid disc, right edge tucked under the arc ==== */
+  .badge {
+    position: absolute;
+    left: 178px; width: 122px; height: 122px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--on-color);
+    z-index: 2;
+  }
+  .badge-1 { top: 428px; background: var(--color-1); }
+  .badge-2 { top: 774px; background: var(--color-2); }
+
+  /* === ICON — solid glyph centred in the thin ring =================== */
+  .icon {
+    position: absolute;
+    left: 390px; width: 105px; height: 105px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .icon-1 { top: 437px; color: var(--color-1); }
+  .icon-2 { top: 783px; color: var(--color-2); }
+  .icon .material-symbols-outlined {
+    font-size: 105px;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* === PANEL COPY — centred in the run between ring and panel edge === */
+  .copy {
+    position: absolute;
+    left: 650px; width: 1000px; height: 188px;
+    display: flex; flex-direction: column; justify-content: center;
+    text-align: center;
+    z-index: 2;
+  }
+  .copy-1 { top: 395px; --accent: var(--color-1); }
+  .copy-2 { top: 741px; --accent: var(--color-2); }
+
+  .copy-label {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 38px;
+    line-height: 1.2;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .copy-body {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-2P-009"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <h1 class="headline" data-token="title">Meditation vs Exercises</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetueri adipiscing elit sed diam nonumimy nibh euismod tincidunt utare laoreet dolore magna</p>
+
+  <div class="dots"><i></i><i></i><i></i><i></i></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080" fill="none">
+    <!-- dashed panels, open on the left so the ring reads as the entry point.
+         NOTE: no pathLength here — it rescales stroke-dasharray and would
+         collapse the dashes into one solid line. The draw is a clip wipe. -->
+    <defs>
+      <clipPath id="p9-wipe-1"><rect class="wipe wipe-1" x="420" y="355" width="1340" height="270"/></clipPath>
+      <clipPath id="p9-wipe-2"><rect class="wipe wipe-2" x="420" y="701" width="1340" height="270"/></clipPath>
+    </defs>
+    <path class="panel panel-1" clip-path="url(#p9-wipe-1)"
+          stroke="var(--color-1)" stroke-width="3" stroke-dasharray="19 12"
+          d="M 433 369 H 1702 A 38 38 0 0 1 1740 407 V 571 A 38 38 0 0 1 1702 609 H 433"/>
+    <path class="panel panel-2" clip-path="url(#p9-wipe-2)"
+          stroke="var(--color-2)" stroke-width="3" stroke-dasharray="19 12"
+          d="M 433 715 H 1702 A 38 38 0 0 1 1740 753 V 917 A 38 38 0 0 1 1702 955 H 433"/>
+
+    <!-- 176deg open arc hugging the outside of the ring -->
+    <path class="arc arc-1" pathLength="1" stroke="var(--color-1)" stroke-width="7" stroke-linecap="butt"
+          d="M 437 633 A 144 144 0 0 1 437 345"/>
+    <path class="arc arc-2" pathLength="1" stroke="var(--color-2)" stroke-width="7" stroke-linecap="butt"
+          d="M 437 979 A 144 144 0 0 1 437 691"/>
+
+    <!-- thin ring, unfilled so the dashed panel stays visible through it -->
+    <circle class="ring ring-1" cx="442" cy="489" r="119" stroke="var(--color-1)" stroke-width="4"/>
+    <circle class="ring ring-2" cx="442" cy="835" r="119" stroke="var(--color-2)" stroke-width="4"/>
+  </svg>
+
+  <div class="badge badge-1" data-token="p1.num">01</div>
+  <div class="badge badge-2" data-token="p2.num">02</div>
+
+  <div class="icon icon-1"><span class="material-symbols-outlined" data-token="p1.icon">self_improvement</span></div>
+  <div class="icon icon-2"><span class="material-symbols-outlined" data-token="p2.icon">fitness_center</span></div>
+
+  <div class="copy copy-1">
+    <h3 class="copy-label" data-token="p1.label">Meditation</h3>
+    <p  class="copy-body"  data-token="p1.body">Lorem ipsum dolor sit amet, consectetueri mei adipiscing elit, sed diam nonummy nibh earmes aliquam erat volutpat. Ut wisi enim ad minimadi veniam, quisa nostrud exerci tation ullamcorper.</p>
+  </div>
+  <div class="copy copy-2">
+    <h3 class="copy-label" data-token="p2.label">Exercises</h3>
+    <p  class="copy-body"  data-token="p2.body">Lorem ipsum dolor sit amet, consectetueri mei adipiscing elit, sed diam nonummy nibh earmes aliquam erat volutpat. Ut wisi enim ad minimadi veniam, quisa nostrud exerci tation ullamcorper.</p>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — header, then each row builds left to right =====
+  // 0.15 headline  0.55 deck  0.95 dots
+  // 1.25 row 1 (arc draws → ring → badge → icon → panel draws → label → body)
+  // 2.85 row 2 (same beats)                     ends ~4.4 → hold to 6.0
+
+  gsap.set('.headline',   {opacity: 0, y: -26});
+  gsap.set('.deck',       {opacity: 0, y: -14});
+  gsap.set('.dots i',     {opacity: 0, scale: 0.4, transformOrigin: 'center'});
+  gsap.set('.arc',        {strokeDasharray: 1, strokeDashoffset: 1});
+  gsap.set('.wipe',       {attr: {width: 0}});
+  gsap.set('.ring-1',     {opacity: 0, scale: 0.7, svgOrigin: '442 489'});
+  gsap.set('.ring-2',     {opacity: 0, scale: 0.7, svgOrigin: '442 835'});
+  gsap.set('.badge',      {opacity: 0, scale: 0.5, transformOrigin: 'center'});
+  gsap.set('.icon',       {opacity: 0, scale: 0.6, transformOrigin: 'center'});
+  gsap.set('.copy-label', {opacity: 0, y: 14});
+  gsap.set('.copy-body',  {opacity: 0, y: 14});
+
+  const tl = gsap.timeline({paused: true});
+
+  tl.to('.headline', {opacity: 1, y: 0, duration: 0.60, ease: 'power2.out'},                 0.15)
+    .to('.deck',     {opacity: 1, y: 0, duration: 0.55, ease: 'power2.out'},                 0.55)
+    .to('.dots i',   {opacity: 1, scale: 1, duration: 0.30, stagger: 0.07,
+                      ease: 'back.out(2)'},                                                  0.95);
+
+  function revealRow(n, t) {
+    tl.to('.arc-'   + n,                 {strokeDashoffset: 0, duration: 0.60, ease: 'power2.inOut'}, t)
+      .to('.ring-'  + n,                 {opacity: 1, scale: 1, duration: 0.50, ease: 'back.out(1.5)'}, t + 0.20)
+      .to('.badge-' + n,                 {opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.8)'}, t + 0.40)
+      .to('.icon-'  + n,                 {opacity: 1, scale: 1, duration: 0.40, ease: 'power2.out'},    t + 0.55)
+      .to('.wipe-'  + n,                 {attr: {width: 1340}, duration: 0.75, ease: 'power2.inOut'},   t + 0.60)
+      .to('.copy-'  + n + ' .copy-label',{opacity: 1, y: 0, duration: 0.40, ease: 'power2.out'},        t + 0.95)
+      .to('.copy-'  + n + ' .copy-body', {opacity: 1, y: 0, duration: 0.45, ease: 'power2.out'},        t + 1.10);
+  }
+
+  revealRow(1, 1.25);
+  revealRow(2, 2.85);
+
+  tl.to({}, {duration: 1.5}, 4.5);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES ==================================================
+  // ?snapshot=1  →  preview.sh thumbnail: fast-forward to the final frame
+  // __hfSeek     →  HyperFrames pipeline drives the timeline via seek
+  // otherwise    →  standalone preview / Launch panel: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

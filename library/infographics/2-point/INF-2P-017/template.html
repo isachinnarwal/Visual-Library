@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-2P-017 — Bracket rules descending to a plate hub with dotted arc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg:         #EFEFEF;   /* flat field                               */
+    --plate-core: #E6E6E6;   /* hub plate, centre                        */
+    --plate-mid:  #DCDCDC;   /* hub plate, mid                           */
+    --plate-rim:  #CBCBCB;   /* hub plate, rim                           */
+    --plate-well: #E9E9E9;   /* the recessed circle inside the plate     */
+    --plate-line: #D6D6D6;   /* the hairline around that well            */
+
+    --text-muted: #6B6B6D;   /* column body copy                         */
+
+    --color-1:    #F08D30;   /* point 1 — orange                         */
+    --color-2:    #2A9D91;   /* point 2 — teal                           */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Two mirrored L-brackets drop from the numerals to the hub: the
+       verticals sit at x 736 and 1184 and stop at y 684, and the dotted
+       arc (r 235 about the plate centre) picks up 32px below them at
+       x 731 / 1189 — the hand-off is the whole idea, keep it aligned.
+       No header block; this template is the whole frame.               */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: var(--bg);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === COLUMNS — mirrored, hard-aligned to the bracket verticals ===== */
+  .num {
+    position: absolute;
+    top: 178px; width: 396px; height: 100px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 92px;
+    line-height: 100px;
+    z-index: 2;
+  }
+  .num-1 { left: 252px;  color: var(--color-1); text-align: left;  }
+  .num-2 { left: 1272px; color: var(--color-2); text-align: right; }
+
+  .col-label {
+    position: absolute;
+    top: 297px; width: 396px; height: 56px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 56px;
+    z-index: 2;
+  }
+  .col-label-1 { left: 252px;  color: var(--color-1); text-align: left;  }
+  .col-label-2 { left: 1272px; color: var(--color-2); text-align: right; }
+
+  .col-body {
+    position: absolute;
+    top: 380px; width: 396px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    z-index: 2;
+  }
+  .col-body-1 { left: 252px;  text-align: left;  }
+  .col-body-2 { left: 1272px; text-align: right; }
+
+  /* === HUB PLATE COPY =============================================== */
+  .hub-kicker {
+    position: absolute;
+    top: 620px; left: 760px; width: 400px; height: 34px;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 34px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-2);
+    text-align: center;
+    z-index: 2;
+  }
+  .hub-word {
+    position: absolute;
+    top: 658px; left: 760px; width: 400px; height: 48px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 48px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--color-1);
+    text-align: center;
+    z-index: 2;
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-2P-017"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080" fill="none">
+    <defs>
+      <radialGradient id="p17-plate" cx="0.5" cy="0.45" r="0.62">
+        <stop offset="0"    stop-color="var(--plate-core)"/>
+        <stop offset="0.55" stop-color="var(--plate-mid)"/>
+        <stop offset="1"    stop-color="var(--plate-rim)"/>
+      </radialGradient>
+      <linearGradient id="p17-arc" x1="731" y1="0" x2="1189" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="var(--color-1)"/>
+        <stop offset="1" stop-color="var(--color-2)"/>
+      </linearGradient>
+      <filter id="p17-shadow" x="-40%" y="-40%" width="180%" height="200%">
+        <feDropShadow dx="12" dy="16" stdDeviation="18" flood-color="#9A9A9A" flood-opacity="0.42"/>
+      </filter>
+    </defs>
+
+    <!-- L-brackets: horizontal off the numeral, corner, then drop -->
+    <path class="bracket bracket-1" pathLength="1" stroke="var(--color-1)" stroke-width="4"
+          d="M 360 246 H 736 V 684"/>
+    <path class="bracket bracket-2" pathLength="1" stroke="var(--color-2)" stroke-width="4"
+          d="M 1560 246 H 1184 V 684"/>
+
+    <!-- dotted arc under the plate, picking up where the brackets stop -->
+    <!-- NOTE: no pathLength here — it rescales stroke-dasharray and
+         would collapse the dots into one solid arc -->
+    <path class="arc" stroke="url(#p17-arc)" stroke-width="10"
+          stroke-dasharray="1 27" stroke-linecap="round"
+          d="M 731 716 A 235 235 0 0 0 1189 716"/>
+
+    <circle class="plate" cx="960" cy="663" r="194" fill="url(#p17-plate)" filter="url(#p17-shadow)"/>
+    <circle class="well"  cx="960" cy="663" r="141" fill="var(--plate-well)"
+            stroke="var(--plate-line)" stroke-width="3"/>
+  </svg>
+
+  <div class="num num-1"       data-token="p1.num">01</div>
+  <div class="num num-2"       data-token="p2.num">02</div>
+  <div class="col-label col-label-1" data-token="p1.label">Lorem ipsum</div>
+  <div class="col-label col-label-2" data-token="p2.label">Lorem ipsum</div>
+  <p class="col-body col-body-1" data-token="p1.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+  <p class="col-body col-body-2" data-token="p2.body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+
+  <div class="hub-kicker" data-token="hub.kicker">Info</div>
+  <div class="hub-word"   data-token="hub.word">Graphic</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — plate lands, brackets draw down into the arc ===
+  // 0.20 plate + well + hub copy
+  // 1.10 bracket 1 draws (right then down) → numeral → label → body
+  // 2.40 bracket 2 (mirrored)
+  // 3.60 the dotted arc closes the loop between the two verticals
+  // ends ~4.5 → hold to 6.0
+
+  gsap.set('.plate',      {opacity: 0, scale: 0.7, svgOrigin: '960 663'});
+  gsap.set('.well',       {opacity: 0, scale: 0.7, svgOrigin: '960 663'});
+  gsap.set('.hub-kicker', {opacity: 0, y: 12});
+  gsap.set('.hub-word',   {opacity: 0, y: 12});
+  gsap.set('.bracket',    {strokeDasharray: 1, strokeDashoffset: 1});
+  gsap.set('.arc',        {opacity: 0});
+  gsap.set('.num',        {opacity: 0, y: -18});
+  gsap.set('.col-label',  {opacity: 0, y: 14});
+  gsap.set('.col-body',   {opacity: 0, y: 14});
+
+  const tl = gsap.timeline({paused: true});
+
+  tl.to('.plate',      {opacity: 1, scale: 1, duration: 0.55, ease: 'back.out(1.4)'}, 0.20)
+    .to('.well',       {opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.4)'}, 0.38)
+    .to('.hub-kicker', {opacity: 1, y: 0, duration: 0.40, ease: 'power2.out'},        0.60)
+    .to('.hub-word',   {opacity: 1, y: 0, duration: 0.40, ease: 'power2.out'},        0.72);
+
+  function revealCol(n, t) {
+    tl.to('.bracket-'   + n, {strokeDashoffset: 0, duration: 0.75, ease: 'power2.inOut'}, t)
+      .to('.num-'       + n, {opacity: 1, y: 0, duration: 0.45, ease: 'power2.out'},      t + 0.20)
+      .to('.col-label-' + n, {opacity: 1, y: 0, duration: 0.40, ease: 'power2.out'},      t + 0.40)
+      .to('.col-body-'  + n, {opacity: 1, y: 0, duration: 0.45, ease: 'power2.out'},      t + 0.55);
+  }
+
+  revealCol(1, 1.10);
+  revealCol(2, 2.40);
+
+  tl.to('.arc', {opacity: 1, duration: 0.55, ease: 'power1.out'}, 3.60);
+
+  tl.to({}, {duration: 1.2}, 4.8);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES ==================================================
+  // ?snapshot=1  →  preview.sh thumbnail: fast-forward to the final frame
+  // __hfSeek     →  HyperFrames pipeline drives the timeline via seek
+  // otherwise    →  standalone preview / Launch panel: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

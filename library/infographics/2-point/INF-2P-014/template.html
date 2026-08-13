@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-2P-014 — Split ring with two arms running opposite ways</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F5F5F5;   /* vignette mid                            */
+    --bg-edge:     #EDEFEE;   /* vignette outer                          */
+    --hub:         #E2E2E2;   /* grey disc at the centre                 */
+    --hub-gap:     #FDFDFD;   /* white ring between disc and colour ring */
+    --on-color:    #FFFFFF;   /* copy sitting on an arm                  */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+    --hub-head:    #7E7E7E;   /* the two hub title lines                 */
+    --hub-body:    #9A9A9A;   /* hub dots                                */
+
+    --color-1:     #46A9A5;   /* arm 1 — teal                            */
+    --color-1-dk:  #3F6F6E;   /* arm 1 shading where it leaves the ring  */
+    --color-2:     #3D84B9;   /* arm 2 — blue                            */
+    --color-2-dk:  #3F5A68;   /* arm 2 shading where it leaves the ring  */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Ring: centre (964, 656), outer r 296, inner r 244 (stroke 52).
+       Arm 1 = the ring's TOP half + a 296px-tall bar running right,
+       arm 2 = the BOTTOM half + the same bar mirrored, running left.
+       The split is exactly the ring's horizontal diameter, y = 656.
+       Margins: top 70 · left 86 · right 78 · bottom 128.               */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 25%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — same family as INF-2P-006 / 011 / 013 ================ */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 268px; height: 10px; border-radius: 2px; }
+  .rule-1 { left: 693px; width: 264px; background: var(--color-1); }
+  .rule-2 { left: 963px; width: 264px; background: var(--color-2); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === HUB CONTENTS — inside the grey disc, r 190 ==================== */
+  .hub-line1 {
+    position: absolute;
+    top: 611px; left: 774px; width: 380px; height: 62px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 53px;
+    line-height: 62px;
+    color: var(--hub-head);
+    text-align: center;
+    z-index: 2;
+  }
+  .hub-line2 {
+    position: absolute;
+    top: 678px; left: 774px; width: 380px; height: 40px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    color: var(--hub-head);
+    text-align: center;
+    z-index: 2;
+  }
+  .hub-dots {
+    position: absolute;
+    top: 727px; left: 930px; width: 68px; height: 16px;
+    display: flex; justify-content: space-between;
+    z-index: 2;
+  }
+  .hub-dots i { width: 16px; height: 16px; border-radius: 50%; background: var(--hub-body); opacity: 0.6; }
+
+  /* === ARM COPY — mirrored, each hugging its arm's outer end ========= */
+  .arm-copy {
+    position: absolute;
+    width: 420px; height: 216px;
+    display: flex; flex-direction: column; justify-content: center;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .arm-copy-1 { left: 1320px; top: 400px; text-align: left;  }
+  .arm-copy-2 { left: 180px;  top: 696px; text-align: right; }
+
+  .arm-label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .arm-body {
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.5;
+    opacity: 0.94;
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-2P-014"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <h1 class="headline" data-token="title">Human vs Artificial Intelligence</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <defs>
+      <!-- each arm darkens where it leaves the ring, which is what gives
+           the join its depth; the arc itself stays the flat brand colour -->
+      <linearGradient id="p14-a1" x1="964" y1="0" x2="1842" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0"    stop-color="var(--color-1)"/>
+        <stop offset="0.24" stop-color="var(--color-1)"/>
+        <stop offset="0.28" stop-color="var(--color-1-dk)"/>
+        <stop offset="0.66" stop-color="var(--color-1)"/>
+        <stop offset="1"    stop-color="var(--color-1)"/>
+      </linearGradient>
+      <linearGradient id="p14-a2" x1="964" y1="0" x2="86" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0"    stop-color="var(--color-2)"/>
+        <stop offset="0.24" stop-color="var(--color-2)"/>
+        <stop offset="0.28" stop-color="var(--color-2-dk)"/>
+        <stop offset="0.66" stop-color="var(--color-2)"/>
+        <stop offset="1"    stop-color="var(--color-2)"/>
+      </linearGradient>
+    </defs>
+
+    <!-- arm 1 — ring top half + bar running right -->
+    <path class="arm arm-1" fill="url(#p14-a1)"
+          d="M 668 656
+             A 296 296 0 0 1 964 360
+             L 1694 360
+             A 148 148 0 0 1 1694 656
+             L 1208 656
+             A 244 244 0 0 0 720 656 Z"/>
+
+    <!-- arm 2 — the same shape rotated 180deg about (964, 656) -->
+    <path class="arm arm-2" fill="url(#p14-a2)"
+          d="M 1260 656
+             A 296 296 0 0 1 964 952
+             L 234 952
+             A 148 148 0 0 1 234 656
+             L 720 656
+             A 244 244 0 0 0 1208 656 Z"/>
+
+    <!-- white gap ring, then the grey hub disc -->
+    <circle class="hub-gap"  cx="964" cy="656" r="244" fill="var(--hub-gap)"/>
+    <circle class="hub-disc" cx="964" cy="656" r="190" fill="var(--hub)"/>
+  </svg>
+
+  <div class="hub-line1" data-token="hub.line1">Human vs</div>
+  <div class="hub-line2" data-token="hub.line2">Artificial Intelligence</div>
+  <div class="hub-dots"><i></i><i></i><i></i></div>
+
+  <div class="arm-copy arm-copy-1">
+    <h3 class="arm-label" data-token="p1.label">Human</h3>
+    <p  class="arm-body"  data-token="p1.body">Lorem ipsum dolor sit amet, consea ctetuer adipiscing elit, sed diamarip nonummy nibh euismod tincidunt u volutpat. Ut wisi enim</p>
+  </div>
+  <div class="arm-copy arm-copy-2">
+    <h3 class="arm-label" data-token="p2.label">Artificial Intelligence</h3>
+    <p  class="arm-body"  data-token="p2.body">Lorem ipsum dolor sit amet, consea ctetuer adipiscing elit, sed diamarip nonummy nibh euismod tincidunt u volutpat. Ut wisi enim</p>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — header, ring halves swing out, hub lands last ==
+  // 0.15 headline  0.55 deck  0.95 split rule
+  // 1.30 arm 1 sweeps in from the ring outward
+  // 2.30 arm 2 (mirrored)
+  // 3.30 hub gap + disc + its two lines + dots
+  // ends ~4.6 → hold to 6.0
+
+  gsap.set('.headline',  {opacity: 0, y: -26});
+  gsap.set('.deck',      {opacity: 0, y: -14});
+  gsap.set('.rule',      {scaleX: 0});
+  gsap.set('.rule-1',    {transformOrigin: 'right center'});
+  gsap.set('.rule-2',    {transformOrigin: 'left center'});
+  gsap.set('.arm-1',     {opacity: 0, scale: 0.72, svgOrigin: '964 656'});
+  gsap.set('.arm-2',     {opacity: 0, scale: 0.72, svgOrigin: '964 656'});
+  gsap.set('.arm-label', {opacity: 0, y: 14});
+  gsap.set('.arm-body',  {opacity: 0, y: 14});
+  gsap.set('.hub-gap',   {opacity: 0, scale: 0.6, svgOrigin: '964 656'});
+  gsap.set('.hub-disc',  {opacity: 0, scale: 0.6, svgOrigin: '964 656'});
+  gsap.set('.hub-line1', {opacity: 0, y: 14});
+  gsap.set('.hub-line2', {opacity: 0, y: 14});
+  gsap.set('.hub-dots i',{opacity: 0, scale: 0.4, transformOrigin: 'center'});
+
+  const tl = gsap.timeline({paused: true});
+
+  tl.to('.headline', {opacity: 1, y: 0, duration: 0.60, ease: 'power2.out'}, 0.15)
+    .to('.deck',     {opacity: 1, y: 0, duration: 0.55, ease: 'power2.out'}, 0.55)
+    .to('.rule',     {scaleX: 1, duration: 0.50, ease: 'power2.out'},        0.95);
+
+  function revealArm(n, t) {
+    tl.to('.arm-' + n,                       {opacity: 1, scale: 1, duration: 0.65, ease: 'back.out(1.2)'}, t)
+      .to('.arm-copy-' + n + ' .arm-label',  {opacity: 1, y: 0, duration: 0.40, ease: 'power2.out'},        t + 0.40)
+      .to('.arm-copy-' + n + ' .arm-body',   {opacity: 1, y: 0, duration: 0.45, ease: 'power2.out'},        t + 0.55);
+  }
+
+  revealArm(1, 1.30);
+  revealArm(2, 2.30);
+
+  tl.to('.hub-gap',   {opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.4)'}, 3.30)
+    .to('.hub-disc',  {opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.4)'}, 3.45)
+    .to('.hub-line1', {opacity: 1, y: 0, duration: 0.40, ease: 'power2.out'},        3.70)
+    .to('.hub-line2', {opacity: 1, y: 0, duration: 0.40, ease: 'power2.out'},        3.85)
+    .to('.hub-dots i',{opacity: 1, scale: 1, duration: 0.28, stagger: 0.06,
+                       ease: 'back.out(2)'},                                         4.00);
+
+  tl.to({}, {duration: 1.2}, 4.8);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES ==================================================
+  // ?snapshot=1  →  preview.sh thumbnail: fast-forward to the final frame
+  // __hfSeek     →  HyperFrames pipeline drives the timeline via seek
+  // otherwise    →  standalone preview / Launch panel: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

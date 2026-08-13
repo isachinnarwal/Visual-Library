@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-3P-009 — Interlocking chevron bands with letter tabs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F3F5F4;   /* vignette mid                            */
+    --bg-edge:     #EDF0EF;   /* vignette outer                          */
+    --on-color:    #FFFFFF;   /* every band element is white on colour   */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+
+    --color-1:     #47B2D8;   /* band 1 — light blue                     */
+    --color-2:     #D83453;   /* band 2 — red                            */
+    --color-3:     #194F8A;   /* band 3 — navy                           */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Three chevrons on one band, y 500→889, mid y 694, point depth 130.
+       Band 1 is flat-left; bands 2 and 3 carry a notch that is the exact
+       inverse of the previous band's point, so they interlock with no
+       gap. Seams: 578/708 and 1141/1271 (flat edge / tip).
+       Margins: top 70 · left 72 · right 86 · bottom 191.               */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 30%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — three-segment rule, one per band ==================== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 268px; height: 10px; width: 210px; border-radius: 2px; }
+  .rule-1 { left: 633px;  background: var(--color-1); }
+  .rule-2 { left: 855px;  background: var(--color-2); }
+  .rule-3 { left: 1077px; background: var(--color-3); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === TAB LETTERS ================================================== */
+  .tab-letter {
+    position: absolute;
+    top: 406px; width: 101px; height: 94px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 44px;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .tab-letter-1 { left: 72px;   }
+  .tab-letter-2 { left: 578px;  }
+  .tab-letter-3 { left: 1141px; }
+
+  /* === BAND COPY ==================================================== */
+  .bd-label {
+    position: absolute;
+    top: 566px; width: 290px; height: 46px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 46px;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .bd-label-1 { left: 154px;  }
+  .bd-label-2 { left: 750px;  }
+  .bd-label-3 { left: 1313px; }
+
+  .bd-body {
+    position: absolute;
+    top: 624px; width: 290px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--on-color);
+    opacity: 0.95;
+    z-index: 3;
+  }
+  .bd-body-1 { left: 154px;  }
+  .bd-body-2 { left: 750px;  }
+  .bd-body-3 { left: 1313px; }
+
+  .bd-rule {
+    position: absolute;
+    top: 620px; width: 3px; height: 148px;
+    background: var(--on-color);
+    opacity: 0.85;
+    z-index: 3;
+  }
+  .bd-rule-1 { left: 488px;  }
+  .bd-rule-2 { left: 1064px; }
+  .bd-rule-3 { left: 1645px; }
+
+  .bd-icon {
+    position: absolute;
+    top: 657px; width: 74px; height: 74px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .bd-icon-1 { left: 551px;  }
+  .bd-icon-2 { left: 1127px; }
+  .bd-icon-3 { left: 1695px; }
+  .bd-icon .material-symbols-outlined {
+    font-size: 74px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-3P-009"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <h1 class="headline" data-token="title">DEI Frameworks</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+  <div class="rule rule-3"></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <defs>
+      <filter id="p9-shadow" x="-8%" y="-15%" width="120%" height="140%">
+        <feDropShadow dx="10" dy="6" stdDeviation="9" flood-color="#6E6E6E" flood-opacity="0.30"/>
+      </filter>
+    </defs>
+
+    <!-- drawn right to left so each band's point casts onto the next -->
+    <g class="band band-3">
+      <rect class="tab tab-3" x="1141" y="406" width="101" height="94" fill="var(--color-3)"/>
+      <path class="chev chev-3" fill="var(--color-3)"
+            d="M 1141 500 L 1704 500 L 1834 694 L 1704 889 L 1141 889 L 1271 694 Z"/>
+    </g>
+    <g class="band band-2" filter="url(#p9-shadow)">
+      <rect class="tab tab-2" x="578" y="406" width="101" height="94" fill="var(--color-2)"/>
+      <path class="chev chev-2" fill="var(--color-2)"
+            d="M 578 500 L 1141 500 L 1271 694 L 1141 889 L 578 889 L 708 694 Z"/>
+    </g>
+    <g class="band band-1" filter="url(#p9-shadow)">
+      <rect class="tab tab-1" x="72" y="406" width="101" height="94" fill="var(--color-1)"/>
+      <path class="chev chev-1" fill="var(--color-1)"
+            d="M 72 500 L 578 500 L 708 694 L 578 889 L 72 889 Z"/>
+    </g>
+  </svg>
+
+  <div class="tab-letter tab-letter-1" data-token="p1.letter">D</div>
+  <div class="tab-letter tab-letter-2" data-token="p2.letter">E</div>
+  <div class="tab-letter tab-letter-3" data-token="p3.letter">I</div>
+
+  <div class="bd-label bd-label-1" data-token="p1.label">Diversity</div>
+  <div class="bd-label bd-label-2" data-token="p2.label">Equity</div>
+  <div class="bd-label bd-label-3" data-token="p3.label">Inclusion</div>
+
+  <p class="bd-body bd-body-1" data-token="p1.body">Lorem ipsum dolor sit consectetur adipiscin quisque blandit dolor vitae sodales</p>
+  <p class="bd-body bd-body-2" data-token="p2.body">Lorem ipsum dolor sit consectetur adipiscin quisque blandit dolor vitae sodales</p>
+  <p class="bd-body bd-body-3" data-token="p3.body">Lorem ipsum dolor sit consectetur adipiscin quisque blandit dolor vitae sodales</p>
+
+  <div class="bd-rule bd-rule-1"></div>
+  <div class="bd-rule bd-rule-2"></div>
+  <div class="bd-rule bd-rule-3"></div>
+
+  <div class="bd-icon bd-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">hub</span></div>
+  <div class="bd-icon bd-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">groups</span></div>
+  <div class="bd-icon bd-icon-3"><span class="material-symbols-outlined" data-token="p3.icon">diversity_2</span></div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — the chevrons drive in from the left, in order ==
+  // 0.15 headline  0.55 deck  0.95 rule segments
+  // 1.30 / 2.40 / 3.50 band 1 / 2 / 3 (chevron slides in → tab drops →
+  //      letter → label → body → rule → icon)
+  // ends ~5.1 → hold to 7.0
+
+  gsap.set('.headline',   {opacity: 0, y: -26});
+  gsap.set('.deck',       {opacity: 0, y: -14});
+  gsap.set('.rule',       {scaleX: 0, transformOrigin: 'center'});
+  gsap.set('.chev',       {opacity: 0, x: -150});
+  gsap.set('.tab',        {opacity: 0, scaleY: 0.2, svgOrigin: '0 500'});
+  gsap.set('.tab-1',      {svgOrigin: '122 500'});
+  gsap.set('.tab-2',      {svgOrigin: '628 500'});
+  gsap.set('.tab-3',      {svgOrigin: '1191 500'});
+  gsap.set('.tab-letter', {opacity: 0, y: 12});
+  gsap.set('.bd-label',   {opacity: 0, x: -24});
+  gsap.set('.bd-body',    {opacity: 0, x: -24});
+  gsap.set('.bd-rule',    {scaleY: 0, transformOrigin: 'center'});
+  gsap.set('.bd-icon',    {opacity: 0, scale: 0.5, transformOrigin: 'center'});
+
+  const tl = gsap.timeline({paused: true});
+
+  tl.to('.headline', {opacity: 1, y: 0, duration: 0.60, ease: 'power2.out'},          0.15)
+    .to('.deck',     {opacity: 1, y: 0, duration: 0.55, ease: 'power2.out'},          0.55)
+    .to('.rule',     {scaleX: 1, duration: 0.45, stagger: 0.10, ease: 'power2.out'},  0.95);
+
+  function revealBand(n, t) {
+    tl.to('.chev-'       + n, {opacity: 1, x: 0, duration: 0.60, ease: 'power3.out'},         t)
+      .to('.tab-'        + n, {opacity: 1, scaleY: 1, duration: 0.38, ease: 'back.out(1.8)'}, t + 0.28)
+      .to('.tab-letter-' + n, {opacity: 1, y: 0, duration: 0.30, ease: 'power2.out'},         t + 0.42)
+      .to('.bd-label-'   + n, {opacity: 1, x: 0, duration: 0.40, ease: 'power2.out'},         t + 0.36)
+      .to('.bd-body-'    + n, {opacity: 1, x: 0, duration: 0.45, ease: 'power2.out'},         t + 0.50)
+      .to('.bd-rule-'    + n, {scaleY: 1, duration: 0.40, ease: 'power2.out'},                t + 0.62)
+      .to('.bd-icon-'    + n, {opacity: 1, scale: 1, duration: 0.40, ease: 'back.out(1.6)'},  t + 0.72);
+  }
+
+  revealBand(1, 1.30);
+  revealBand(2, 2.40);
+  revealBand(3, 3.50);
+
+  tl.to({}, {duration: 1.5}, 5.5);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES ==================================================
+  // ?snapshot=1  →  preview.sh thumbnail: fast-forward to the final frame
+  // __hfSeek     →  HyperFrames pipeline drives the timeline via seek
+  // otherwise    →  standalone preview / Launch panel: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

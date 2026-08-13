@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-5P-003 — 5 circles connected by S-curve snake ribbon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&display=swap" rel="stylesheet">
+<style>
+  .canvas {
+    --bg-deep: #F4F6F8;
+    --bg-paper: #FFFFFF;
+    --text-dark: #1A1815;
+    --text-muted: #5A5A60;
+    --color-1: #6FB053;
+    --color-2: #38B198;
+    --color-3: #2BA0BE;
+    --color-4: #2D5DAF;
+    --color-5: #5F2D9C;
+    --dot-pattern: rgba(150, 160, 175, 0.18);
+    --font-body: 'Source Sans Pro', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background:
+      radial-gradient(circle, var(--dot-pattern) 1.4px, transparent 1.6px) 0 0/24px 24px,
+      var(--bg-deep);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === TITLE — "INFOGRAPHIC Design Template" ====================== */
+  .title-wrap {
+    position: absolute;
+    top: 50px; left: 0; right: 0;
+    text-align: center;
+    z-index: 6;
+  }
+  .title-1 {
+    font-weight: 900;
+    font-size: 56px;
+    color: var(--text-dark);
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+  .title-1 .em { color: var(--color-1); }
+  .title-2 {
+    display: block;
+    font-weight: 400;
+    font-size: 32px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-top: 10px;
+  }
+  .title-dots {
+    display: flex; justify-content: center; gap: 10px;
+    margin-top: 18px;
+  }
+  .title-dots span { width: 12px; height: 12px; border-radius: 50%; display: block; }
+  .title-dots span:nth-child(1) { background: var(--color-1); }
+  .title-dots span:nth-child(2) { background: var(--color-2); }
+  .title-dots span:nth-child(3) { background: var(--color-3); }
+  .title-dots span:nth-child(4) { background: var(--color-4); }
+  .title-dots span:nth-child(5) { background: var(--color-5); }
+
+  /* === SNAKE RIBBON SVG (behind circles) ========================== */
+  .ribbon-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .ribbon {
+    fill: none;
+    stroke-width: 28;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* === CIRCLES — 5 white circles, content inside ================== */
+  .circle {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: var(--bg-paper);
+    box-shadow: 0 12px 30px rgba(20, 30, 50, 0.16);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 32px 30px;
+    text-align: center;
+    z-index: 4;
+  }
+  .circle.c-1 { left: 100px;  top: 420px; --accent-color: var(--color-1); }
+  .circle.c-2 { left: 450px;  top: 420px; --accent-color: var(--color-2); }
+  .circle.c-3 { left: 800px;  top: 420px; --accent-color: var(--color-3); }
+  .circle.c-4 { left: 1150px; top: 420px; --accent-color: var(--color-4); }
+  .circle.c-5 { left: 1500px; top: 420px; --accent-color: var(--color-5); }
+
+  .c-icon {
+    width: 80px; height: 80px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px;
+  }
+  .c-icon .material-symbols-outlined {
+    font-size: 70px;
+    color: var(--accent-color);
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  }
+  .c-label {
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .c-body {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.30;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-5P-003"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <div class="title-wrap">
+    <h1 class="title-1"><span data-token="title.left">INFO</span><span class="em" data-token="title.right">GRAPHIC</span></h1>
+    <span class="title-2" data-token="subtitle">Design Template</span>
+    <div class="title-dots"><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+
+  <!-- === SNAKE RIBBON — S-curve through 5 circle centers ===========
+       Circle centers (y=580): 260, 610, 960, 1310, 1660
+       Ribbon path alternates up/down between circles               -->
+  <svg class="ribbon-svg" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="ribbon-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="var(--color-1)" />
+        <stop offset="25%"  stop-color="var(--color-2)" />
+        <stop offset="50%"  stop-color="var(--color-3)" />
+        <stop offset="75%"  stop-color="var(--color-4)" />
+        <stop offset="100%" stop-color="var(--color-5)" />
+      </linearGradient>
+    </defs>
+    <!-- Snake path: starts left of C1, weaves UP between C1-C2, DOWN between C2-C3,
+         UP between C3-C4, DOWN between C4-C5, ending right of C5.                -->
+    <path class="ribbon" stroke="url(#ribbon-grad)"
+          d="M 100 580
+             C 200 580, 280 350, 435 350
+             C 590 350, 590 810, 785 810
+             C 980 810, 980 350, 1135 350
+             C 1290 350, 1290 810, 1485 810
+             C 1680 810, 1720 580, 1820 580" />
+  </svg>
+
+  <article class="circle c-1">
+    <div class="c-icon"><span class="material-symbols-outlined" data-token="s1.icon">target</span></div>
+    <h3 class="c-label" data-token="s1.label">Infographic</h3>
+    <p class="c-body"  data-token="s1.body">Lorem ipsum dolor sit amet, per id commodo incorrupte consequntur.</p>
+  </article>
+
+  <article class="circle c-2">
+    <div class="c-icon"><span class="material-symbols-outlined" data-token="s2.icon">lightbulb</span></div>
+    <h3 class="c-label" data-token="s2.label">Infographic</h3>
+    <p class="c-body"  data-token="s2.body">Lorem ipsum dolor sit amet, per id commodo incorrupte consequntur.</p>
+  </article>
+
+  <article class="circle c-3">
+    <div class="c-icon"><span class="material-symbols-outlined" data-token="s3.icon">edit</span></div>
+    <h3 class="c-label" data-token="s3.label">Infographic</h3>
+    <p class="c-body"  data-token="s3.body">Lorem ipsum dolor sit amet, per id commodo incorrupte consequntur.</p>
+  </article>
+
+  <article class="circle c-4">
+    <div class="c-icon"><span class="material-symbols-outlined" data-token="s4.icon">rocket_launch</span></div>
+    <h3 class="c-label" data-token="s4.label">Infographic</h3>
+    <p class="c-body"  data-token="s4.body">Lorem ipsum dolor sit amet, per id commodo incorrupte consequntur.</p>
+  </article>
+
+  <article class="circle c-5">
+    <div class="c-icon"><span class="material-symbols-outlined" data-token="s5.icon">groups</span></div>
+    <h3 class="c-label" data-token="s5.label">Infographic</h3>
+    <p class="c-body"  data-token="s5.body">Lorem ipsum dolor sit amet, per id commodo incorrupte consequntur.</p>
+  </article>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  gsap.set('.title-1, .title-2, .title-dots', {opacity: 0, y: -10});
+  gsap.set('.ribbon', {strokeDasharray: 3000, strokeDashoffset: 3000});
+  gsap.set('.circle', {opacity: 0, scale: 0.6, transformOrigin: 'center'});
+  gsap.set('.c-icon, .c-label, .c-body', {opacity: 0, y: 6});
+
+  const tl = gsap.timeline({paused: true});
+  tl.to('.title-1',    {opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'}, 0.2);
+  tl.to('.title-2',    {opacity: 1, y: 0, duration: 0.4, ease: 'power2.out'}, 0.45);
+  tl.to('.title-dots', {opacity: 1, y: 0, duration: 0.4, ease: 'power2.out'}, 0.65);
+  tl.to('.ribbon',     {strokeDashoffset: 0, duration: 1.2, ease: 'power2.inOut'}, 0.9);
+
+  function revealCircle(n, t) {
+    const c = '.c-' + n;
+    tl.to(c,             {opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.5)'}, t);
+    tl.to(c + ' .c-icon',  {opacity: 1, y: 0, duration: 0.30, ease: 'power2.out'}, t + 0.20);
+    tl.to(c + ' .c-label', {opacity: 1, y: 0, duration: 0.30, ease: 'power2.out'}, t + 0.35);
+    tl.to(c + ' .c-body',  {opacity: 1, y: 0, duration: 0.35, ease: 'power2.out'}, t + 0.50);
+  }
+  revealCircle(1, 1.5);
+  revealCircle(2, 1.9);
+  revealCircle(3, 2.3);
+  revealCircle(4, 2.7);
+  revealCircle(5, 3.1);
+  tl.to({}, {duration: 2.0}, 4.0);
+
+  window.__libraryTimeline = tl;
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+</body>
+</html>

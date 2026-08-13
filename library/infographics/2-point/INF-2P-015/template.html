@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-2P-015 — Quadrant-arc rings with dotted remainder and step arrow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg:         #EFEFEF;   /* flat field                               */
+    --disc:       #FFFFFF;   /* the white well in each ring              */
+    --text-dark:  #2A2A2A;   /* unit titles                              */
+    --text-muted: #7E7E7E;   /* unit body copy                           */
+
+    --color-1:    #3C5985;   /* unit 1 — navy                            */
+    --color-2:    #F4AA45;   /* unit 2 — amber                           */
+    --arrow:      #3C5985;   /* the step arrow between the units         */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Lato', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Two identical rings, centres (642, 545) and (1274, 545).
+       Per ring: two 84deg solid arcs on OPPOSITE quadrants (upper-left
+       and lower-right), a full dotted circle underneath filling the
+       other two, and a white well r 203 on top.
+       No header block — this template is the whole frame.             */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: var(--bg);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === WELL CONTENTS — icon, title, body; all inside r 203 =========== */
+  .unit-icon {
+    position: absolute;
+    top: 388px; width: 74px; height: 74px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .unit-icon-1 { left: 605px;  color: var(--text-dark); }
+  .unit-icon-2 { left: 1237px; color: var(--text-dark); }
+  .unit-icon .material-symbols-outlined {
+    font-size: 74px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+
+  .unit-title {
+    position: absolute;
+    top: 478px; width: 400px; height: 40px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 40px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    text-align: center;
+    z-index: 2;
+  }
+  .unit-title-1 { left: 442px;  }
+  .unit-title-2 { left: 1074px; }
+
+  /* 3 lines max — the well is a circle, so the block's bottom corners
+     must stay inside r 203 (at y 660 that allows a half-width of 167) */
+  .unit-body {
+    position: absolute;
+    top: 534px; width: 320px;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-align: center;
+    z-index: 2;
+  }
+  .unit-body-1 { left: 482px;  }
+  .unit-body-2 { left: 1114px; }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-2P-015"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080" fill="none">
+    <defs>
+      <filter id="p15-well" x="-25%" y="-25%" width="150%" height="150%">
+        <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#7A7A7A" flood-opacity="0.30"/>
+      </filter>
+    </defs>
+
+    <!-- dotted circles sit UNDER the solid arcs and fill the two open
+         quadrants; r 248 keeps them inside the arc band (212→251) -->
+    <circle class="dots dots-1" cx="642"  cy="545" r="248"
+            stroke="var(--color-1)" stroke-width="5" stroke-dasharray="5 16" stroke-linecap="round"/>
+    <circle class="dots dots-2" cx="1274" cy="545" r="248"
+            stroke="var(--color-2)" stroke-width="5" stroke-dasharray="5 16" stroke-linecap="round"/>
+
+    <!-- unit 1 — two 84deg arcs on opposite quadrants -->
+    <path class="arc arc-1a" pathLength="1" stroke="var(--color-1)" stroke-width="39"
+          d="M 411 529 A 231.5 231.5 0 0 1 634 314"/>
+    <path class="arc arc-1b" pathLength="1" stroke="var(--color-1)" stroke-width="39"
+          d="M 873 545 A 231.5 231.5 0 0 1 650 776"/>
+
+    <!-- unit 2 — same two arcs, 632px to the right -->
+    <path class="arc arc-2a" pathLength="1" stroke="var(--color-2)" stroke-width="39"
+          d="M 1043 529 A 231.5 231.5 0 0 1 1266 314"/>
+    <path class="arc arc-2b" pathLength="1" stroke="var(--color-2)" stroke-width="39"
+          d="M 1505 545 A 231.5 231.5 0 0 1 1282 776"/>
+
+    <circle class="well well-1" cx="642"  cy="545" r="203" fill="var(--disc)" filter="url(#p15-well)"/>
+    <circle class="well well-2" cx="1274" cy="545" r="203" fill="var(--disc)" filter="url(#p15-well)"/>
+
+    <!-- step arrow, unit 1 → unit 2 -->
+    <path class="arrow-shaft" pathLength="1" stroke="var(--arrow)" stroke-width="7" stroke-linecap="butt"
+          d="M 908 545 H 1008"/>
+    <path class="arrow-head" pathLength="1" stroke="var(--arrow)" stroke-width="7"
+          stroke-linecap="round" stroke-linejoin="round"
+          d="M 972 511 L 1008 545 L 972 579"/>
+  </svg>
+
+  <div class="unit-icon unit-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">lightbulb</span></div>
+  <div class="unit-icon unit-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">track_changes</span></div>
+
+  <div class="unit-title unit-title-1" data-token="p1.label">Info Data 01</div>
+  <div class="unit-title unit-title-2" data-token="p2.label">Info Data 02</div>
+
+  <p class="unit-body unit-body-1" data-token="p1.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do.</p>
+  <p class="unit-body unit-body-2" data-token="p2.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do.</p>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — unit 1, arrow, unit 2 =========================
+  // 0.20 unit 1: dotted circle → both arcs draw → well → icon → title → body
+  // 2.10 arrow shaft draws, then its head
+  // 2.70 unit 2, same beats            ends ~4.6 → hold to 6.0
+
+  gsap.set('.dots-1',      {opacity: 0, scale: 0.85, svgOrigin: '642 545'});
+  gsap.set('.dots-2',      {opacity: 0, scale: 0.85, svgOrigin: '1274 545'});
+  gsap.set('.arc',         {strokeDasharray: 1, strokeDashoffset: 1});
+  gsap.set('.well-1',      {opacity: 0, scale: 0.7, svgOrigin: '642 545'});
+  gsap.set('.well-2',      {opacity: 0, scale: 0.7, svgOrigin: '1274 545'});
+  gsap.set('.unit-icon',   {opacity: 0, scale: 0.5, transformOrigin: 'center'});
+  gsap.set('.unit-title',  {opacity: 0, y: 14});
+  gsap.set('.unit-body',   {opacity: 0, y: 14});
+  gsap.set('.arrow-shaft', {strokeDasharray: 1, strokeDashoffset: 1});
+  gsap.set('.arrow-head',  {opacity: 0, x: -18});
+
+  const tl = gsap.timeline({paused: true});
+
+  function revealUnit(n, t) {
+    tl.to('.dots-'      + n,  {opacity: 1, scale: 1, duration: 0.50, ease: 'power2.out'},        t)
+      .to('.arc-' + n + 'a',  {strokeDashoffset: 0, duration: 0.65, ease: 'power2.inOut'},       t + 0.15)
+      .to('.arc-' + n + 'b',  {strokeDashoffset: 0, duration: 0.65, ease: 'power2.inOut'},       t + 0.28)
+      .to('.well-'      + n,  {opacity: 1, scale: 1, duration: 0.50, ease: 'back.out(1.5)'},     t + 0.55)
+      .to('.unit-icon-' + n,  {opacity: 1, scale: 1, duration: 0.40, ease: 'back.out(1.8)'},     t + 0.78)
+      .to('.unit-title-'+ n,  {opacity: 1, y: 0, duration: 0.40, ease: 'power2.out'},            t + 0.95)
+      .to('.unit-body-' + n,  {opacity: 1, y: 0, duration: 0.45, ease: 'power2.out'},            t + 1.10);
+  }
+
+  revealUnit(1, 0.20);
+
+  tl.to('.arrow-shaft', {strokeDashoffset: 0, duration: 0.45, ease: 'power2.out'},   2.10)
+    .to('.arrow-head',  {opacity: 1, x: 0, duration: 0.35, ease: 'back.out(2)'},     2.45);
+
+  revealUnit(2, 2.70);
+
+  tl.to({}, {duration: 1.2}, 4.8);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES ==================================================
+  // ?snapshot=1  →  preview.sh thumbnail: fast-forward to the final frame
+  // __hfSeek     →  HyperFrames pipeline drives the timeline via seek
+  // otherwise    →  standalone preview / Launch panel: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-2P-013 — Hub ring with two bars cut to its inner edge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F5F5F5;   /* vignette mid                            */
+    --bg-edge:     #EDEFEE;   /* vignette outer                          */
+    --ring:        #D9DAD7;   /* the hub ring                            */
+    --disc:        #FFFFFF;   /* badge discs on the bars                 */
+    --on-color:    #FFFFFF;   /* copy sitting on a bar                   */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+    --text-muted:  #8C8C8C;   /* hub body copy                           */
+    --text-vs:     #6E6E6E;   /* the "vs" between the two hub words      */
+
+    --color-1:     #C13A25;   /* point 1 — red                           */
+    --color-2:     #365D6D;   /* point 2 — slate                         */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Hub ring: centre (504, 646), outer r 325, inner r 299, stroke 26.
+       The two bars are ONE stadium — right end r 212 centred (1550, 645),
+       total height 424 — sliced into two 198px bars with a 31px gap, and
+       clipped on the left to the ring's INNER circle. That is why their
+       left ends curve. Bars are drawn OVER the ring.                    */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 25%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — same family as INF-2P-006 / INF-2P-011 =============== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  /* 2 lines by design — over ~200 chars it spills onto the split rule */
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 268px; height: 10px; border-radius: 2px; }
+  .rule-1 { left: 693px; width: 264px; background: var(--color-1); }
+  .rule-2 { left: 963px; width: 264px; background: var(--color-2); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === HUB CONTENTS — all of it inside the ring's inner r 299 ======== */
+  .hub-title {
+    position: absolute;
+    top: 550px; left: 224px; width: 560px; height: 70px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 61px;
+    line-height: 70px;
+    text-align: center;
+    z-index: 2;
+  }
+  .hub-title .w1 { color: var(--color-1); }
+  .hub-title .vs { color: var(--text-vs); font-weight: 700; }
+  .hub-title .w2 { color: var(--color-2); }
+
+  .hub-body {
+    position: absolute;
+    top: 640px; left: 293px; width: 422px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-align: center;
+    z-index: 2;
+  }
+  .hub-dots {
+    position: absolute;
+    top: 790px; left: 448px; width: 112px; height: 16px;
+    display: flex; justify-content: space-between;
+    z-index: 2;
+  }
+  .hub-dots i { width: 16px; height: 16px; border-radius: 50%; background: var(--text-muted); opacity: 0.55; }
+
+  /* === BAR COPY — left-aligned, clear of the badge disc ============= */
+  .bar-copy {
+    position: absolute;
+    left: 858px; width: 612px; height: 130px;
+    display: flex; flex-direction: column; justify-content: center;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .bar-copy-1 { top: 467px; }
+  .bar-copy-2 { top: 695px; }
+
+  .bar-label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .bar-body {
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.5;
+    opacity: 0.94;
+  }
+
+  /* === BADGE ICONS ================================================== */
+  .badge-icon {
+    position: absolute;
+    left: 1524px; width: 76px; height: 76px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 4;
+  }
+  .badge-icon-1 { top: 496px; color: var(--color-1); }
+  .badge-icon-2 { top: 722px; color: var(--color-2); }
+  .badge-icon .material-symbols-outlined {
+    font-size: 76px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-2P-013"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <h1 class="headline" data-token="title">Global vs Local</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <!-- hub ring — drawn first, so the bars cover its right side -->
+    <circle class="ring" cx="504" cy="646" r="312" fill="none"
+            stroke="var(--ring)" stroke-width="26"/>
+
+    <!-- bar 1: top edge, stadium arc, bottom edge, then back up the
+         ring's inner circle (r 299) — that arc is the curved left end -->
+    <path class="bar bar-1" fill="var(--color-1)"
+          d="M 714 433 L 1550 433
+             A 212 212 0 0 1 1761 631
+             L 803 631
+             A 299 299 0 0 0 714 433 Z"/>
+    <path class="bar bar-2" fill="var(--color-2)"
+          d="M 715 857 L 1550 857
+             A 212 212 0 0 0 1761 662
+             L 803 662
+             A 299 299 0 0 1 715 857 Z"/>
+
+    <circle class="badge badge-1" cx="1562" cy="534" r="74" fill="var(--disc)"/>
+    <circle class="badge badge-2" cx="1562" cy="760" r="74" fill="var(--disc)"/>
+  </svg>
+
+  <div class="hub-title">
+    <span class="w1" data-token="hub.word1">Global</span>
+    <span class="vs" data-token="hub.vs">vs</span>
+    <span class="w2" data-token="hub.word2">Local</span>
+  </div>
+  <p class="hub-body" data-token="hub.body">Lorem ipsum dolor sit amet, consectetuer adi adipiscing elit, sed diam nonummy.</p>
+  <div class="hub-dots"><i></i><i></i><i></i></div>
+
+  <div class="bar-copy bar-copy-1">
+    <h3 class="bar-label" data-token="p1.label">Global</h3>
+    <p  class="bar-body"  data-token="p1.body">Lorem ipsum dolor sit amet, consectetuer adi adipiscing elit, sed diam nonummy.</p>
+  </div>
+  <div class="bar-copy bar-copy-2">
+    <h3 class="bar-label" data-token="p2.label">Local</h3>
+    <p  class="bar-body"  data-token="p2.body">Lorem ipsum dolor sit amet, consectetuer adi adipiscing elit, sed diam nonummy.</p>
+  </div>
+
+  <div class="badge-icon badge-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">public</span></div>
+  <div class="badge-icon badge-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">location_on</span></div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — header, hub, then the two bars run out right ===
+  // 0.15 headline  0.55 deck  0.95 split rule
+  // 1.30 ring scales in → hub title → hub body → hub dots
+  // 2.40 bar 1 wipes out to the right → badge → label → body
+  // 3.55 bar 2                              ends ~4.8 → hold to 6.0
+
+  gsap.set('.headline',  {opacity: 0, y: -26});
+  gsap.set('.deck',      {opacity: 0, y: -14});
+  gsap.set('.rule',      {scaleX: 0});
+  gsap.set('.rule-1',    {transformOrigin: 'right center'});
+  gsap.set('.rule-2',    {transformOrigin: 'left center'});
+  gsap.set('.ring',      {opacity: 0, scale: 0.8, svgOrigin: '504 646'});
+  gsap.set('.hub-title', {opacity: 0, y: 16});
+  gsap.set('.hub-body',  {opacity: 0, y: 16});
+  gsap.set('.hub-dots i',{opacity: 0, scale: 0.4, transformOrigin: 'center'});
+  gsap.set('.bar-1',     {opacity: 0, scaleX: 0.35, svgOrigin: '714 532'});
+  gsap.set('.bar-2',     {opacity: 0, scaleX: 0.35, svgOrigin: '715 760'});
+  gsap.set('.badge-1',   {opacity: 0, scale: 0.4, svgOrigin: '1562 534'});
+  gsap.set('.badge-2',   {opacity: 0, scale: 0.4, svgOrigin: '1562 760'});
+  gsap.set('.badge-icon',{opacity: 0, scale: 0.5, transformOrigin: 'center'});
+  gsap.set('.bar-label', {opacity: 0, x: -22});
+  gsap.set('.bar-body',  {opacity: 0, x: -22});
+
+  const tl = gsap.timeline({paused: true});
+
+  tl.to('.headline',   {opacity: 1, y: 0, duration: 0.60, ease: 'power2.out'},   0.15)
+    .to('.deck',       {opacity: 1, y: 0, duration: 0.55, ease: 'power2.out'},   0.55)
+    .to('.rule',       {scaleX: 1, duration: 0.50, ease: 'power2.out'},          0.95)
+    .to('.ring',       {opacity: 1, scale: 1, duration: 0.60, ease: 'back.out(1.3)'}, 1.30)
+    .to('.hub-title',  {opacity: 1, y: 0, duration: 0.45, ease: 'power2.out'},   1.60)
+    .to('.hub-body',   {opacity: 1, y: 0, duration: 0.45, ease: 'power2.out'},   1.78)
+    .to('.hub-dots i', {opacity: 1, scale: 1, duration: 0.28, stagger: 0.06,
+                        ease: 'back.out(2)'},                                    1.95);
+
+  function revealBar(n, t) {
+    tl.to('.bar-'        + n, {opacity: 1, scaleX: 1, duration: 0.60, ease: 'power3.out'},    t)
+      .to('.badge-'      + n, {opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.8)'},  t + 0.35)
+      .to('.badge-icon-' + n, {opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out'},     t + 0.52)
+      .to('.bar-copy-'   + n + ' .bar-label', {opacity: 1, x: 0, duration: 0.40, ease: 'power2.out'}, t + 0.42)
+      .to('.bar-copy-'   + n + ' .bar-body',  {opacity: 1, x: 0, duration: 0.45, ease: 'power2.out'}, t + 0.58);
+  }
+
+  revealBar(1, 2.40);
+  revealBar(2, 3.55);
+
+  tl.to({}, {duration: 1.0}, 5.0);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES ==================================================
+  // ?snapshot=1  →  preview.sh thumbnail: fast-forward to the final frame
+  // __hfSeek     →  HyperFrames pipeline drives the timeline via seek
+  // otherwise    →  standalone preview / Launch panel: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-6P-004 — BUSINESS INFOGRAPHIC 6-card grid with bottom number pointers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&display=swap" rel="stylesheet">
+<style>
+  .canvas {
+    --bg-deep: #F4F4F6;
+    --bg-paper: #FFFFFF;
+    --text-dark: #1A1815;
+    --text-muted: #5A5A60;
+    --text-light: #FFFFFF;
+    --color-1: #F08C2E;
+    --color-2: #3CB6DD;
+    --color-3: #DC4234;
+    --color-4: #7E3D9F;
+    --color-5: #3676E0;
+    --color-6: #3FAA50;
+    --font-body: 'Source Sans Pro', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: var(--bg-deep);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === TITLE — "BUSINESS INFOGRAPHIC" + 6-color bar =============== */
+  .title-wrap {
+    position: absolute;
+    top: 50px; left: 0; right: 0;
+    text-align: center;
+    z-index: 5;
+  }
+  .title {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 44px;
+    letter-spacing: 0.14em;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    line-height: 1;
+    padding-bottom: 10px;
+  }
+  .title-bar {
+    display: flex;
+    width: 360px;
+    height: 5px;
+    margin: 10px auto 0;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .title-bar span { flex: 1; }
+  .title-bar span:nth-child(1) { background: var(--color-1); }
+  .title-bar span:nth-child(2) { background: var(--color-2); }
+  .title-bar span:nth-child(3) { background: var(--color-3); }
+  .title-bar span:nth-child(4) { background: var(--color-4); }
+  .title-bar span:nth-child(5) { background: var(--color-5); }
+  .title-bar span:nth-child(6) { background: var(--color-6); }
+
+  /* === CARD UNIT (white card + bottom number pointer) ============= */
+  .unit {
+    position: absolute;
+    width: 430px;
+    height: 320px;
+    z-index: 3;
+  }
+  .card-body {
+    position: absolute;
+    inset: 0;
+    background: var(--bg-paper);
+    border-radius: 14px;
+    box-shadow: 0 10px 24px rgba(20, 20, 30, 0.10);
+    padding: 30px 36px;
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+  }
+  .card-icon {
+    width: 72px; height: 72px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .card-icon .material-symbols-outlined {
+    font-size: 64px;
+    color: var(--accent-color);
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  }
+  .card-label {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--accent-color);
+    margin-bottom: 16px;
+  }
+  .card-text {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.30;
+    color: var(--text-muted);
+  }
+
+  /* Pointer below the card (triangle ribbon with number) */
+  .card-pointer {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -2px;
+    width: 130px;
+    height: 80px;
+    background: var(--accent-color);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    display: flex;
+    justify-content: center;
+    color: var(--text-light);
+    font-weight: 900;
+    font-size: 32px;
+    padding-top: 14px;
+    box-shadow: 0 8px 18px rgba(20, 20, 30, 0.18);
+  }
+
+  /* === GRID POSITIONS — 3 cols × 2 rows ============================
+       Col x: 215, 765, 1315  (430 wide, 120 gap)
+       Row y: 180 (row 1), 620 (row 2)
+       Row 1 unit bottom: 500. Pointer extends to 580.
+       Row 2 unit bottom: 940. Pointer extends to 1020 → over safe bot
+       Adjust row 2 → top 580. Pointer extends to 980 ✓               */
+  .unit.col-1 { left: 215px;  }
+  .unit.col-2 { left: 765px;  }
+  .unit.col-3 { left: 1315px; }
+  .unit.row-1 { top: 180px; }
+  .unit.row-2 { top: 580px; }
+
+  .unit.card-1 { --accent-color: var(--color-1); }
+  .unit.card-2 { --accent-color: var(--color-2); }
+  .unit.card-3 { --accent-color: var(--color-3); }
+  .unit.card-4 { --accent-color: var(--color-4); }
+  .unit.card-5 { --accent-color: var(--color-5); }
+  .unit.card-6 { --accent-color: var(--color-6); }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-6P-004"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <div class="title-wrap">
+    <h1 class="title" data-token="title">BUSINESS INFOGRAPHIC</h1>
+    <div class="title-bar"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+
+  <article class="unit col-1 row-1 card-1">
+    <div class="card-body">
+      <div class="card-icon"><span class="material-symbols-outlined" data-token="s1.icon">lightbulb</span></div>
+      <h3 class="card-label" data-token="s1.label">Sample Text</h3>
+      <p class="card-text"  data-token="s1.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor.</p>
+    </div>
+    <div class="card-pointer"><span data-token="s1.num">01</span></div>
+  </article>
+
+  <article class="unit col-2 row-1 card-2">
+    <div class="card-body">
+      <div class="card-icon"><span class="material-symbols-outlined" data-token="s2.icon">settings</span></div>
+      <h3 class="card-label" data-token="s2.label">Sample Text</h3>
+      <p class="card-text"  data-token="s2.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor.</p>
+    </div>
+    <div class="card-pointer"><span data-token="s2.num">02</span></div>
+  </article>
+
+  <article class="unit col-3 row-1 card-3">
+    <div class="card-body">
+      <div class="card-icon"><span class="material-symbols-outlined" data-token="s3.icon">schedule</span></div>
+      <h3 class="card-label" data-token="s3.label">Sample Text</h3>
+      <p class="card-text"  data-token="s3.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor.</p>
+    </div>
+    <div class="card-pointer"><span data-token="s3.num">03</span></div>
+  </article>
+
+  <article class="unit col-1 row-2 card-4">
+    <div class="card-body">
+      <div class="card-icon"><span class="material-symbols-outlined" data-token="s4.icon">bar_chart</span></div>
+      <h3 class="card-label" data-token="s4.label">Sample Text</h3>
+      <p class="card-text"  data-token="s4.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor.</p>
+    </div>
+    <div class="card-pointer"><span data-token="s4.num">04</span></div>
+  </article>
+
+  <article class="unit col-2 row-2 card-5">
+    <div class="card-body">
+      <div class="card-icon"><span class="material-symbols-outlined" data-token="s5.icon">chat</span></div>
+      <h3 class="card-label" data-token="s5.label">Sample Text</h3>
+      <p class="card-text"  data-token="s5.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor.</p>
+    </div>
+    <div class="card-pointer"><span data-token="s5.num">05</span></div>
+  </article>
+
+  <article class="unit col-3 row-2 card-6">
+    <div class="card-body">
+      <div class="card-icon"><span class="material-symbols-outlined" data-token="s6.icon">payments</span></div>
+      <h3 class="card-label" data-token="s6.label">Sample Text</h3>
+      <p class="card-text"  data-token="s6.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor.</p>
+    </div>
+    <div class="card-pointer"><span data-token="s6.num">06</span></div>
+  </article>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  gsap.set('.title',        {opacity: 0, y: -8});
+  gsap.set('.title-bar span', {scaleX: 0, transformOrigin: 'left'});
+  gsap.set('.card-body',    {opacity: 0, scale: 0.88, transformOrigin: 'center top'});
+  gsap.set('.card-icon, .card-label, .card-text', {opacity: 0, y: 6});
+  gsap.set('.card-pointer', {opacity: 0, scaleY: 0.2, transformOrigin: 'top center'});
+
+  const tl = gsap.timeline({paused: true});
+  tl.to('.title', {opacity: 1, y: 0, duration: 0.50, ease: 'power2.out'}, 0.2);
+  tl.to('.title-bar span', {scaleX: 1, duration: 0.55, stagger: 0.08, ease: 'power3.out'}, 0.5);
+
+  function revealUnit(n, t) {
+    const u = '.card-' + n;
+    tl.to(u + ' .card-body',    {opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.4)'}, t);
+    tl.to(u + ' .card-icon',    {opacity: 1, y: 0, duration: 0.30, ease: 'power2.out'}, t + 0.25);
+    tl.to(u + ' .card-label',   {opacity: 1, y: 0, duration: 0.30, ease: 'power2.out'}, t + 0.40);
+    tl.to(u + ' .card-text',    {opacity: 1, y: 0, duration: 0.35, ease: 'power2.out'}, t + 0.55);
+    tl.to(u + ' .card-pointer', {opacity: 1, scaleY: 1, duration: 0.35, ease: 'back.out(1.6)'}, t + 0.50);
+  }
+  revealUnit(1, 1.0);
+  revealUnit(2, 1.4);
+  revealUnit(3, 1.8);
+  revealUnit(4, 2.2);
+  revealUnit(5, 2.6);
+  revealUnit(6, 3.0);
+  tl.to({}, {duration: 2.0}, 4.0);
+
+  window.__libraryTimeline = tl;
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+</body>
+</html>

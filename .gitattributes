@@ -1,0 +1,6 @@
+# The library ships to a web server, so keep every text file LF in the repo and
+# in the checkout — no CRLF round-tripping on Windows.
+* text=auto eol=lf
+
+*.png  binary
+*.webp binary

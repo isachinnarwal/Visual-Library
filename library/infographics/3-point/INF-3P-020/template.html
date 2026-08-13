@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-3P-020 — Pinwheel triangle with numbered badges at three points</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F3F5F4;   /* vignette mid                            */
+    --bg-edge:     #EDF0EF;   /* vignette outer                          */
+    --halo:        #E6E8E7;   /* the faint rings behind the pinwheel     */
+    --on-color:    #FFFFFF;   /* numeral on the badge, glyph on a petal  */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+    --text-muted:  #8A8A8C;   /* point body copy                         */
+
+    --color-1:     #377D7B;   /* point 1 — teal                          */
+    --color-2:     #F59D2E;   /* point 2 — amber                         */
+    --color-3:     #F6455E;   /* point 3 — red                           */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       One petal is authored, then rotated 120 and 240 degrees about
+       (960,790) — the pinwheel is three copies of the same path, so any
+       edit to petal 1 must be re-rotated for the other two.
+       Copy sits at the three compass points the petals face: above,
+       left, right.  Margins: top 70 · left 80 · right 80 · bottom 153.  */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 30%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — three-segment rule, one per point =================== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 250px; height: 10px; width: 210px; border-radius: 2px; }
+  .rule-1 { left: 633px;  background: var(--color-1); }
+  .rule-2 { left: 855px;  background: var(--color-2); }
+  .rule-3 { left: 1077px; background: var(--color-3); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === BADGE NUMERALS =============================================== */
+  .badge-num {
+    position: absolute;
+    width: 118px; height: 118px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 44px;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .badge-num-1 { left: 525px; top: 702px; }
+  .badge-num-2 { left: 702px; top: 329px; }
+  .badge-num-3 { left: 1267px; top: 704px; }
+
+  /* === PETAL GLYPHS ================================================= */
+  .petal-icon {
+    position: absolute;
+    width: 56px; height: 56px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .petal-icon-1 { left: 857px; top: 704px; }
+  .petal-icon-2 { left: 1009px; top: 704px; }
+  .petal-icon-3 { left: 932px; top: 842px; }
+  .petal-icon .material-symbols-outlined {
+    font-size: 42px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* === POINT COPY =================================================== */
+  .pt-label {
+    position: absolute;
+    width: 420px; height: 44px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 34px;
+    line-height: 44px;
+    z-index: 3;
+  }
+  .pt-label-1 { left: 80px;   top: 700px; text-align: right; color: var(--color-1); }
+  .pt-label-2 { left: 870px;  top: 312px; text-align: left;  color: var(--color-2); }
+  .pt-label-3 { left: 1420px; top: 700px; text-align: left;  color: var(--color-3); }
+
+  .pt-body {
+    position: absolute;
+    width: 420px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--text-muted);
+    z-index: 3;
+  }
+  .pt-body-1 { left: 80px;   top: 752px; text-align: right; }
+  .pt-body-2 { left: 870px;  top: 364px; text-align: left;  }
+  .pt-body-3 { left: 1420px; top: 752px; text-align: left;  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-3P-020"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <h1 class="headline" data-token="title">3Ps of Marketing</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+  <div class="rule rule-3"></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <!-- faint rings behind the pinwheel -->
+    <circle class="halo halo-a" cx="960" cy="790" r="300" fill="none" stroke="var(--halo)" stroke-width="3"/>
+    <circle class="halo halo-b" cx="960" cy="790" r="252" fill="none" stroke="var(--halo)" stroke-width="3"/>
+
+    <!-- one petal, rotated 120 and 240 about (960,790) -->
+    <path class="petal petal-1" fill="var(--color-1)"
+          d="M 960 517 L 724 927 Q 884 845, 946 812 Q 926 640, 960 517 Z"/>
+    <path class="petal petal-2" fill="var(--color-2)"
+          transform="rotate(120 960 790)"
+          d="M 960 517 L 724 927 Q 884 845, 946 812 Q 926 640, 960 517 Z"/>
+    <path class="petal petal-3" fill="var(--color-3)"
+          transform="rotate(240 960 790)"
+          d="M 960 517 L 724 927 Q 884 845, 946 812 Q 926 640, 960 517 Z"/>
+
+    <!-- badges -->
+    <rect class="badge badge-1" x="525"  y="702" width="118" height="118" rx="16" fill="var(--color-1)"/>
+    <rect class="badge badge-2" x="702"  y="329" width="118" height="118" rx="16" fill="var(--color-2)"/>
+    <rect class="badge badge-3" x="1267" y="704" width="118" height="118" rx="16" fill="var(--color-3)"/>
+
+    <!-- glyph rings on the petals -->
+    <circle class="gring gring-1" cx="885" cy="732" r="42" fill="none" stroke="var(--on-color)" stroke-width="4"/>
+    <circle class="gring gring-2" cx="1037" cy="732" r="42" fill="none" stroke="var(--on-color)" stroke-width="4"/>
+    <circle class="gring gring-3" cx="960" cy="870" r="42" fill="none" stroke="var(--on-color)" stroke-width="4"/>
+  </svg>
+
+  <div class="badge-num badge-num-1" data-token="p1.num">01</div>
+  <div class="badge-num badge-num-2" data-token="p2.num">02</div>
+  <div class="badge-num badge-num-3" data-token="p3.num">03</div>
+
+  <div class="petal-icon petal-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">inventory_2</span></div>
+  <div class="petal-icon petal-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">paid</span></div>
+  <div class="petal-icon petal-icon-3"><span class="material-symbols-outlined" data-token="p3.icon">campaign</span></div>
+
+  <div class="pt-label pt-label-1" data-token="p1.label">Product</div>
+  <div class="pt-label pt-label-2" data-token="p2.label">Price</div>
+  <div class="pt-label pt-label-3" data-token="p3.label">Promotion</div>
+
+  <p class="pt-body pt-body-1" data-token="p1.body">Elements in the subjects that have some purposes and goals for the</p>
+  <p class="pt-body pt-body-2" data-token="p2.body">Elements in the subjects that have some purposes and goals for the</p>
+  <p class="pt-body pt-body-3" data-token="p3.body">Elements in the subjects that have some purposes and goals for the</p>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — the pinwheel spins up, then each point reads out
+  // 0.15 headline  0.55 deck  0.95 rule segments  1.20 halo rings
+  // 1.50 / 2.55 / 3.60 point 1 / 2 / 3 (petal spins in → glyph ring →
+  //      icon → badge → numeral → label → body)
+  // ends ~5.2 → hold to 7.0
+  // NOTE petals 2 and 3 carry a static rotate() in the markup; GSAP's
+  // `rotation` replaces it, so their resting values are 120 and 240.
+
+  gsap.set('.headline',   {opacity: 0, y: -26});
+  gsap.set('.deck',       {opacity: 0, y: -14});
+  gsap.set('.rule',       {scaleX: 0, transformOrigin: 'center'});
+  gsap.set('.halo',       {opacity: 0, scale: 0.85, svgOrigin: '960 790'});
+  gsap.set('.petal-1',    {opacity: 0, scale: 0.5, rotation: -40, svgOrigin: '960 790'});
+  gsap.set('.petal-2',    {opacity: 0, scale: 0.5, rotation: 80,  svgOrigin: '960 790'});
+  gsap.set('.petal-3',    {opacity: 0, scale: 0.5, rotation: 200, svgOrigin: '960 790'});
+  [1,2,3].forEach(function (n) {
+    var bx = [0, 584, 761, 1326][n], by = [0, 761, 388, 763][n];
+    var gx = [0, 885, 1037, 960][n], gy = [0, 732, 732, 870][n];
+    gsap.set('.badge-' + n, {opacity: 0, scale: 0.4, svgOrigin: bx + ' ' + by});
+    gsap.set('.gring-' + n, {opacity: 0, scale: 0.4, svgOrigin: gx + ' ' + gy});
+  });
+  gsap.set('.badge-num',  {opacity: 0, scale: 0.6, transformOrigin: 'center'});
+  gsap.set('.petal-icon', {opacity: 0, scale: 0.5, transformOrigin: 'center'});
+  gsap.set('.pt-label',   {opacity: 0, y: 14});
+  gsap.set('.pt-body',    {opacity: 0, y: 14});
+
+  const tl = gsap.timeline({paused: true});
+
+  tl.to('.headline', {opacity: 1, y: 0, duration: 0.60, ease: 'power2.out'},          0.15)
+    .to('.deck',     {opacity: 1, y: 0, duration: 0.55, ease: 'power2.out'},          0.55)
+    .to('.rule',     {scaleX: 1, duration: 0.45, stagger: 0.10, ease: 'power2.out'},  0.95)
+    .to('.halo',     {opacity: 1, scale: 1, duration: 0.60, stagger: 0.10,
+                      ease: 'power2.out'},                                             1.20);
+
+  function revealPoint(n, t) {
+    var rest = [0, 0, 120, 240][n];
+    tl.to('.petal-'     + n, {opacity: 1, scale: 1, rotation: rest, duration: 0.65, ease: 'back.out(1.3)'}, t)
+      .to('.gring-'     + n, {opacity: 1, scale: 1, duration: 0.36, ease: 'back.out(1.8)'},                 t + 0.32)
+      .to('.petal-icon-'+ n, {opacity: 1, scale: 1, duration: 0.30, ease: 'power2.out'},                    t + 0.44)
+      .to('.badge-'     + n, {opacity: 1, scale: 1, duration: 0.40, ease: 'back.out(1.8)'},                 t + 0.40)
+      .to('.badge-num-' + n, {opacity: 1, scale: 1, duration: 0.28, ease: 'power2.out'},                    t + 0.54)
+      .to('.pt-label-'  + n, {opacity: 1, y: 0, duration: 0.36, ease: 'power2.out'},                        t + 0.52)
+      .to('.pt-body-'   + n, {opacity: 1, y: 0, duration: 0.42, ease: 'power2.out'},                        t + 0.64);
+  }
+
+  revealPoint(1, 1.50);
+  revealPoint(2, 2.55);
+  revealPoint(3, 3.60);
+
+  tl.to({}, {duration: 1.5}, 5.5);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES ==================================================
+  // ?snapshot=1  →  preview.sh thumbnail: fast-forward to the final frame
+  // __hfSeek     →  HyperFrames pipeline drives the timeline via seek
+  // otherwise    →  standalone preview / Launch panel: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

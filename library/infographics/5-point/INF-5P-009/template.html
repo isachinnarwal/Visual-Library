@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-5P-009 — Pointed colour columns with a haloed icon disc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F3F5F4;   /* vignette mid                            */
+    --bg-edge:     #EDF0EF;   /* vignette outer                          */
+    --well:        #FFFFFF;   /* the icon disc                           */
+    --on-color:    #FFFFFF;   /* label and its underline                 */
+    --on-color-soft: rgba(255, 255, 255, 0.82);  /* column body copy     */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+
+    --color-1:     #2F71A8;   /* point 1 — blue                          */
+    --color-1-dk:  #266993;   /*   its halo ring, ~12% darker            */
+    --color-2:     #B9C23C;   /* point 2 — lime                          */
+    --color-2-dk:  #A3AC2E;
+    --color-3:     #2C6D70;   /* point 3 — teal                          */
+    --color-3-dk:  #235759;
+    --color-4:     #EFAF3A;   /* point 4 — amber                         */
+    --color-4-dk:  #D89A2A;
+    --color-5:     #B42B47;   /* point 5 — crimson                       */
+    --color-5-dk:  #98213A;
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Five 350px columns butted edge to edge, each finishing in a 150px
+       V. The columns TOUCH — no gutter — so the row reads as one banded
+       block until the points split it apart at the foot.
+       Each icon disc sits in a HALO of its own column colour darkened,
+       which is what stops a white disc from looking pasted on.
+       Margins: top 70 · left 85 · right 85 · bottom 70.                */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 30%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — five-segment rule, one per point ==================== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 250px; height: 10px; width: 103px; border-radius: 2px; }
+  .rule-1 { left: 703px;  background: var(--color-1); }
+  .rule-2 { left: 806px;  background: var(--color-2); }
+  .rule-3 { left: 909px;  background: var(--color-3); }
+  .rule-4 { left: 1012px; background: var(--color-4); }
+  .rule-5 { left: 1115px; background: var(--color-5); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === WELL GLYPHS — tinted with their own column =================== */
+  .well-icon {
+    position: absolute;
+    top: 456px; width: 350px; height: 76px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 3;
+  }
+  .well-icon-1 { left: 85px;   color: var(--color-1); }
+  .well-icon-2 { left: 435px;  color: var(--color-2); }
+  .well-icon-3 { left: 785px;  color: var(--color-3); }
+  .well-icon-4 { left: 1135px; color: var(--color-4); }
+  .well-icon-5 { left: 1485px; color: var(--color-5); }
+  .well-icon .material-symbols-outlined {
+    font-size: 76px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* === COLUMN COPY ================================================== */
+  .pt-label {
+    position: absolute;
+    top: 620px; width: 350px; height: 44px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 34px;
+    line-height: 44px;
+    text-align: center;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .pt-label-1 { left: 85px;   }
+  .pt-label-2 { left: 435px;  }
+  .pt-label-3 { left: 785px;  }
+  .pt-label-4 { left: 1135px; }
+  .pt-label-5 { left: 1485px; }
+
+  .pt-body {
+    position: absolute;
+    top: 720px; width: 280px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--on-color-soft);
+    z-index: 3;
+  }
+  .pt-body-1 { left: 120px;  }
+  .pt-body-2 { left: 470px;  }
+  .pt-body-3 { left: 820px;  }
+  .pt-body-4 { left: 1170px; }
+  .pt-body-5 { left: 1520px; }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-5P-009"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <h1 class="headline" data-token="title">ADKAR Model</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+  <div class="rule rule-3"></div>
+  <div class="rule rule-4"></div>
+  <div class="rule rule-5"></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <g class="col col-1">
+      <path class="pen" fill="var(--color-1)" d="M 85 330 H 435 V 860 L 260 1010 L 85 860 Z"/>
+      <circle class="halo" cx="260" cy="494" r="123" fill="var(--color-1-dk)"/>
+      <circle class="well" cx="260" cy="494" r="98"  fill="var(--well)"/>
+      <rect class="uline" x="210" y="682" width="100" height="4" fill="var(--on-color)"/>
+    </g>
+    <g class="col col-2">
+      <path class="pen" fill="var(--color-2)" d="M 435 330 H 785 V 860 L 610 1010 L 435 860 Z"/>
+      <circle class="halo" cx="610" cy="494" r="123" fill="var(--color-2-dk)"/>
+      <circle class="well" cx="610" cy="494" r="98"  fill="var(--well)"/>
+      <rect class="uline" x="560" y="682" width="100" height="4" fill="var(--on-color)"/>
+    </g>
+    <g class="col col-3">
+      <path class="pen" fill="var(--color-3)" d="M 785 330 H 1135 V 860 L 960 1010 L 785 860 Z"/>
+      <circle class="halo" cx="960" cy="494" r="123" fill="var(--color-3-dk)"/>
+      <circle class="well" cx="960" cy="494" r="98"  fill="var(--well)"/>
+      <rect class="uline" x="910" y="682" width="100" height="4" fill="var(--on-color)"/>
+    </g>
+    <g class="col col-4">
+      <path class="pen" fill="var(--color-4)" d="M 1135 330 H 1485 V 860 L 1310 1010 L 1135 860 Z"/>
+      <circle class="halo" cx="1310" cy="494" r="123" fill="var(--color-4-dk)"/>
+      <circle class="well" cx="1310" cy="494" r="98"  fill="var(--well)"/>
+      <rect class="uline" x="1260" y="682" width="100" height="4" fill="var(--on-color)"/>
+    </g>
+    <g class="col col-5">
+      <path class="pen" fill="var(--color-5)" d="M 1485 330 H 1835 V 860 L 1660 1010 L 1485 860 Z"/>
+      <circle class="halo" cx="1660" cy="494" r="123" fill="var(--color-5-dk)"/>
+      <circle class="well" cx="1660" cy="494" r="98"  fill="var(--well)"/>
+      <rect class="uline" x="1610" y="682" width="100" height="4" fill="var(--on-color)"/>
+    </g>
+  </svg>
+
+  <div class="well-icon well-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">campaign</span></div>
+  <div class="well-icon well-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">favorite</span></div>
+  <div class="well-icon well-icon-3"><span class="material-symbols-outlined" data-token="p3.icon">menu_book</span></div>
+  <div class="well-icon well-icon-4"><span class="material-symbols-outlined" data-token="p4.icon">settings</span></div>
+  <div class="well-icon well-icon-5"><span class="material-symbols-outlined" data-token="p5.icon">autorenew</span></div>
+
+  <div class="pt-label pt-label-1" data-token="p1.label">Awareness</div>
+  <div class="pt-label pt-label-2" data-token="p2.label">Desire</div>
+  <div class="pt-label pt-label-3" data-token="p3.label">Knowledge</div>
+  <div class="pt-label pt-label-4" data-token="p4.label">Ability</div>
+  <div class="pt-label pt-label-5" data-token="p5.label">Reinforcement</div>
+
+  <div class="pt-body pt-body-1" data-token="p1.body">Lorem ipsum dolor siterpe amet, consectetuer adipid iscing elit, sed diam erupa</div>
+  <div class="pt-body pt-body-2" data-token="p2.body">Lorem ipsum dolor siterpe amet, consectetuer adipid iscing elit, sed diam erupa</div>
+  <div class="pt-body pt-body-3" data-token="p3.body">Lorem ipsum dolor siterpe amet, consectetuer adipid iscing elit, sed diam erupa</div>
+  <div class="pt-body pt-body-4" data-token="p4.body">Lorem ipsum dolor siterpe amet, consectetuer adipid iscing elit, sed diam erupa</div>
+  <div class="pt-body pt-body-5" data-token="p5.body">Lorem ipsum dolor siterpe amet, consectetuer adipid iscing elit, sed diam erupa</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function () {
+  gsap.set('.headline, .deck', { opacity: 0, y: 24 });
+  gsap.set('.rule', { opacity: 0, scaleX: 0, transformOrigin: '50% 50%' });
+
+  /* each column drops in from above and its point spears down last */
+  [[1, 260], [2, 610], [3, 960], [4, 1310], [5, 1660]].forEach(function (p) {
+    gsap.set('.col-' + p[0] + ' .pen',   { opacity: 0, y: -56, scaleY: 0.9, svgOrigin: p[1] + ' 330' });
+    gsap.set('.col-' + p[0] + ' .halo',  { opacity: 0, scale: 0.4, svgOrigin: p[1] + ' 494' });
+    gsap.set('.col-' + p[0] + ' .well',  { opacity: 0, scale: 0.4, svgOrigin: p[1] + ' 494' });
+    gsap.set('.col-' + p[0] + ' .uline', { opacity: 0, scaleX: 0, svgOrigin: p[1] + ' 684' });
+  });
+  gsap.set('.well-icon', { opacity: 0, scale: 0.5, transformOrigin: '50% 50%' });
+  gsap.set('.pt-label',  { opacity: 0, y: 18 });
+  gsap.set('.pt-body',   { opacity: 0, y: 18 });
+
+  var tl = gsap.timeline({ paused: true });
+
+  tl.to('.headline', { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.00)
+    .to('.deck',     { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.18)
+    .to('.rule',     { opacity: 1, scaleX: 1, duration: 0.42, ease: 'power2.out', stagger: 0.07 }, 0.40);
+
+  [1, 2, 3, 4, 5].forEach(function (n, i) {
+    var t = 0.72 + i * 0.36;
+    tl.to('.col-' + n + ' .pen',   { opacity: 1, y: 0, scaleY: 1, duration: 0.54, ease: 'power3.out' }, t)
+      .to('.col-' + n + ' .halo',  { opacity: 1, scale: 1, duration: 0.44, ease: 'back.out(1.8)' }, t + 0.16)
+      .to('.col-' + n + ' .well',  { opacity: 1, scale: 1, duration: 0.44, ease: 'back.out(1.8)' }, t + 0.22)
+      .to('.well-icon-' + n,       { opacity: 1, scale: 1, duration: 0.36, ease: 'back.out(2)'   }, t + 0.32)
+      .to('.pt-label-' + n,        { opacity: 1, y: 0, duration: 0.40, ease: 'power2.out' }, t + 0.30)
+      .to('.col-' + n + ' .uline', { opacity: 1, scaleX: 1, duration: 0.34, ease: 'power2.out' }, t + 0.38)
+      .to('.pt-body-' + n,         { opacity: 1, y: 0, duration: 0.42, ease: 'power2.out' }, t + 0.42);
+  });
+
+  window.__libraryTimeline = tl;
+
+  /* === SNAPSHOT MODE — mandatory ==================================== */
+  if (new URLSearchParams(location.search).get('snapshot') === '1') {
+    tl.progress(1);
+    document.documentElement.setAttribute('data-snapshot-ready', '1');
+  } else {
+    tl.play();
+  }
+})();
+</script>
+
+</body>
+</html>

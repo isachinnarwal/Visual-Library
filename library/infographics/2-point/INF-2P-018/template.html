@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-2P-018 — Mirrored cards with header pill and overhanging icon disc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F5F6F5;   /* vignette mid                            */
+    --bg-edge:     #EDEFEE;   /* vignette outer                          */
+    --card:        #E3E3E3;   /* the two cards                           */
+    --marker:      #C4C4C4;   /* bullet dots                             */
+    --on-color:    #FFFFFF;   /* copy + icon on a pill / disc            */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+    --text-muted:  #7C7C7E;   /* card body + bullet copy                 */
+
+    --color-1:     #E77630;   /* card 1 — orange                         */
+    --color-1-lt:  #F0A878;   /* card 1 — disc halo                      */
+    --color-2:     #19306B;   /* card 2 — navy                           */
+    --color-2-lt:  #6E7FAE;   /* card 2 — disc halo                      */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Cards x 320→927 and 987→1595, y 337→990.
+       Each card: header pill inset from the OUTER edge, an icon disc
+       straddling that same outer edge, then body, bullets, dots and a
+       coloured foot bar. Card 2 mirrors card 1 — pill title alignment
+       and disc side flip; the bullets do NOT (markers stay on the left).
+       Margins: top 70 · left 320 · right 325 · bottom 90.              */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 28%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — same family as INF-2P-006 / 011 / 013 / 014 / 016 ==== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 268px; height: 10px; border-radius: 2px; }
+  .rule-1 { left: 693px; width: 264px; background: var(--color-1); }
+  .rule-2 { left: 963px; width: 264px; background: var(--color-2); }
+
+  /* === CARD ========================================================= */
+  .card {
+    position: absolute;
+    top: 337px; width: 607px; height: 653px;
+    background: var(--card);
+    border-radius: 25px;
+    overflow: hidden;            /* clips the foot bar to the corners */
+    z-index: 1;
+  }
+  .card-1 { left: 320px; }
+  .card-2 { left: 987px; }
+
+  .foot { position: absolute; left: 0; bottom: 0; width: 100%; height: 26px; }
+  .card-1 .foot { background: var(--color-1); }
+  .card-2 .foot { background: var(--color-2); }
+
+  /* === HEADER PILL — inset from the card's outer edge =============== */
+  .pill {
+    position: absolute;
+    top: 393px; width: 513px; height: 116px;
+    border-radius: 25px;
+    display: flex; align-items: center;
+    padding: 0 46px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 34px;
+    color: var(--on-color);
+    z-index: 2;
+  }
+  .pill-1 { left: 379px;  background: var(--color-1); justify-content: flex-start; }
+  .pill-2 { left: 1022px; background: var(--color-2); justify-content: flex-end;   }
+
+  /* === ICON DISC — straddles the card's outer edge ================== */
+  .disc {
+    position: absolute;
+    top: 367px; width: 168px; height: 168px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 3;
+  }
+  .disc-1 { left: 246px;  background: var(--color-1-lt); }
+  .disc-2 { left: 1501px; background: var(--color-2-lt); }
+  .disc::before {
+    content: '';
+    position: absolute; inset: 14px;
+    border-radius: 50%;
+    background: var(--core);
+  }
+  .disc-1 { --core: var(--color-1); }
+  .disc-2 { --core: var(--color-2); }
+  .disc .material-symbols-outlined {
+    position: relative;
+    font-size: 76px;
+    color: var(--on-color);
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* === CARD COPY ==================================================== */
+  .card-body {
+    position: absolute;
+    top: 555px; width: 425px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    z-index: 2;
+  }
+  .card-body-1 { left: 427px;  }
+  .card-body-2 { left: 1094px; }
+
+  .bullets {
+    position: absolute;
+    top: 706px; width: 425px;
+    z-index: 2;
+  }
+  .bullets-1 { left: 427px;  }
+  .bullets-2 { left: 1094px; }
+  .bullets li {
+    list-style: none;
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 16px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+  .bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 10px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--marker);
+  }
+
+  .card-dots {
+    position: absolute;
+    top: 926px; width: 88px; height: 16px;
+    display: flex; justify-content: space-between;
+    z-index: 2;
+  }
+  .card-dots-1 { left: 580px;  }
+  .card-dots-2 { left: 1247px; }
+  .card-dots i { width: 16px; height: 16px; border-radius: 50%; }
+  .card-dots-1 i { background: var(--color-1); }
+  .card-dots-2 i { background: var(--color-2); }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-2P-018"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <h1 class="headline" data-token="title">Historical vs Present</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+
+  <div class="card card-1"><div class="foot"></div></div>
+  <div class="card card-2"><div class="foot"></div></div>
+
+  <div class="pill pill-1"><span data-token="p1.label">Historical</span></div>
+  <div class="pill pill-2"><span data-token="p2.label">Present</span></div>
+
+  <div class="disc disc-1"><span class="material-symbols-outlined" data-token="p1.icon">history</span></div>
+  <div class="disc disc-2"><span class="material-symbols-outlined" data-token="p2.icon">schedule</span></div>
+
+  <p class="card-body card-body-1" data-token="p1.body">Lorem ipsum dolor sit amet coredai nsectetuer tempora adipiscing elit</p>
+  <p class="card-body card-body-2" data-token="p2.body">Lorem ipsum dolor sit amet coredai nsectetuer tempora adipiscing elit</p>
+
+  <ul class="bullets bullets-1">
+    <li data-token="p1.item1">Lorem ipsum dolor sitared amet, consectetuer</li>
+    <li data-token="p1.item2">sed diamar nonummy ni</li>
+    <li data-token="p1.item3">tincidunt ut laoreet dolore</li>
+  </ul>
+  <ul class="bullets bullets-2">
+    <li data-token="p2.item1">Lorem ipsum dolor sitared amet, consectetuer</li>
+    <li data-token="p2.item2">sed diamar nonummy ni</li>
+    <li data-token="p2.item3">tincidunt ut laoreet dolore</li>
+  </ul>
+
+  <div class="card-dots card-dots-1"><i></i><i></i><i></i></div>
+  <div class="card-dots card-dots-2"><i></i><i></i><i></i></div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — header, then each card builds top-down ========
+  // 0.15 headline  0.55 deck  0.95 split rule
+  // 1.25 card 1 (card → foot → pill → disc → body → bullets → dots)
+  // 2.75 card 2 (same beats)                    ends ~4.4 → hold to 6.0
+
+  gsap.set('.headline',  {opacity: 0, y: -26});
+  gsap.set('.deck',      {opacity: 0, y: -14});
+  gsap.set('.rule',      {scaleX: 0});
+  gsap.set('.rule-1',    {transformOrigin: 'right center'});
+  gsap.set('.rule-2',    {transformOrigin: 'left center'});
+  gsap.set('.card',      {opacity: 0, y: 34, scale: 0.96, transformOrigin: 'center top'});
+  gsap.set('.foot',      {scaleX: 0, transformOrigin: 'center'});
+  gsap.set('.pill',      {opacity: 0, scaleX: 0.3});
+  gsap.set('.pill-1',    {transformOrigin: 'left center'});
+  gsap.set('.pill-2',    {transformOrigin: 'right center'});
+  gsap.set('.disc',      {opacity: 0, scale: 0.4, transformOrigin: 'center'});
+  gsap.set('.card-body', {opacity: 0, y: 14});
+  gsap.set('.bullets li',{opacity: 0, x: -20});
+  gsap.set('.card-dots i', {opacity: 0, scale: 0.4, transformOrigin: 'center'});
+
+  const tl = gsap.timeline({paused: true});
+
+  tl.to('.headline', {opacity: 1, y: 0, duration: 0.60, ease: 'power2.out'}, 0.15)
+    .to('.deck',     {opacity: 1, y: 0, duration: 0.55, ease: 'power2.out'}, 0.55)
+    .to('.rule',     {scaleX: 1, duration: 0.50, ease: 'power2.out'},        0.95);
+
+  function revealCard(n, t) {
+    tl.to('.card-'      + n, {opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'power3.out'},  t)
+      .to('.card-' + n + ' .foot', {scaleX: 1, duration: 0.45, ease: 'power2.out'},             t + 0.25)
+      .to('.pill-'      + n, {opacity: 1, scaleX: 1, duration: 0.50, ease: 'power3.out'},       t + 0.30)
+      .to('.disc-'      + n, {opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.8)'},     t + 0.50)
+      .to('.card-body-' + n, {opacity: 1, y: 0, duration: 0.45, ease: 'power2.out'},            t + 0.68)
+      .to('.bullets-' + n + ' li', {opacity: 1, x: 0, duration: 0.40, stagger: 0.10,
+                                    ease: 'power2.out'},                                        t + 0.85)
+      .to('.card-dots-' + n + ' i', {opacity: 1, scale: 1, duration: 0.28, stagger: 0.06,
+                                     ease: 'back.out(2)'},                                      t + 1.20);
+  }
+
+  revealCard(1, 1.25);
+  revealCard(2, 2.75);
+
+  tl.to({}, {duration: 1.2}, 4.8);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES ==================================================
+  // ?snapshot=1  →  preview.sh thumbnail: fast-forward to the final frame
+  // __hfSeek     →  HyperFrames pipeline drives the timeline via seek
+  // otherwise    →  standalone preview / Launch panel: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

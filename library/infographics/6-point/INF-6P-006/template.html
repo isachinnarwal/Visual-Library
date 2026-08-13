@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-6P-006 — Arrow bars converging on a titled centre disc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F3F5F4;   /* vignette mid                            */
+    --bg-edge:     #EDF0EF;   /* vignette outer                          */
+    --hub:         #FFFFFF;   /* the centre disc                         */
+    --cap:         #FFFFFF;   /* the disc capping each bar's outer end   */
+    --on-color:    #FFFFFF;   /* label and body on a bar                 */
+    --on-color-soft: rgba(255, 255, 255, 0.88);
+
+    --text-dark:   #252525;   /* headline, hub title, STEP caption       */
+    --text-sub:    #6E7073;   /* deck                                    */
+    --text-muted:  #7C7E81;   /* hub body copy                           */
+
+    --color-1:     #68D1DF;   /* point 1 — lightest                      */
+    --color-2:     #32B7D2;   /* point 2 — mid                           */
+    --color-3:     #247CA1;   /* point 3 — darkest                       */
+    --color-4:     #6DD6E8;   /* point 4 — lightest, right column        */
+    --color-5:     #32B5D5;   /* point 5 — mid                           */
+    --color-6:     #247EA3;   /* point 6 — darkest                       */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Six arrow bars, three a side, all pointing IN at an r-250 hub.
+       Each bar is a stadium end (r 110, the bar's own half-height) plus
+       a 60px chevron on the inner end, so the outer end reads as a
+       handle and the inner end as an arrow.
+       Copy is reversed out on the bar; every block reads inward.
+       Margins: top 70 · left 90 · right 90 · bottom 60.                */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 30%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — six-segment rule, one per point ==================== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 250px; height: 10px; width: 86px; border-radius: 2px; }
+  .rule-1 { left: 702px;  background: var(--color-1); }
+  .rule-2 { left: 788px;  background: var(--color-2); }
+  .rule-3 { left: 874px;  background: var(--color-3); }
+  .rule-4 { left: 960px;  background: var(--color-4); }
+  .rule-5 { left: 1046px; background: var(--color-5); }
+  .rule-6 { left: 1132px; background: var(--color-6); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === CAP CONTENT — glyph over a STEP caption ====================== */
+  .cap-icon {
+    position: absolute;
+    width: 168px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-dark);
+    z-index: 4;
+  }
+  .cap-icon .material-symbols-outlined {
+    font-size: 52px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+  .cap-step {
+    position: absolute;
+    width: 168px; height: 34px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: center;
+    color: var(--text-dark);
+    z-index: 4;
+  }
+  .cap-icon-1, .cap-icon-2, .cap-icon-3 { left: 116px;  }
+  .cap-icon-4, .cap-icon-5, .cap-icon-6 { left: 1636px; }
+  .cap-step-1, .cap-step-2, .cap-step-3 { left: 116px;  }
+  .cap-step-4, .cap-step-5, .cap-step-6 { left: 1636px; }
+  .cap-icon-1, .cap-icon-4 { top: 376px; }
+  .cap-icon-2, .cap-icon-5 { top: 616px; }
+  .cap-icon-3, .cap-icon-6 { top: 856px; }
+  .cap-step-1, .cap-step-4 { top: 444px; }
+  .cap-step-2, .cap-step-5 { top: 684px; }
+  .cap-step-3, .cap-step-6 { top: 924px; }
+
+  /* === BAR COPY ===================================================== */
+  .pt-label {
+    position: absolute;
+    width: 320px; height: 72px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 36px;
+    text-transform: uppercase;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .pt-body {
+    position: absolute;
+    width: 320px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--on-color-soft);
+    z-index: 3;
+  }
+  .pt-label-1, .pt-label-2, .pt-label-3 { left: 310px;  text-align: right; }
+  .pt-body-1,  .pt-body-2,  .pt-body-3  { left: 310px;  text-align: right; }
+  .pt-label-4, .pt-label-5, .pt-label-6 { left: 1290px; text-align: left;  }
+  .pt-body-4,  .pt-body-5,  .pt-body-6  { left: 1290px; text-align: left;  }
+  .pt-label-1, .pt-label-4 { top: 336px; }
+  .pt-label-2, .pt-label-5 { top: 576px; }
+  .pt-label-3, .pt-label-6 { top: 816px; }
+  .pt-body-1,  .pt-body-4  { top: 414px; }
+  .pt-body-2,  .pt-body-5  { top: 654px; }
+  .pt-body-3,  .pt-body-6  { top: 894px; }
+
+  /* === HUB COPY ===================================================== */
+  .hub-title {
+    position: absolute;
+    left: 790px; top: 490px; width: 340px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 42px;
+    line-height: 50px;
+    text-align: center;
+    color: var(--text-dark);
+    z-index: 4;
+  }
+  .hub-body {
+    position: absolute;
+    left: 790px; top: 664px; width: 340px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--text-muted);
+    z-index: 4;
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-6P-006"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <h1 class="headline" data-token="title">6 Steps Infographic</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+  <div class="rule rule-3"></div>
+  <div class="rule rule-4"></div>
+  <div class="rule rule-5"></div>
+  <div class="rule rule-6"></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <defs>
+      <filter id="capShadow" x="-40%" y="-40%" width="180%" height="180%">
+        <feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#000" flood-opacity="0.18"/>
+      </filter>
+      <filter id="hubShadow" x="-25%" y="-25%" width="150%" height="150%">
+        <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#000" flood-opacity="0.16"/>
+      </filter>
+    </defs>
+
+    <!-- LEFT bars: stadium end on the outside, 60px chevron pointing in.
+         The stadium radius IS the bar's half-height (110), which is what
+         makes the outer end a clean semicircle rather than a soft corner. -->
+    <path class="bar bar-1" fill="var(--color-1)"
+          d="M 200 320 H 640 L 700 430 L 640 540 H 200 A 110 110 0 0 1 200 320 Z"/>
+    <path class="bar bar-2" fill="var(--color-2)"
+          d="M 200 560 H 640 L 700 670 L 640 780 H 200 A 110 110 0 0 1 200 560 Z"/>
+    <path class="bar bar-3" fill="var(--color-3)"
+          d="M 200 800 H 640 L 700 910 L 640 1020 H 200 A 110 110 0 0 1 200 800 Z"/>
+
+    <!-- RIGHT bars: the mirror image -->
+    <path class="bar bar-4" fill="var(--color-4)"
+          d="M 1720 320 A 110 110 0 0 1 1720 540 H 1280 L 1220 430 L 1280 320 Z"/>
+    <path class="bar bar-5" fill="var(--color-5)"
+          d="M 1720 560 A 110 110 0 0 1 1720 780 H 1280 L 1220 670 L 1280 560 Z"/>
+    <path class="bar bar-6" fill="var(--color-6)"
+          d="M 1720 800 A 110 110 0 0 1 1720 1020 H 1280 L 1220 910 L 1280 800 Z"/>
+
+    <g filter="url(#capShadow)">
+      <circle class="cap cap-1" cx="200"  cy="430" r="84" fill="var(--cap)"/>
+      <circle class="cap cap-2" cx="200"  cy="670" r="84" fill="var(--cap)"/>
+      <circle class="cap cap-3" cx="200"  cy="910" r="84" fill="var(--cap)"/>
+      <circle class="cap cap-4" cx="1720" cy="430" r="84" fill="var(--cap)"/>
+      <circle class="cap cap-5" cx="1720" cy="670" r="84" fill="var(--cap)"/>
+      <circle class="cap cap-6" cx="1720" cy="910" r="84" fill="var(--cap)"/>
+    </g>
+
+    <circle class="hub" cx="960" cy="670" r="250" fill="var(--hub)" filter="url(#hubShadow)"/>
+  </svg>
+
+  <div class="cap-icon cap-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">groups</span></div>
+  <div class="cap-icon cap-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">lightbulb</span></div>
+  <div class="cap-icon cap-icon-3"><span class="material-symbols-outlined" data-token="p3.icon">manage_search</span></div>
+  <div class="cap-icon cap-icon-4"><span class="material-symbols-outlined" data-token="p4.icon">bar_chart</span></div>
+  <div class="cap-icon cap-icon-5"><span class="material-symbols-outlined" data-token="p5.icon">savings</span></div>
+  <div class="cap-icon cap-icon-6"><span class="material-symbols-outlined" data-token="p6.icon">balance</span></div>
+
+  <div class="cap-step cap-step-1" data-token="p1.step">STEP 01</div>
+  <div class="cap-step cap-step-2" data-token="p2.step">STEP 02</div>
+  <div class="cap-step cap-step-3" data-token="p3.step">STEP 03</div>
+  <div class="cap-step cap-step-4" data-token="p4.step">STEP 04</div>
+  <div class="cap-step cap-step-5" data-token="p5.step">STEP 05</div>
+  <div class="cap-step cap-step-6" data-token="p6.step">STEP 06</div>
+
+  <div class="pt-label pt-label-1" data-token="p1.label">Lorem ipsum dolor sit amet</div>
+  <div class="pt-label pt-label-2" data-token="p2.label">Lorem ipsum dolor sit amet</div>
+  <div class="pt-label pt-label-3" data-token="p3.label">Lorem ipsum dolor sit amet</div>
+  <div class="pt-label pt-label-4" data-token="p4.label">Lorem ipsum dolor sit amet</div>
+  <div class="pt-label pt-label-5" data-token="p5.label">Lorem ipsum dolor sit amet</div>
+  <div class="pt-label pt-label-6" data-token="p6.label">Lorem ipsum dolor sit amet</div>
+
+  <div class="pt-body pt-body-1" data-token="p1.body">Lorem ipsum dolor sit amet consectetuer adipiscing</div>
+  <div class="pt-body pt-body-2" data-token="p2.body">Lorem ipsum dolor sit amet consectetuer adipiscing</div>
+  <div class="pt-body pt-body-3" data-token="p3.body">Lorem ipsum dolor sit amet consectetuer adipiscing</div>
+  <div class="pt-body pt-body-4" data-token="p4.body">Lorem ipsum dolor sit amet consectetuer adipiscing</div>
+  <div class="pt-body pt-body-5" data-token="p5.body">Lorem ipsum dolor sit amet consectetuer adipiscing</div>
+  <div class="pt-body pt-body-6" data-token="p6.body">Lorem ipsum dolor sit amet consectetuer adipiscing</div>
+
+  <div class="hub-title" data-token="centre">6 Steps Infographic Template</div>
+  <div class="hub-body"  data-token="centre.body">Lorem ipsum dolor sit amet consectetuer adipiscing elit sed diam nonummy nibh euismod</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function () {
+  gsap.set('.headline, .deck', { opacity: 0, y: 24 });
+  gsap.set('.rule', { opacity: 0, scaleX: 0, transformOrigin: '50% 50%' });
+
+  /* left bars grow out of their own outer end, right bars out of theirs,
+     so both columns drive INWARD toward the hub */
+  var CY = { 1: 430, 2: 670, 3: 910, 4: 430, 5: 670, 6: 910 };
+  [1, 2, 3].forEach(function (n) {
+    gsap.set('.bar-' + n, { opacity: 0, scaleX: 0.12, svgOrigin: '200 ' + CY[n] });
+    gsap.set('.cap-' + n, { opacity: 0, scale: 0.35, svgOrigin: '200 ' + CY[n] });
+  });
+  [4, 5, 6].forEach(function (n) {
+    gsap.set('.bar-' + n, { opacity: 0, scaleX: 0.12, svgOrigin: '1720 ' + CY[n] });
+    gsap.set('.cap-' + n, { opacity: 0, scale: 0.35, svgOrigin: '1720 ' + CY[n] });
+  });
+  gsap.set('.hub',       { opacity: 0, scale: 0.45, svgOrigin: '960 670' });
+  gsap.set('.hub-title, .hub-body', { opacity: 0, y: 20 });
+  gsap.set('.cap-icon, .cap-step',  { opacity: 0, scale: 0.55, transformOrigin: '50% 50%' });
+  gsap.set('.pt-label-1, .pt-body-1, .pt-label-2, .pt-body-2, .pt-label-3, .pt-body-3', { opacity: 0, x: -24 });
+  gsap.set('.pt-label-4, .pt-body-4, .pt-label-5, .pt-body-5, .pt-label-6, .pt-body-6', { opacity: 0, x:  24 });
+
+  var tl = gsap.timeline({ paused: true });
+
+  tl.to('.headline', { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.00)
+    .to('.deck',     { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.18)
+    .to('.rule',     { opacity: 1, scaleX: 1, duration: 0.40, ease: 'power2.out', stagger: 0.06 }, 0.40);
+
+  [1, 2, 3, 4, 5, 6].forEach(function (n, i) {
+    var t = 0.70 + i * 0.30;
+    tl.to('.bar-' + n,      { opacity: 1, scaleX: 1, duration: 0.50, ease: 'power3.out' }, t)
+      .to('.cap-' + n,      { opacity: 1, scale: 1, duration: 0.40, ease: 'back.out(2)' }, t + 0.14)
+      .to('.cap-icon-' + n, { opacity: 1, scale: 1, duration: 0.32, ease: 'back.out(2)' }, t + 0.22)
+      .to('.cap-step-' + n, { opacity: 1, scale: 1, duration: 0.30, ease: 'back.out(2)' }, t + 0.28)
+      .to('.pt-label-' + n + ', .pt-body-' + n,
+          { opacity: 1, x: 0, duration: 0.44, ease: 'power2.out', stagger: 0.07 }, t + 0.20);
+  });
+
+  /* the hub lands last — it is what all six arrows point at */
+  tl.to('.hub',       { opacity: 1, scale: 1, duration: 0.60, ease: 'back.out(1.6)' }, 2.62)
+    .to('.hub-title', { opacity: 1, y: 0, duration: 0.46, ease: 'power2.out' }, 2.86)
+    .to('.hub-body',  { opacity: 1, y: 0, duration: 0.46, ease: 'power2.out' }, 3.00);
+
+  window.__libraryTimeline = tl;
+
+  /* === SNAPSHOT MODE — mandatory ==================================== */
+  if (new URLSearchParams(location.search).get('snapshot') === '1') {
+    tl.progress(1);
+    document.documentElement.setAttribute('data-snapshot-ready', '1');
+  } else {
+    tl.play();
+  }
+})();
+</script>
+
+</body>
+</html>

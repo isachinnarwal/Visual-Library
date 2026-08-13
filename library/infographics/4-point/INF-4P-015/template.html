@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-4P-015 — Gradient discs with a white icon disc on the crown</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F3F5F4;   /* vignette mid                            */
+    --bg-edge:     #EDF0EF;   /* vignette outer                          */
+    --head:        #FFFFFF;   /* the small disc on the crown             */
+    --glyph:       #3B3B3B;   /* icon in that disc — dark, NOT tinted    */
+    --on-color:    #FFFFFF;   /* step name on the disc                   */
+    --on-color-soft: rgba(255, 255, 255, 0.84);  /* body copy on the disc */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+
+    --color-1:     #3CDFFB;   /* point 1 — cyan                          */
+    --color-1-lo:  #37C3F6;
+    --color-2:     #6783F9;   /* point 2 — blue                          */
+    --color-2-lo:  #405DF8;
+    --color-3:     #986DE4;   /* point 3 — violet                        */
+    --color-3-lo:  #7B45DB;
+    --color-4:     #DB4BF5;   /* point 4 — magenta                       */
+    --color-4-lo:  #BF21DE;
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Four r-195 gradient discs on a 430px pitch, centres at y 700,
+       spanning 120..1800. Each wears a small white r-63 disc whose centre
+       sits exactly ON the big disc's crown (cx, 505) — so it reads as
+       pinned to the top, not floating above it.
+       All copy lives INSIDE the disc, so the text column is limited by
+       the CHORD, not the diameter: at the top copy line the disc is only
+       339px across, not 390.
+       Margins: top 70 · left 120 · right 120 · bottom 185.             */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 30%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — four-segment rule, one per point ==================== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 250px; height: 10px; width: 129px; border-radius: 2px; }
+  .rule-1 { left: 702px;  background: var(--color-1-lo); }
+  .rule-2 { left: 831px;  background: var(--color-2-lo); }
+  .rule-3 { left: 960px;  background: var(--color-3-lo); }
+  .rule-4 { left: 1089px; background: var(--color-4-lo); }
+
+  /* === THE FOUR DISCS =============================================== */
+  .disc {
+    position: absolute;
+    top: 505px; width: 390px; height: 390px;
+    border-radius: 50%;
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.14);
+    z-index: 1;
+  }
+  .disc-1 { left: 120px;  background: linear-gradient(160deg, var(--color-1) 0%, var(--color-1-lo) 100%); }
+  .disc-2 { left: 550px;  background: linear-gradient(160deg, var(--color-2) 0%, var(--color-2-lo) 100%); }
+  .disc-3 { left: 980px;  background: linear-gradient(160deg, var(--color-3) 0%, var(--color-3-lo) 100%); }
+  .disc-4 { left: 1410px; background: linear-gradient(160deg, var(--color-4) 0%, var(--color-4-lo) 100%); }
+
+  /* centred on the big disc's crown, so exactly half of it overhangs */
+  .head {
+    position: absolute;
+    top: 442px; width: 126px; height: 126px;
+    border-radius: 50%;
+    background: var(--head);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--glyph);
+    z-index: 2;
+  }
+  .head-1 { left: 252px;  }
+  .head-2 { left: 682px;  }
+  .head-3 { left: 1112px; }
+  .head-4 { left: 1542px; }
+  .head .material-symbols-outlined {
+    font-size: 56px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* === COPY, INSIDE THE DISC ======================================== */
+  .d-body {
+    position: absolute;
+    top: 604px; width: 310px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--on-color-soft);
+    z-index: 3;
+  }
+  .d-body-1 { left: 160px;  }
+  .d-body-2 { left: 590px;  }
+  .d-body-3 { left: 1020px; }
+  .d-body-4 { left: 1450px; }
+
+  .d-label {
+    position: absolute;
+    top: 749px; width: 310px; height: 48px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 38px;
+    line-height: 48px;
+    text-align: center;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .d-label-1 { left: 160px;  }
+  .d-label-2 { left: 590px;  }
+  .d-label-3 { left: 1020px; }
+  .d-label-4 { left: 1450px; }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-4P-015"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <h1 class="headline" data-token="title">Process Infographic</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+  <div class="rule rule-3"></div>
+  <div class="rule rule-4"></div>
+
+  <div class="disc disc-1"></div>
+  <div class="disc disc-2"></div>
+  <div class="disc disc-3"></div>
+  <div class="disc disc-4"></div>
+
+  <div class="head head-1"><span class="material-symbols-outlined" data-token="p1.icon">rocket_launch</span></div>
+  <div class="head head-2"><span class="material-symbols-outlined" data-token="p2.icon">person</span></div>
+  <div class="head head-3"><span class="material-symbols-outlined" data-token="p3.icon">lightbulb</span></div>
+  <div class="head head-4"><span class="material-symbols-outlined" data-token="p4.icon">trending_up</span></div>
+
+  <div class="d-body d-body-1" data-token="p1.body">Lorem ipsum dolor sit amet, consectetur adipiscing</div>
+  <div class="d-body d-body-2" data-token="p2.body">Lorem ipsum dolor sit amet, consectetur adipiscing</div>
+  <div class="d-body d-body-3" data-token="p3.body">Lorem ipsum dolor sit amet, consectetur adipiscing</div>
+  <div class="d-body d-body-4" data-token="p4.body">Lorem ipsum dolor sit amet, consectetur adipiscing</div>
+
+  <div class="d-label d-label-1" data-token="p1.label">Step 01</div>
+  <div class="d-label d-label-2" data-token="p2.label">Step 02</div>
+  <div class="d-label d-label-3" data-token="p3.label">Step 03</div>
+  <div class="d-label d-label-4" data-token="p4.label">Step 04</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function () {
+  gsap.set('.headline, .deck', { opacity: 0, y: 24 });
+  gsap.set('.rule',    { opacity: 0, scaleX: 0, transformOrigin: '50% 50%' });
+  gsap.set('.disc',    { opacity: 0, scale: 0.55, transformOrigin: '50% 50%' });
+  gsap.set('.head',    { opacity: 0, scale: 0.4, y: -30, transformOrigin: '50% 50%' });
+  gsap.set('.d-body',  { opacity: 0, y: 16 });
+  gsap.set('.d-label', { opacity: 0, y: 16 });
+
+  var tl = gsap.timeline({ paused: true });
+
+  tl.to('.headline', { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.00)
+    .to('.deck',     { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.18)
+    .to('.rule',     { opacity: 1, scaleX: 1, duration: 0.44, ease: 'power2.out', stagger: 0.08 }, 0.40);
+
+  /* disc opens, then its crown drops on, then the copy inside */
+  [1, 2, 3, 4].forEach(function (n, i) {
+    var t = 0.75 + i * 0.40;
+    tl.to('.disc-' + n,    { opacity: 1, scale: 1, duration: 0.58, ease: 'back.out(1.4)' }, t)
+      .to('.head-' + n,    { opacity: 1, scale: 1, y: 0, duration: 0.48, ease: 'back.out(2)' }, t + 0.20)
+      .to('.d-body-' + n,  { opacity: 1, y: 0, duration: 0.46, ease: 'power2.out' }, t + 0.28)
+      .to('.d-label-' + n, { opacity: 1, y: 0, duration: 0.46, ease: 'power2.out' }, t + 0.40);
+  });
+
+  window.__libraryTimeline = tl;
+
+  /* === SNAPSHOT MODE — mandatory ==================================== */
+  if (new URLSearchParams(location.search).get('snapshot') === '1') {
+    tl.progress(1);
+    document.documentElement.setAttribute('data-snapshot-ready', '1');
+  } else {
+    tl.play();
+  }
+})();
+</script>
+
+</body>
+</html>

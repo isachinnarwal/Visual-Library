@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-3P-008 — Three overlapping white discs with half-ring accents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg:          #E5E5E5;   /* flat grey field                         */
+    --disc:        #FFFFFF;   /* the three white discs                   */
+    --ring-idle:   #FFFFFF;   /* the un-accented part of each ring       */
+
+    --text-dark:   #4A4A4A;   /* the two header lines                    */
+    --text-muted:  #8A8A8A;   /* point body copy                         */
+
+    --color-1:     #BC362B;   /* point 1 — red                           */
+    --color-2:     #F79940;   /* point 2 — orange                        */
+    --color-3:     #1E5D6D;   /* point 3 — teal                          */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Three units on one baseline, cy 604, centres x 388/960/1532.
+       Per unit: a white ring (r 291, stroke 40) with a 170deg coloured
+       arc over it, then a white disc r 268. Units 1 and 3 take the arc
+       on the BOTTOM, unit 2 on the TOP — that alternation is the design.
+       Discs overlap by 32px; all coloured arcs are drawn last so an arc
+       laps over its neighbour's ring, as in the reference.
+       Margins: top 50 · left 77 · right 77 · bottom 165.               */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: var(--bg);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — kicker over a heavier word, then three pips ========= */
+  .kicker {
+    position: absolute;
+    top: 50px; left: 460px; width: 1000px;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 34px;
+    letter-spacing: 0.14em;
+    text-indent: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: center;
+  }
+  .headline {
+    position: absolute;
+    top: 92px; left: 460px; width: 1000px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 52px;
+    line-height: 62px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .pips {
+    position: absolute;
+    top: 172px; left: 890px; width: 139px; height: 7px;
+    display: flex; justify-content: space-between;
+  }
+  .pips i { display: block; width: 37px; height: 7px; border-radius: 4px; }
+  .pips i:nth-child(1) { background: var(--color-1); }
+  .pips i:nth-child(2) { background: var(--color-2); }
+  .pips i:nth-child(3) { background: var(--color-3); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === DISC COPY — bounded by the disc, r 268 ======================= */
+  .pt-letter {
+    position: absolute;
+    top: 420px; width: 264px; height: 78px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 65px;
+    line-height: 78px;
+    text-align: center;
+    z-index: 3;
+  }
+  .pt-letter-1 { left: 256px;  color: var(--color-1); }
+  .pt-letter-2 { left: 828px;  color: var(--color-2); }
+  .pt-letter-3 { left: 1400px; color: var(--color-3); }
+
+  .pt-label {
+    position: absolute;
+    top: 512px; width: 264px; height: 36px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 36px;
+    text-align: center;
+    z-index: 3;
+  }
+  .pt-label-1 { left: 256px;  color: var(--color-1); }
+  .pt-label-2 { left: 828px;  color: var(--color-2); }
+  .pt-label-3 { left: 1400px; color: var(--color-3); }
+
+  .pt-body {
+    position: absolute;
+    top: 566px; width: 264px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-align: center;
+    z-index: 3;
+  }
+  .pt-body-1 { left: 256px;  }
+  .pt-body-2 { left: 828px;  }
+  .pt-body-3 { left: 1400px; }
+
+  .pt-dashes {
+    position: absolute;
+    top: 800px; width: 58px; height: 6px;
+    display: flex; justify-content: space-between;
+    z-index: 3;
+  }
+  .pt-dashes i { width: 25px; height: 6px; border-radius: 3px; }
+  .pt-dashes-1 { left: 359px;  } .pt-dashes-1 i { background: var(--color-1); }
+  .pt-dashes-2 { left: 931px;  } .pt-dashes-2 i { background: var(--color-2); }
+  .pt-dashes-3 { left: 1503px; } .pt-dashes-3 i { background: var(--color-3); }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-3P-008"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <p  class="kicker"   data-token="kicker">3 Points</p>
+  <h1 class="headline" data-token="title">Infographics</h1>
+  <div class="pips"><i></i><i></i><i></i></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <defs>
+      <filter id="p8-shadow" x="-25%" y="-25%" width="150%" height="150%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#9E9E9E" flood-opacity="0.45"/>
+      </filter>
+    </defs>
+
+    <!-- idle rings + white discs, left to right -->
+    <g class="unit unit-1">
+      <circle class="ring-idle" cx="388" cy="604" r="291" fill="none" stroke="var(--ring-idle)" stroke-width="40"/>
+      <circle class="disc disc-1" cx="388" cy="604" r="268" fill="var(--disc)" filter="url(#p8-shadow)"/>
+    </g>
+    <g class="unit unit-2">
+      <circle class="ring-idle" cx="960" cy="604" r="291" fill="none" stroke="var(--ring-idle)" stroke-width="40"/>
+      <circle class="disc disc-2" cx="960" cy="604" r="268" fill="var(--disc)" filter="url(#p8-shadow)"/>
+    </g>
+    <g class="unit unit-3">
+      <circle class="ring-idle" cx="1532" cy="604" r="291" fill="none" stroke="var(--ring-idle)" stroke-width="40"/>
+      <circle class="disc disc-3" cx="1532" cy="604" r="268" fill="var(--disc)" filter="url(#p8-shadow)"/>
+    </g>
+
+    <!-- 170deg accent arcs, drawn LAST so each laps over its neighbour.
+         units 1 and 3 run under the disc, unit 2 runs over the top. -->
+    <path class="arc arc-1" pathLength="1" fill="none" stroke="var(--color-1)" stroke-width="40"
+          d="M 98 579 A 291 291 0 0 0 678 579"/>
+    <path class="arc arc-2" pathLength="1" fill="none" stroke="var(--color-2)" stroke-width="40"
+          d="M 670 629 A 291 291 0 0 1 1250 629"/>
+    <path class="arc arc-3" pathLength="1" fill="none" stroke="var(--color-3)" stroke-width="40"
+          d="M 1242 579 A 291 291 0 0 0 1822 579"/>
+  </svg>
+
+  <div class="pt-letter pt-letter-1" data-token="p1.letter">A</div>
+  <div class="pt-letter pt-letter-2" data-token="p2.letter">B</div>
+  <div class="pt-letter pt-letter-3" data-token="p3.letter">C</div>
+
+  <div class="pt-label pt-label-1" data-token="p1.label">Projects 01</div>
+  <div class="pt-label pt-label-2" data-token="p2.label">Projects 02</div>
+  <div class="pt-label pt-label-3" data-token="p3.label">Projects 03</div>
+
+  <p class="pt-body pt-body-1" data-token="p1.body">Lorem ipsum dolor siti amet, consedi ctetuer adipiscing elit, sied diam red</p>
+  <p class="pt-body pt-body-2" data-token="p2.body">Lorem ipsum dolor siti amet, consedi ctetuer adipiscing elit, sied diam red</p>
+  <p class="pt-body pt-body-3" data-token="p3.body">Lorem ipsum dolor siti amet, consedi ctetuer adipiscing elit, sied diam red</p>
+
+  <div class="pt-dashes pt-dashes-1"><i></i><i></i></div>
+  <div class="pt-dashes pt-dashes-2"><i></i><i></i></div>
+  <div class="pt-dashes pt-dashes-3"><i></i><i></i></div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — header, then each unit lands and its arc draws =
+  // 0.15 kicker  0.45 headline  0.80 pips
+  // 1.10 / 2.20 / 3.30 unit 1 / 2 / 3
+  //      (disc pops → arc draws → letter → label → body → dashes)
+  // ends ~5.0 → hold to 7.0
+
+  gsap.set('.kicker',    {opacity: 0, y: -16});
+  gsap.set('.headline',  {opacity: 0, y: -20});
+  gsap.set('.pips i',    {opacity: 0, scaleX: 0.3, transformOrigin: 'center'});
+  [1,2,3].forEach(function (n) {
+    var cx = [0,388,960,1532][n];
+    gsap.set('.unit-' + n, {opacity: 0, scale: 0.62, svgOrigin: cx + ' 604'});
+  });
+  gsap.set('.arc',       {strokeDasharray: 1, strokeDashoffset: 1});
+  gsap.set('.pt-letter', {opacity: 0, scale: 0.6, transformOrigin: 'center'});
+  gsap.set('.pt-label',  {opacity: 0, y: 12});
+  gsap.set('.pt-body',   {opacity: 0, y: 12});
+  gsap.set('.pt-dashes i', {opacity: 0, scaleX: 0.3, transformOrigin: 'center'});
+
+  const tl = gsap.timeline({paused: true});
+
+  tl.to('.kicker',   {opacity: 1, y: 0, duration: 0.45, ease: 'power2.out'},          0.15)
+    .to('.headline', {opacity: 1, y: 0, duration: 0.55, ease: 'power2.out'},          0.45)
+    .to('.pips i',   {opacity: 1, scaleX: 1, duration: 0.30, stagger: 0.08,
+                      ease: 'back.out(2)'},                                            0.80);
+
+  function revealUnit(n, t) {
+    tl.to('.unit-'      + n, {opacity: 1, scale: 1, duration: 0.55, ease: 'back.out(1.3)'},  t)
+      .to('.arc-'       + n, {strokeDashoffset: 0, duration: 0.70, ease: 'power2.inOut'},    t + 0.22)
+      .to('.pt-letter-' + n, {opacity: 1, scale: 1, duration: 0.40, ease: 'back.out(1.8)'},  t + 0.34)
+      .to('.pt-label-'  + n, {opacity: 1, y: 0, duration: 0.36, ease: 'power2.out'},         t + 0.48)
+      .to('.pt-body-'   + n, {opacity: 1, y: 0, duration: 0.42, ease: 'power2.out'},         t + 0.60)
+      .to('.pt-dashes-' + n + ' i', {opacity: 1, scaleX: 1, duration: 0.26, stagger: 0.07,
+                                     ease: 'back.out(2)'},                                    t + 0.76);
+  }
+
+  revealUnit(1, 1.10);
+  revealUnit(2, 2.20);
+  revealUnit(3, 3.30);
+
+  tl.to({}, {duration: 1.5}, 5.5);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES ==================================================
+  // ?snapshot=1  →  preview.sh thumbnail: fast-forward to the final frame
+  // __hfSeek     →  HyperFrames pipeline drives the timeline via seek
+  // otherwise    →  standalone preview / Launch panel: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

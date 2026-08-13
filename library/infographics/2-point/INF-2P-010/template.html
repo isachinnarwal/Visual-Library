@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-2P-010 — Gradient donuts with slide-out numbered tabs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg:          #EAEAEA;   /* flat field                              */
+    --disc:        #FFFFFF;   /* the well inside each donut              */
+    --text-dark:   #373737;   /* headline                                */
+    --text-sub:    #8A8A8A;   /* deck                                    */
+    --text-muted:  #8A8A8A;   /* body copy inside the disc               */
+    --on-color:    #FFFFFF;   /* numeral on the tab                      */
+    --badge-tint:  rgba(255, 255, 255, 0.18);  /* numeral disc on the tab */
+
+    /* each unit is one left→right gradient, reused by its tab and donut */
+    --c1-from:     #F78028;   /* unit 1 — orange                         */
+    --c1-to:       #F64620;   /* unit 1 — red                            */
+    --c1-label:    #E8912E;   /* unit 1 — disc title                     */
+    --c2-from:     #2B92C6;   /* unit 2 — blue                           */
+    --c2-to:       #2EBC73;   /* unit 2 — green                          */
+    --c2-label:    #2BA085;   /* unit 2 — disc title                     */
+
+    --pip-1:       #F79232;   /* the four header pips                    */
+    --pip-2:       #2D6EBE;
+    --pip-3:       #2DA2A2;
+    --pip-4:       #D7315C;
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Lato', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       Unit 1 cx 698 · unit 2 cx 1383 · both donuts cy 669, R 277,
+       ring 68 (disc r 209). Tabs y 400→584, badge r 55.
+       Margins: top 68 · left 260 · right 260 · bottom 134.
+       z: tabs 1 → donuts 2 → discs 3 → disc contents 4, so unit 2's tab
+       passes behind unit 1's donut exactly as in the reference.        */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: var(--bg);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER ======================================================= */
+  .headline {
+    position: absolute;
+    top: 68px; left: 360px; width: 1200px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.15;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  /* wide deck — 3 lines by design across a 1400px measure */
+  .deck {
+    position: absolute;
+    top: 160px; left: 260px; width: 1400px;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .pips {
+    position: absolute;
+    top: 300px; left: 890px; width: 140px; height: 12px;
+    display: flex; justify-content: space-between;
+  }
+  .pips i { display: block; width: 23px; height: 12px; border-radius: 6px; }
+  .pips i:nth-child(1) { background: var(--pip-1); }
+  .pips i:nth-child(2) { background: var(--pip-2); }
+  .pips i:nth-child(3) { background: var(--pip-3); }
+  .pips i:nth-child(4) { background: var(--pip-4); }
+
+  /* === TAB — gradient slab that slides out to the left of the donut == */
+  .tab {
+    position: absolute;
+    top: 400px; height: 184px;
+    border-radius: 25px;
+    z-index: 1;
+  }
+  .tab-1 { left: 260px; width: 509px; background: linear-gradient(90deg, var(--c1-from), var(--c1-to)); }
+  .tab-2 { left: 947px; width: 509px; background: linear-gradient(90deg, var(--c2-from), var(--c2-to)); }
+
+  .badge {
+    position: absolute;
+    top: 437px; width: 110px; height: 110px;
+    border-radius: 50%;
+    background: var(--badge-tint);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 1;
+    color: var(--on-color);
+    z-index: 2;
+  }
+  .badge-1 { left: 323px; }
+  .badge-2 { left: 1011px; }
+
+  /* === DONUT — gradient circle with a white well punched into it ===== */
+  .donut {
+    position: absolute;
+    top: 392px; width: 554px; height: 554px;
+    border-radius: 50%;
+    z-index: 2;
+  }
+  .donut-1 { left: 421px;  background: linear-gradient(90deg, var(--c1-from), var(--c1-to)); }
+  .donut-2 { left: 1106px; background: linear-gradient(90deg, var(--c2-from), var(--c2-to)); }
+
+  .well {
+    position: absolute;
+    top: 460px; width: 418px; height: 418px;
+    border-radius: 50%;
+    background: var(--disc);
+    z-index: 3;
+  }
+  .well-1 { left: 489px;  }
+  .well-2 { left: 1174px; }
+
+  /* === DISC CONTENTS — icon, title, body; all inside r 209 ========== */
+  .disc-icon {
+    position: absolute;
+    top: 506px; width: 72px; height: 72px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 4;
+  }
+  .disc-icon-1 { left: 662px;  color: var(--c1-label); }
+  .disc-icon-2 { left: 1347px; color: var(--c2-label); }
+  .disc-icon .material-symbols-outlined {
+    font-size: 72px;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  }
+
+  .disc-title {
+    position: absolute;
+    top: 607px; width: 320px; height: 42px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 35px;
+    line-height: 42px;
+    text-align: center;
+    z-index: 4;
+  }
+  .disc-title-1 { left: 538px;  color: var(--c1-label); }
+  .disc-title-2 { left: 1223px; color: var(--c2-label); }
+
+  /* 3 lines max — the well is a circle, so the block's bottom corners
+     must stay inside r 209 (at y 797 that allows a half-width of 165) */
+  .disc-body {
+    position: absolute;
+    top: 671px; width: 320px;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-align: center;
+    z-index: 4;
+  }
+  .disc-body-1 { left: 538px;  }
+  .disc-body-2 { left: 1223px; }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-2P-010"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <h1 class="headline" data-token="title">Circle</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim aderape minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+
+  <div class="pips"><i></i><i></i><i></i><i></i></div>
+
+  <div class="tab tab-1"></div>
+  <div class="tab tab-2"></div>
+  <div class="badge badge-1" data-token="p1.num">01</div>
+  <div class="badge badge-2" data-token="p2.num">02</div>
+
+  <div class="donut donut-1"></div>
+  <div class="donut donut-2"></div>
+  <div class="well well-1"></div>
+  <div class="well well-2"></div>
+
+  <div class="disc-icon disc-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">settings</span></div>
+  <div class="disc-icon disc-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">grid_view</span></div>
+
+  <div class="disc-title disc-title-1" data-token="p1.label">Circle</div>
+  <div class="disc-title disc-title-2" data-token="p2.label">Circle</div>
+
+  <p class="disc-body disc-body-1" data-token="p1.body">Lorem ipsum dolor sit ameti, coreda nsectetuer adipeiscing elitaped.</p>
+  <p class="disc-body disc-body-2" data-token="p2.body">Lorem ipsum dolor sit ameti, coreda nsectetuer adipeiscing elitaped.</p>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — header, then each unit: tab slides out, donut
+  // pops, well opens, contents land.
+  // 0.15 headline  0.55 deck  0.95 pips
+  // 1.25 unit 1    2.75 unit 2            ends ~4.3 → hold to 6.0
+
+  gsap.set('.headline',  {opacity: 0, y: -26});
+  gsap.set('.deck',      {opacity: 0, y: -14});
+  gsap.set('.pips i',    {opacity: 0, scale: 0.4, transformOrigin: 'center'});
+  gsap.set('.tab-1',     {opacity: 0, x: 120, transformOrigin: 'right center'});
+  gsap.set('.tab-2',     {opacity: 0, x: 120, transformOrigin: 'right center'});
+  gsap.set('.badge',     {opacity: 0, scale: 0.4, transformOrigin: 'center'});
+  gsap.set('.donut',     {opacity: 0, scale: 0.75, transformOrigin: 'center'});
+  gsap.set('.well',      {opacity: 0, scale: 0.6,  transformOrigin: 'center'});
+  gsap.set('.disc-icon', {opacity: 0, scale: 0.5,  transformOrigin: 'center'});
+  gsap.set('.disc-title',{opacity: 0, y: 16});
+  gsap.set('.disc-body', {opacity: 0, y: 16});
+
+  const tl = gsap.timeline({paused: true});
+
+  tl.to('.headline', {opacity: 1, y: 0, duration: 0.60, ease: 'power2.out'},                 0.15)
+    .to('.deck',     {opacity: 1, y: 0, duration: 0.55, ease: 'power2.out'},                 0.55)
+    .to('.pips i',   {opacity: 1, scale: 1, duration: 0.30, stagger: 0.07,
+                      ease: 'back.out(2)'},                                                  0.95);
+
+  function revealUnit(n, t) {
+    tl.to('.tab-'        + n, {opacity: 1, x: 0, duration: 0.55, ease: 'power3.out'},         t)
+      .to('.badge-'      + n, {opacity: 1, scale: 1, duration: 0.40, ease: 'back.out(2)'},    t + 0.25)
+      .to('.donut-'      + n, {opacity: 1, scale: 1, duration: 0.55, ease: 'back.out(1.4)'},  t + 0.35)
+      .to('.well-'       + n, {opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.5)'},  t + 0.60)
+      .to('.disc-icon-'  + n, {opacity: 1, scale: 1, duration: 0.40, ease: 'back.out(1.8)'},  t + 0.80)
+      .to('.disc-title-' + n, {opacity: 1, y: 0, duration: 0.40, ease: 'power2.out'},         t + 0.95)
+      .to('.disc-body-'  + n, {opacity: 1, y: 0, duration: 0.45, ease: 'power2.out'},         t + 1.10);
+  }
+
+  revealUnit(1, 1.25);
+  revealUnit(2, 2.75);
+
+  tl.to({}, {duration: 1.5}, 4.5);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES ==================================================
+  // ?snapshot=1  →  preview.sh thumbnail: fast-forward to the final frame
+  // __hfSeek     →  HyperFrames pipeline drives the timeline via seek
+  // otherwise    →  standalone preview / Launch panel: auto-play
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>

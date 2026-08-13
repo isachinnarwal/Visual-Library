@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-4P-019 — Alternating hexagons above and below a broken rule</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS — overridden at use-time per pipeline ============ */
+  .canvas {
+    --bg-core:     #FDFDFD;   /* vignette centre                         */
+    --bg-deep:     #F3F5F4;   /* vignette mid                            */
+    --bg-edge:     #EDF0EF;   /* vignette outer                          */
+    --leader:      #C3C3C3;   /* the dotted line from hexagon to rule    */
+    --on-color:    #FFFFFF;   /* glyph on the hexagon                    */
+
+    --text-dark:   #252525;   /* headline                                */
+    --text-sub:    #6E7073;   /* deck                                    */
+    --text-muted:  #8A8A8C;   /* point body copy                         */
+
+    --color-1:     #7B509A;   /* point 1 — purple                        */
+    --color-2:     #E38A31;   /* point 2 — orange                        */
+    --color-3:     #3AA7DD;   /* point 3 — blue                          */
+    --color-4:     #E74629;   /* point 4 — red                           */
+
+    --font-display:'Lato', sans-serif;
+    --font-body:   'Poppins', sans-serif;
+  }
+
+  /* === RESET ======================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  /* === CANVAS — 1920x1080 ===========================================
+       One rule broken into four 409px segments at y 654, on a 438 pitch.
+       Points ALTERNATE about it: 1 and 3 put the hexagon above and the
+       copy below, 2 and 4 do the opposite. Each hexagon is tied to its
+       segment by a dotted leader, and hexagon, leader, segment and copy
+       all share one centreline.
+       Margins: top 70 · left 98 · right 98 · bottom 76.                */
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background: radial-gradient(circle at 50% 30%,
+                var(--bg-core) 0%, var(--bg-deep) 55%, var(--bg-edge) 100%);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === HEADER — four-segment rule, one per point ==================== */
+  .headline {
+    position: absolute;
+    top: 70px; left: 120px; width: 1680px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .deck {
+    position: absolute;
+    top: 150px; left: 120px; width: 1680px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--text-sub);
+    text-align: center;
+  }
+  .rule { position: absolute; top: 250px; height: 10px; width: 129px; border-radius: 2px; }
+  .rule-1 { left: 702px;  background: var(--color-1); }
+  .rule-2 { left: 831px;  background: var(--color-2); }
+  .rule-3 { left: 960px;  background: var(--color-3); }
+  .rule-4 { left: 1089px; background: var(--color-4); }
+
+  .layer { position: absolute; inset: 0; z-index: 1; }
+
+  /* === HEXAGON GLYPHS =============================================== */
+  .hex-icon {
+    position: absolute;
+    width: 200px; height: 84px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--on-color);
+    z-index: 3;
+  }
+  .hex-icon-1 { left: 202px;  top: 392px; }
+  .hex-icon-2 { left: 640px;  top: 848px; }
+  .hex-icon-3 { left: 1079px; top: 392px; }
+  .hex-icon-4 { left: 1517px; top: 848px; }
+  .hex-icon .material-symbols-outlined {
+    font-size: 84px;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+  }
+
+  /* === COPY — always on the OPPOSITE side of the rule from its hexagon */
+  .pt-label {
+    position: absolute;
+    width: 409px; height: 46px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 46px;
+    text-align: center;
+    z-index: 3;
+  }
+  .pt-label-1 { left: 98px;   top: 706px; color: var(--color-1); }
+  .pt-label-2 { left: 535px;  top: 366px; color: var(--color-2); }
+  .pt-label-3 { left: 974px;  top: 706px; color: var(--color-3); }
+  .pt-label-4 { left: 1412px; top: 366px; color: var(--color-4); }
+
+  .pt-body {
+    position: absolute;
+    width: 409px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--text-muted);
+    z-index: 3;
+  }
+  .pt-body-1 { left: 98px;   top: 762px; }
+  .pt-body-2 { left: 535px;  top: 422px; }
+  .pt-body-3 { left: 974px;  top: 762px; }
+  .pt-body-4 { left: 1412px; top: 422px; }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-4P-019"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <h1 class="headline" data-token="title">4 Points Template</h1>
+  <p  class="deck"     data-token="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>
+
+  <div class="rule rule-1"></div>
+  <div class="rule rule-2"></div>
+  <div class="rule rule-3"></div>
+  <div class="rule rule-4"></div>
+
+  <svg class="layer" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <!-- dotted leaders: hexagon edge to rule segment, on the shared axis -->
+    <line class="leader leader-1" x1="302"  y1="548" x2="302"  y2="654"
+          stroke="var(--leader)" stroke-width="4" stroke-dasharray="8 12" stroke-linecap="round"/>
+    <line class="leader leader-2" x1="740"  y1="670" x2="740"  y2="776"
+          stroke="var(--leader)" stroke-width="4" stroke-dasharray="8 12" stroke-linecap="round"/>
+    <line class="leader leader-3" x1="1179" y1="548" x2="1179" y2="654"
+          stroke="var(--leader)" stroke-width="4" stroke-dasharray="8 12" stroke-linecap="round"/>
+    <line class="leader leader-4" x1="1617" y1="670" x2="1617" y2="776"
+          stroke="var(--leader)" stroke-width="4" stroke-dasharray="8 12" stroke-linecap="round"/>
+
+    <!-- the broken rule: one segment per point -->
+    <rect class="seg seg-1" x="98"   y="654" width="409" height="16" fill="var(--color-1)"/>
+    <rect class="seg seg-2" x="535"  y="654" width="409" height="16" fill="var(--color-2)"/>
+    <rect class="seg seg-3" x="974"  y="654" width="409" height="16" fill="var(--color-3)"/>
+    <rect class="seg seg-4" x="1412" y="654" width="409" height="16" fill="var(--color-4)"/>
+
+    <!-- POINTY-TOP hexagons, 200 across the flats and 228 point to point.
+         Odd points sit above the rule, even points below. -->
+    <path class="hex hex-1" fill="var(--color-1)"
+          d="M 302 320 L 402 377 L 402 491 L 302 548 L 202 491 L 202 377 Z"/>
+    <path class="hex hex-2" fill="var(--color-2)"
+          d="M 740 776 L 840 833 L 840 947 L 740 1004 L 640 947 L 640 833 Z"/>
+    <path class="hex hex-3" fill="var(--color-3)"
+          d="M 1179 320 L 1279 377 L 1279 491 L 1179 548 L 1079 491 L 1079 377 Z"/>
+    <path class="hex hex-4" fill="var(--color-4)"
+          d="M 1617 776 L 1717 833 L 1717 947 L 1617 1004 L 1517 947 L 1517 833 Z"/>
+  </svg>
+
+  <div class="hex-icon hex-icon-1"><span class="material-symbols-outlined" data-token="p1.icon">shield</span></div>
+  <div class="hex-icon hex-icon-2"><span class="material-symbols-outlined" data-token="p2.icon">directions_run</span></div>
+  <div class="hex-icon hex-icon-3"><span class="material-symbols-outlined" data-token="p3.icon">description</span></div>
+  <div class="hex-icon hex-icon-4"><span class="material-symbols-outlined" data-token="p4.icon">settings</span></div>
+
+  <div class="pt-label pt-label-1" data-token="p1.label">Infographics 01</div>
+  <div class="pt-label pt-label-2" data-token="p2.label">Infographics 02</div>
+  <div class="pt-label pt-label-3" data-token="p3.label">Infographics 03</div>
+  <div class="pt-label pt-label-4" data-token="p4.label">Infographics 04</div>
+
+  <div class="pt-body pt-body-1" data-token="p1.body">Lorem ipsum dolor sit amet cona nsectetuer adipiscing elit sedipra itdiamar nonummynibh euismod</div>
+  <div class="pt-body pt-body-2" data-token="p2.body">Lorem ipsum dolor sit amet cona nsectetuer adipiscing elit sedipra itdiamar nonummynibh euismod</div>
+  <div class="pt-body pt-body-3" data-token="p3.body">Lorem ipsum dolor sit amet cona nsectetuer adipiscing elit sedipra itdiamar nonummynibh euismod</div>
+  <div class="pt-body pt-body-4" data-token="p4.body">Lorem ipsum dolor sit amet cona nsectetuer adipiscing elit sedipra itdiamar nonummynibh euismod</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function () {
+  gsap.set('.headline, .deck', { opacity: 0, y: 24 });
+  gsap.set('.rule', { opacity: 0, scaleX: 0, transformOrigin: '50% 50%' });
+
+  /* each rule segment wipes out from its own left edge */
+  [[1, 98], [2, 535], [3, 974], [4, 1412]].forEach(function (p) {
+    gsap.set('.seg-' + p[0], { opacity: 0, scaleX: 0, svgOrigin: p[1] + ' 662' });
+  });
+  /* hexagons grow from the rule end of their own axis, so they travel
+     away from the spine rather than dropping in from nowhere */
+  [[1, '302 548'], [2, '740 776'], [3, '1179 548'], [4, '1617 776']].forEach(function (p) {
+    gsap.set('.hex-' + p[0], { opacity: 0, scale: 0.35, svgOrigin: p[1] });
+  });
+  /* dasharray forbids pathLength here, so the leaders just fade */
+  gsap.set('.leader',   { opacity: 0 });
+  gsap.set('.hex-icon', { opacity: 0, scale: 0.5, transformOrigin: '50% 50%' });
+  gsap.set('.pt-label-1, .pt-body-1, .pt-label-3, .pt-body-3', { opacity: 0, y:  22 });
+  gsap.set('.pt-label-2, .pt-body-2, .pt-label-4, .pt-body-4', { opacity: 0, y: -22 });
+
+  var tl = gsap.timeline({ paused: true });
+
+  tl.to('.headline', { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.00)
+    .to('.deck',     { opacity: 1, y: 0, duration: 0.62, ease: 'power3.out' }, 0.18)
+    .to('.rule',     { opacity: 1, scaleX: 1, duration: 0.44, ease: 'power2.out', stagger: 0.08 }, 0.40);
+
+  [1, 2, 3, 4].forEach(function (n, i) {
+    var t = 0.75 + i * 0.42;
+    tl.to('.seg-' + n,      { opacity: 1, scaleX: 1, duration: 0.44, ease: 'power2.out' }, t)
+      .to('.leader-' + n,   { opacity: 1, duration: 0.34, ease: 'power1.out' }, t + 0.20)
+      .to('.hex-' + n,      { opacity: 1, scale: 1, duration: 0.52, ease: 'back.out(1.6)' }, t + 0.24)
+      .to('.hex-icon-' + n, { opacity: 1, scale: 1, duration: 0.38, ease: 'back.out(2)' }, t + 0.40)
+      .to('.pt-label-' + n + ', .pt-body-' + n,
+          { opacity: 1, y: 0, duration: 0.48, ease: 'power2.out', stagger: 0.08 }, t + 0.18);
+  });
+
+  window.__libraryTimeline = tl;
+
+  /* === SNAPSHOT MODE — mandatory ==================================== */
+  if (new URLSearchParams(location.search).get('snapshot') === '1') {
+    tl.progress(1);
+    document.documentElement.setAttribute('data-snapshot-ready', '1');
+  } else {
+    tl.play();
+  }
+})();
+</script>
+
+</body>
+</html>

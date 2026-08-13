@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-3P-002 — BUSINESS hub-left + 3 pill cards right</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&display=swap" rel="stylesheet">
+<style>
+  .canvas {
+    --bg-deep: #ECECEE;
+    --bg-paper: #FFFFFF;
+    --text-dark: #1A1815;
+    --text-muted: #6A6A70;
+    --text-light: #FFFFFF;
+    --color-1: #F09A2A;
+    --color-2: #E25A28;
+    --color-3: #DC2A6F;
+    --dot-pattern: rgba(150, 160, 175, 0.14);
+    --line-color: #8B95A0;
+    --font-body: 'Source Sans Pro', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+  .canvas {
+    position: relative;
+    width: 1920px; height: 1080px;
+    background:
+      radial-gradient(circle, var(--dot-pattern) 1.2px, transparent 1.4px) 0 0/22px 22px,
+      var(--bg-deep);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === SVG CONNECTORS (dotted lines hub → card dots) ============== */
+  .connections {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .connections .conn-line {
+    stroke: var(--line-color);
+    stroke-width: 3;
+    fill: none;
+    stroke-dasharray: 8 8;
+    stroke-linecap: round;
+  }
+  .connections .conn-dot {
+    r: 14;
+    stroke: var(--bg-paper);
+    stroke-width: 4;
+  }
+
+  /* === HUB CIRCLE (left) ========================================== */
+  .hub {
+    position: absolute;
+    left: 130px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: var(--bg-paper);
+    box-shadow:
+      0 20px 40px rgba(20, 30, 50, 0.18),
+      0 0 0 14px rgba(255, 255, 255, 0.55);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    z-index: 4;
+    text-align: center;
+    padding: 40px;
+    gap: 14px;
+  }
+  .hub-title {
+    font-weight: 900;
+    font-size: 54px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--text-dark);
+    text-transform: uppercase;
+  }
+  .hub-bar {
+    width: 80px; height: 4px;
+    background: linear-gradient(90deg, var(--color-1), var(--color-2), var(--color-3));
+    border-radius: 2px;
+  }
+  .hub-sub {
+    font-weight: 400;
+    font-size: 28px;
+    letter-spacing: 0.24em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* === CARDS (right) — 3 stacked horizontal pill-shaped cards ===== */
+  .card {
+    position: absolute;
+    left: 680px;
+    width: 1140px;
+    height: 200px;
+    z-index: 3;
+  }
+  .card.r-1 { top: 180px; --accent-color: var(--color-1); }
+  .card.r-2 { top: 440px; --accent-color: var(--color-2); }
+  .card.r-3 { top: 700px; --accent-color: var(--color-3); }
+
+  .card-body {
+    position: absolute;
+    inset: 0 200px 0 0;            /* leave room for icon circle on right */
+    background: var(--bg-paper);
+    border-radius: 100px;
+    box-shadow: 0 12px 28px rgba(20, 30, 50, 0.12);
+    padding: 30px 80px 30px 70px;
+    display: flex; flex-direction: column;
+    justify-content: center;
+  }
+  /* Colored left curved ribbon */
+  .card-body::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 40px;
+    background: var(--accent-color);
+    border-radius: 100px 0 0 100px;
+  }
+  .card-label {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .card-text {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.30;
+    color: var(--text-muted);
+  }
+  /* Icon circle on right end */
+  .card-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: var(--bg-paper);
+    box-shadow: 0 12px 28px rgba(20, 30, 50, 0.16);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 4;
+  }
+  .card-icon .material-symbols-outlined {
+    font-size: 96px;
+    color: var(--accent-color);
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-3P-002"
+     data-width="1920" data-height="1080" data-duration="6">
+
+  <!-- === Dotted connector lines from hub edge to each card dot ==== -->
+  <svg class="connections" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+    <!-- Hub center (330, 540), radius 200 (hub box 400×400 from left:130).
+         Hub right edge at (530, 540). Card left edge at (680).
+         Each line goes from a point on the hub edge to the colored dot
+         next to each card.                                            -->
+    <line class="conn-line line-1" x1="530" y1="455" x2="680" y2="280" />
+    <line class="conn-line line-2" x1="530" y1="540" x2="680" y2="540" />
+    <line class="conn-line line-3" x1="530" y1="625" x2="680" y2="800" />
+    <circle class="conn-dot dot-1" cx="680" cy="280" fill="var(--color-1)" />
+    <circle class="conn-dot dot-2" cx="680" cy="540" fill="var(--color-2)" />
+    <circle class="conn-dot dot-3" cx="680" cy="800" fill="var(--color-3)" />
+  </svg>
+
+  <!-- === HUB ====================================================== -->
+  <div class="hub">
+    <h1 class="hub-title" data-token="title">Business</h1>
+    <span class="hub-bar"></span>
+    <span class="hub-sub" data-token="subtitle">Infographics</span>
+  </div>
+
+  <!-- === CARDS ==================================================== -->
+  <article class="card r-1">
+    <div class="card-body">
+      <h3 class="card-label" data-token="s1.label">Lorem Ipsum</h3>
+      <p class="card-text"  data-token="s1.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.</p>
+    </div>
+    <div class="card-icon"><span class="material-symbols-outlined" data-token="s1.icon">lightbulb</span></div>
+  </article>
+
+  <article class="card r-2">
+    <div class="card-body">
+      <h3 class="card-label" data-token="s2.label">Lorem Ipsum</h3>
+      <p class="card-text"  data-token="s2.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.</p>
+    </div>
+    <div class="card-icon"><span class="material-symbols-outlined" data-token="s2.icon">settings</span></div>
+  </article>
+
+  <article class="card r-3">
+    <div class="card-body">
+      <h3 class="card-label" data-token="s3.label">Lorem Ipsum</h3>
+      <p class="card-text"  data-token="s3.body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.</p>
+    </div>
+    <div class="card-icon"><span class="material-symbols-outlined" data-token="s3.icon">track_changes</span></div>
+  </article>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // Pre-state — hide everything for reveal animation
+  gsap.set('.hub',           {opacity: 0, scale: 0.6, transformOrigin: 'center'});
+  gsap.set('.hub-title, .hub-bar, .hub-sub', {opacity: 0, y: 6});
+  gsap.set('.conn-line',     {opacity: 0});  // simple opacity fade — dasharray stays at 8 8
+  gsap.set('.conn-dot',      {opacity: 0, scale: 0, transformOrigin: 'center'});
+  gsap.set('.card',          {opacity: 0, x: 60});
+  gsap.set('.card-icon',     {opacity: 0, scale: 0.5, transformOrigin: 'center'});
+  gsap.set('.card-label, .card-text', {opacity: 0, y: 6});
+
+  const tl = gsap.timeline({paused: true});
+
+  // --- HUB ---
+  tl.to('.hub',       {opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.4)'}, 0.2);
+  tl.to('.hub-title', {opacity: 1, y: 0, duration: 0.4, ease: 'power2.out'}, 0.6);
+  tl.to('.hub-bar',   {opacity: 1, y: 0, duration: 0.35, ease: 'power2.out'}, 0.8);
+  tl.to('.hub-sub',   {opacity: 1, y: 0, duration: 0.4, ease: 'power2.out'}, 0.95);
+
+  // --- Per-card reveal — explicit class targets, no nth-of-type ambiguity ---
+  function revealCard(n, t) {
+    const c = '.r-' + n;
+    tl.to('.line-' + n,         {opacity: 1, duration: 0.40, ease: 'power2.out'}, t);
+    tl.to('.dot-' + n,          {opacity: 1, scale: 1, duration: 0.30, ease: 'back.out(1.7)'}, t + 0.20);
+    tl.to(c,                    {opacity: 1, x: 0, duration: 0.50, ease: 'power3.out'}, t + 0.15);
+    tl.to(c + ' .card-icon',    {opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.6)'}, t + 0.35);
+    tl.to(c + ' .card-label',   {opacity: 1, y: 0, duration: 0.30, ease: 'power2.out'}, t + 0.50);
+    tl.to(c + ' .card-text',    {opacity: 1, y: 0, duration: 0.35, ease: 'power2.out'}, t + 0.65);
+  }
+  revealCard(1, 1.5);
+  revealCard(2, 2.1);
+  revealCard(3, 2.7);
+  tl.to({}, {duration: 2.0}, 4.0);
+
+  window.__libraryTimeline = tl;
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+</body>
+</html>

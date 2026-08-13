@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INF-5P-001 — Half-pie hub + 5 numbered list cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+Pro:wght@300;400;600;700;900&family=Special+Elite&family=JetBrains+Mono:wght@400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&display=swap" rel="stylesheet">
+<style>
+  /* === BRAND TOKENS ================================================= */
+  .canvas {
+    --bg-deep: #F4F4F6;
+    --bg-paper: #FFFFFF;
+    --text-light: #FFFFFF;
+    --text-dark: #1A1815;
+    --text-muted: #5A5A60;
+
+    /* Five distinct step colors */
+    --color-1: #F58A2E;     /* orange — TOP wedge / card 01 */
+    --color-2: #6FA644;     /* green  */
+    --color-3: #314D7C;     /* navy   */
+    --color-4: #D2418E;     /* pink   */
+    --color-5: #1FB1A7;     /* teal   — BOTTOM wedge / card 05 */
+
+    --hub-bg: #FFFFFF;
+    --hub-ring: #B8E5E0;
+    --hub-shadow: rgba(20, 20, 30, 0.14);
+    --card-shadow: rgba(20, 20, 30, 0.10);
+
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Source Sans Pro', sans-serif;
+    --font-stamp: 'Special Elite', monospace;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+  .canvas {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    background: var(--bg-deep);
+    color: var(--text-dark);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* === PIE SVG — half circle (right half of full circle) ===========
+       cx=440, cy=540, outerR=340, innerR=170
+       5 wedges from -90° (top) to 90° (bottom), 36° each              */
+  .pie-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  .wedge {
+    transform-origin: 440px 540px;
+    filter: drop-shadow(0 8px 14px rgba(20, 20, 30, 0.12));
+  }
+  .wedge.w-1 { fill: var(--color-1); }
+  .wedge.w-2 { fill: var(--color-2); }
+  .wedge.w-3 { fill: var(--color-3); }
+  .wedge.w-4 { fill: var(--color-4); }
+  .wedge.w-5 { fill: var(--color-5); }
+
+  /* === WEDGE ICONS — Material Symbols positioned absolutely ======= */
+  .wedge-icon {
+    position: absolute;
+    width: 80px; height: 80px;
+    margin-left: -40px; margin-top: -40px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 4;
+  }
+  .wedge-icon .material-symbols-outlined {
+    font-size: 56px;
+    color: #FFFFFF;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  }
+  /* Icon positions: midpoint of each wedge at radius 255 from (440,540) */
+  .wedge-icon.i-1 { left: 519px; top: 297px; }   /* angle -72° */
+  .wedge-icon.i-2 { left: 646px; top: 390px; }   /* angle -36° */
+  .wedge-icon.i-3 { left: 695px; top: 540px; }   /* angle   0° */
+  .wedge-icon.i-4 { left: 646px; top: 690px; }   /* angle  36° */
+  .wedge-icon.i-5 { left: 519px; top: 783px; }   /* angle  72° */
+
+  /* === HUB CIRCLE — sits at the pie's diameter, half outside ====== */
+  .hub {
+    position: absolute;
+    left: 440px; top: 540px;
+    width: 300px; height: 300px;
+    margin-left: -150px; margin-top: -150px;
+    border-radius: 50%;
+    background: var(--hub-bg);
+    box-shadow:
+      0 16px 32px var(--hub-shadow),
+      0 0 0 12px var(--hub-ring);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    z-index: 5;
+    gap: 18px;
+  }
+  .hub-title {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 1.05;
+    text-align: center;
+    color: var(--text-dark);
+    letter-spacing: 0.04em;
+    padding: 0 24px;
+  }
+  .hub-dots { display: flex; gap: 10px; }
+  .hub-dots span { width: 12px; height: 12px; border-radius: 50%; display: block; }
+  .hub-dots span:nth-child(1) { background: var(--color-1); }
+  .hub-dots span:nth-child(2) { background: var(--color-2); }
+  .hub-dots span:nth-child(3) { background: var(--color-3); }
+  .hub-dots span:nth-child(4) { background: var(--color-4); }
+  .hub-dots span:nth-child(5) { background: var(--color-5); }
+
+  /* === RIGHT-SIDE NUMBERED CARDS — 5 stacked horizontal bars ======
+       Card width 1000, height 150, gap 32                            */
+  .num-card {
+    position: absolute;
+    left: 820px;
+    width: 1000px;
+    height: 150px;
+    display: flex;
+    border-radius: 12px;
+    box-shadow: 0 10px 26px var(--card-shadow);
+    overflow: hidden;
+    z-index: 3;
+  }
+  .num-block {
+    width: 130px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: #FFFFFF;
+    font-family: var(--font-body);
+    font-weight: 900;
+    font-size: 64px;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+  .num-content {
+    flex: 1;
+    background: var(--bg-paper);
+    padding: 24px 40px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .num-label {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: 0.10em;
+    line-height: 1;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .num-text {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.28;
+    color: var(--text-muted);
+  }
+
+  /* === ROW PLACEMENT (centers at y=176 / 358 / 540 / 722 / 904) === */
+  .num-card.card-1 { top: 101px; }
+  .num-card.card-2 { top: 283px; }
+  .num-card.card-3 { top: 465px; }
+  .num-card.card-4 { top: 647px; }
+  .num-card.card-5 { top: 829px; }
+
+  /* === PER-CARD NUMBER-BLOCK COLOR ================================ */
+  .num-card.card-1 .num-block { background: var(--color-1); }
+  .num-card.card-2 .num-block { background: var(--color-2); }
+  .num-card.card-3 .num-block { background: var(--color-3); }
+  .num-card.card-4 .num-block { background: var(--color-4); }
+  .num-card.card-5 .num-block { background: var(--color-5); }
+</style>
+</head>
+<body>
+
+<div class="canvas" data-library-id="INF-5P-001"
+     data-width="1920" data-height="1080" data-duration="7">
+
+  <!-- ============ PIE SVG (5 donut wedges, behind hub + icons) ===== -->
+  <svg class="pie-svg" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+    <!-- Wedge 1 (top, orange): -90° → -54° -->
+    <path class="wedge w-1" d="M 440 370 L 440 200 A 340 340 0 0 1 640 265 L 540 402 A 170 170 0 0 0 440 370 Z" />
+    <!-- Wedge 2 (green): -54° → -18° -->
+    <path class="wedge w-2" d="M 540 402 L 640 265 A 340 340 0 0 1 763 435 L 602 487 A 170 170 0 0 0 540 402 Z" />
+    <!-- Wedge 3 (navy): -18° → 18° -->
+    <path class="wedge w-3" d="M 602 487 L 763 435 A 340 340 0 0 1 763 645 L 602 593 A 170 170 0 0 0 602 487 Z" />
+    <!-- Wedge 4 (pink): 18° → 54° -->
+    <path class="wedge w-4" d="M 602 593 L 763 645 A 340 340 0 0 1 640 815 L 540 678 A 170 170 0 0 0 602 593 Z" />
+    <!-- Wedge 5 (bottom, teal): 54° → 90° -->
+    <path class="wedge w-5" d="M 540 678 L 640 815 A 340 340 0 0 1 440 880 L 440 710 A 170 170 0 0 0 540 678 Z" />
+  </svg>
+
+  <!-- ============ WEDGE ICONS (HTML overlays) ====================== -->
+  <div class="wedge-icon i-1"><span class="material-symbols-outlined" data-token="s1.icon">campaign</span></div>
+  <div class="wedge-icon i-2"><span class="material-symbols-outlined" data-token="s2.icon">payments</span></div>
+  <div class="wedge-icon i-3"><span class="material-symbols-outlined" data-token="s3.icon">lightbulb</span></div>
+  <div class="wedge-icon i-4"><span class="material-symbols-outlined" data-token="s4.icon">forum</span></div>
+  <div class="wedge-icon i-5"><span class="material-symbols-outlined" data-token="s5.icon">description</span></div>
+
+  <!-- ============ HUB (center white circle with title) ============= -->
+  <div class="hub">
+    <h1 class="hub-title" data-token="title">CREATIVE<br>INFOGRAPHIC</h1>
+    <div class="hub-dots" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <!-- ============ RIGHT-SIDE NUMBERED CARDS ======================== -->
+  <article class="num-card card-1">
+    <div class="num-block">01</div>
+    <div class="num-content">
+      <h3 class="num-label" data-token="s1.label">Management</h3>
+      <p class="num-text"   data-token="s1.body">Lorem ipsum is simply dummy text of the printing and typesetting industry.</p>
+    </div>
+  </article>
+
+  <article class="num-card card-2">
+    <div class="num-block">02</div>
+    <div class="num-content">
+      <h3 class="num-label" data-token="s2.label">Marketing</h3>
+      <p class="num-text"   data-token="s2.body">Lorem ipsum is simply dummy text of the printing and typesetting industry.</p>
+    </div>
+  </article>
+
+  <article class="num-card card-3">
+    <div class="num-block">03</div>
+    <div class="num-content">
+      <h3 class="num-label" data-token="s3.label">Research</h3>
+      <p class="num-text"   data-token="s3.body">Lorem ipsum is simply dummy text of the printing and typesetting industry.</p>
+    </div>
+  </article>
+
+  <article class="num-card card-4">
+    <div class="num-block">04</div>
+    <div class="num-content">
+      <h3 class="num-label" data-token="s4.label">Analysis</h3>
+      <p class="num-text"   data-token="s4.body">Lorem ipsum is simply dummy text of the printing and typesetting industry.</p>
+    </div>
+  </article>
+
+  <article class="num-card card-5">
+    <div class="num-block">05</div>
+    <div class="num-content">
+      <h3 class="num-label" data-token="s5.label">Information</h3>
+      <p class="num-text"   data-token="s5.body">Lorem ipsum is simply dummy text of the printing and typesetting industry.</p>
+    </div>
+  </article>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // === GSAP TIMELINE — hub → 5× (wedge+icon+card) ====================
+  // 0.0  Blank
+  // 0.2  Hub circle scales in
+  // 0.7  Hub title + dots fade
+  // 1.2  Step 1 — wedge rotates in → icon pops → card slides from right → label → body
+  // 1.8  Step 2
+  // 2.4  Step 3
+  // 3.0  Step 4
+  // 3.6  Step 5  (ends ~4.7)
+  // 5.0  Hold
+
+  // Pre-state
+  gsap.set('.hub', {opacity: 0, scale: 0.6, transformOrigin: 'center'});
+  gsap.set('.hub-title, .hub-dots', {opacity: 0, y: 8});
+  gsap.set('.wedge', {opacity: 0, scale: 0.7, transformOrigin: '440px 540px'});
+  gsap.set('.wedge-icon', {opacity: 0, scale: 0.5, transformOrigin: 'center'});
+  gsap.set('.num-card', {opacity: 0, x: 80});
+  gsap.set('.num-label, .num-text', {opacity: 0});
+
+  const tl = gsap.timeline({paused: true});
+
+  // --- HUB --------------------------------------------------------
+  tl.to('.hub', {opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.4)'}, 0.2);
+  tl.to('.hub-title', {opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'}, 0.7);
+  tl.to('.hub-dots',  {opacity: 1, y: 0, duration: 0.4, ease: 'power2.out'}, 0.9);
+
+  // --- Helper: reveal one step (wedge + icon + numbered card) -----
+  function revealStep(n, startTime) {
+    const wedge = '.w-' + n;
+    const icon  = '.i-' + n;
+    const card  = '.card-' + n;
+
+    tl.to(wedge,
+      {opacity: 1, scale: 1, duration: 0.50, ease: 'back.out(1.5)'},
+      startTime);
+    tl.to(icon,
+      {opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(1.6)'},
+      startTime + 0.25);
+    tl.to(card,
+      {opacity: 1, x: 0, duration: 0.55, ease: 'power3.out'},
+      startTime + 0.30);
+    tl.to(card + ' .num-label',
+      {opacity: 1, duration: 0.30, ease: 'power2.out'},
+      startTime + 0.55);
+    tl.to(card + ' .num-text',
+      {opacity: 1, duration: 0.35, ease: 'power2.out'},
+      startTime + 0.70);
+  }
+
+  revealStep(1, 1.2);
+  revealStep(2, 1.8);
+  revealStep(3, 2.4);
+  revealStep(4, 3.0);
+  revealStep(5, 3.6);
+
+  tl.to({}, {duration: 1.5}, 5.5);
+
+  window.__libraryTimeline = tl;
+
+  // === RUNTIME MODES =================================================
+  const __SNAPSHOT = new URLSearchParams(window.location.search).has('snapshot');
+  if (__SNAPSHOT) {
+    document.fonts.ready.then(() => {
+      tl.progress(1);
+      requestAnimationFrame(() =>
+        document.documentElement.setAttribute('data-snapshot-ready', '1'));
+    });
+  } else if (typeof window.__hfSeek === 'undefined') {
+    tl.play();
+  }
+</script>
+
+</body>
+</html>
